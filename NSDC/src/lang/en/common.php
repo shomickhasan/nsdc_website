@@ -1,0 +1,21 @@
+<?php
+return [
+    'submit.button' => 'Submit',
+    'submit.save' => 'Save',
+    'create.button' => 'Create',
+    'update.button' => 'Update',
+    'cancle.button' => 'Cancle',
+    'filter' => 'Filter',
+    'clear' => 'Filter Clear',
+	'status' => 'Status',
+    'action' => 'Action', 
+    'attachment' => 'Attachment', 
+    'product.shop.information' => 'Product & Shop Information', 
+    'information.update' => 'Update Information',
+    'family.information' => 'Family Information',
+    'organization.information' => 'Organization Information',
+    'organization.association.information' => 'Organization & Association Information',
+    'address.information' => 'Address Information',
+    'language' => 'Language',
+    'export' => 'Export to CSV ',
+];

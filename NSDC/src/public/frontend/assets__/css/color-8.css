@@ -1,0 +1,25 @@
+:root {
+    --thm-gray: #787b7d;
+    --thm-gray-rgb: 120, 123, 125;
+    --thm-black: #000;
+    --thm-black-rgb: 18, 18, 18;
+    --thm-base: #fcbf00;
+    --thm-base-rgb: 28, 154, 237;
+    --thm-primary: #b80d2f;
+    --thm-primary-rgb: 3, 92, 150;
+}
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--thm-black);
+    font-weight: 500;
+    line-height: 1.25em;
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+}

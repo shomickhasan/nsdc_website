@@ -1,0 +1,21 @@
+<?php
+return [
+    'submit.button' => 'জমা দিন',
+    'submit.save' => 'সংরক্ষণ করুন',
+    'create.button' => 'সাবমিট',
+    'update.button' => 'আপডেট করুন',
+    'cancle.button' => 'বাতিল করুন ',
+    'filter' => 'ফিল্টার ',
+    'clear' => 'ফিল্টার ক্লিয়ার',
+    'status' => 'স্ট্যাটাস',
+    'action' => 'একশন ',
+	'attachment' => 'সংযুক্তি', 
+	'product.shop.information' => 'পণ্য এবং দোকানের তথ্য', 
+    'information.update' => 'তথ্য আপডেট করুন',
+    'family.information' => 'পারিবারিক তথ্য',
+    'organization.information' => 'প্রতিষ্ঠানের তথ্য',
+    'organization.association.information' => 'প্রতিষ্ঠান এবং সমিতির তথ্য',
+    'address.information' => 'ঠিকানার তথ্য',
+    'language' => 'ভাষা',
+    'export' => 'এক্সপোর্ট টু সি.এস.বি  ',
+];

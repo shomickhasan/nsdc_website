@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\PartnerController;
 use App\Models\FieldConfiguration;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoanController;
@@ -60,6 +61,16 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{course}', action: 'edit')->name('course.edit');
             Route::post('/store', action: 'store')->name('course.store');
             Route::post('/update/{course}', action: 'update')->name('course.update');
+        });
+    });
+
+    Route::group(['prefix' => '/our_partner'], function () {
+        Route::controller(PartnerController::class)->group(function () {
+            Route::get('/index', action: 'index')->name('our_partner.index');
+            Route::get('/create', action: 'create')->name('our_partner.create');
+            Route::get('/edit/{partner}', action: 'edit')->name('our_partner.edit');
+            Route::post('/store', action: 'store')->name('our_partner.store');
+            Route::post('/update/{partner}', action: 'update')->name('our_partner.update');
         });
     });
 

@@ -25,6 +25,8 @@ $maintenances_route = ['maintenances.index'];
 //course route
 $courses = ['course.index', 'course.create'];
 
+$partner = ['our_partner.index'];
+
 
 $routeName = \Request::route()->getName();
 
@@ -84,6 +86,12 @@ $routeName = \Request::route()->getName();
             <a href="{{ route('course.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-paperclip"></i>
                 <div data-i18n="">Courses</div>
+            </a>
+        </li>
+        <li class="menu-item {{(in_array($routeName, $partner ) !== false ) ? 'active open ':''}}">
+            <a href="{{ route('our_partner.index') }}" class="menu-link ">
+                <i class="menu-icon tf-icons ti ti-paperclip"></i>
+                <div data-i18n="">Partners</div>
             </a>
         </li>
     </ul>

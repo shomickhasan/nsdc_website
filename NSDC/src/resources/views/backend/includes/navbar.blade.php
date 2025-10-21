@@ -13,9 +13,9 @@
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
 
-                            <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
+                           {{-- <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
-                                  {{-- <i class="ti ti-language rounded-circle ti-md"></i> --}}
+                                  --}}{{-- <i class="ti ti-language rounded-circle ti-md"></i> --}}{{--
                                   Language
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -30,7 +30,7 @@
                                     </a>
                                   </li>
                                 </ul>
-                              </li>
+                              </li>--}}
                             <!-- Quick links  -->
 
                             <!-- Quick links -->

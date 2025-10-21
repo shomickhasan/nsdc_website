@@ -8,12 +8,12 @@
 <div class="row mb-2">
     <div class="col">
         <h4 class="py-3 mb-4 fs-5 d-inline">
-            <span class="text-muted fw-light">{{ __('user.user.title') }} /</span> 
+            <span class="text-muted fw-light">{{ __('user.user.title') }} /</span>
             <span class="heading-color">{{ __('user.user.create') }}</span>
         </h4>
     </div>
     <div class="col text-end">
-        <a href="{{ route('users.index') }}" style="color: white;" type="submit" 
+        <a href="{{ route('users.index') }}" style="color: white;" type="submit"
         class="btn btn-primary me-sm-3 me-1 waves-effect waves-light"><i class="ti ti-arrow-left me-sm-1 ti-xs"></i> {{__('user.user.all')}}</a>
     </div>
 </div>
@@ -34,11 +34,11 @@
                                 <label class="col-sm-3 col-form-label text-sm-end" for="first-name">{{ __('user.user.name') }}</label>
                                 <div class="col-sm-9">
                                     <input name="full_name" type="text" class="form-control @error('full_name') is-invalid @enderror"
-                                      id="first-name" placeholder="{{ __('user.user.name') }}" value="{{old('full_name')}}"  /> 
+                                      id="first-name" placeholder="{{ __('user.user.name') }}" value="{{old('full_name')}}"  />
                                     @error('full_name')
                                       <p class="text-danger">{{$message}}</p>
                                     @enderror
-                                </div>     
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -46,10 +46,10 @@
                                 <label class="col-sm-3 col-form-label text-sm-end" for="last-name">{{ __('user.user.user_name') }}</label>
                                 <div class="col-sm-9">
                                     <input name="user_name" type="text" class="form-control @error('user_name') is-invalid @enderror"
-                                      id="last-name" placeholder="{{ __('user.user.user_name') }}" value="{{old('user_name')}}"  /> 
+                                      id="last-name" placeholder="{{ __('user.user.user_name') }}" value="{{old('user_name')}}"  />
                                     @error('user_name')
                                       <p class="text-danger">{{$message}}</p>
-                                    @enderror    
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 <label class="col-sm-3 col-form-label text-sm-end" for="phone">{{ __('user.user.phone') }}</label>
                                 <div class="col-sm-9">
                                     <input name="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
-                                      id="phone" placeholder="{{ __('user.user.phone') }}" value="{{old('phone')}}"  /> 
+                                      id="phone" placeholder="{{ __('user.user.phone') }}" value="{{old('phone')}}"  />
                                     @error('phone')
                                       <p class="text-danger">{{$message}}</p>
                                     @enderror
@@ -85,7 +85,7 @@
                                         <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="user-password" placeholder="{{ __('login.password') }}" />
                                         <span class="input-group-text cursor-pointer"></span>
                                     </div>
-                                   
+
                                       @error('password')
                                         <p class="text-danger">{{$message}}</p>
                                         @enderror
@@ -108,7 +108,7 @@
                                         </div>
                                     @endforeach
                                 </div>
-                                
+
                             </div>
                         </div>
 
@@ -127,14 +127,14 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                     </div>
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <div class="row justify-content-end">
                                 <div class="col-sm-12">
                                     <button type="submit" class="btn btn-primary me-sm-3 me-1 waves-effect waves-light">{{ __('common.submit.button') }}</button>
-                                
+
                                     <button type="reset" class="btn btn-label-secondary waves-effect">{{ __('common.cancle.button') }}</button>
                                 </div>
                             </div>

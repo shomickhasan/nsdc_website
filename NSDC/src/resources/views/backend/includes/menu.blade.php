@@ -22,6 +22,10 @@ $configaration = ['training.index', 'training.create',
 $maintenances_route = ['maintenances.index'];
 
 
+//course route
+$courses = ['course.index', 'course.create'];
+
+
 $routeName = \Request::route()->getName();
 
 @endphp
@@ -39,10 +43,7 @@ $routeName = \Request::route()->getName();
             <!-- <span class="app-brand-text demo menu-text fw-bold">NSDC</span> -->
         </a>
 
-        {{-- <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
-            <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
-            <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
-        </a> --}}
+
     </div>
 
     <!-- Apps & Pages -->
@@ -57,21 +58,7 @@ $routeName = \Request::route()->getName();
             </a>
         </li>
 
-        {{--  <li class="menu-item {{(in_array($routeName, $configaration ) !== false ) ? 'active open ':''}}">
-            <a href="#" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons ti ti-settings"></i>
-                <div data-i18n="{{ __('menu.configuration') }}">{{ __('menu.configuration') }}</div>
-            </a>
 
-            <ul class="menu-sub">
-                <li class="menu-item {{ $routeName ==  'fields.index' ? 'active' : '' }}
-                ">
-                    <a href="{{route('fields.index')}}" class="menu-link">
-                        <div data-i18n="{{ __('menu.fields') }}">{{ __('menu.fields') }}</div>
-                    </a>
-                </li>
-            </ul>
-        </li>  --}}
 
         <!-- Administration -->
         <li class="menu-item {{(in_array($routeName, $administration ) !== false ) ? 'active open ':''}}">
@@ -90,6 +77,14 @@ $routeName = \Request::route()->getName();
                     </a>
                 </li>
             </ul>
+        </li>
+
+         <!-- courses -->
+        <li class="menu-item {{(in_array($routeName, $courses ) !== false ) ? 'active open ':''}}">
+            <a href="{{ route('course.index') }}" class="menu-link ">
+                <i class="menu-icon tf-icons ti ti-paperclip"></i>
+                <div data-i18n="">Courses</div>
+            </a>
         </li>
     </ul>
 </aside>

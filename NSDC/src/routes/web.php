@@ -10,6 +10,7 @@ use App\Http\Controllers\Language\LanguageController;
 use App\Http\Controllers\Response\ResponseController;
 use App\Http\Controllers\Backend\DhashboardController;
 use App\Http\Controllers\Backend\ActivityLogController;
+use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\Uddokta\UddoktaController;
 use App\Http\Controllers\Backend\Report\UddoktaReportController;
 use App\Http\Controllers\Frontend\FpageController;
@@ -51,6 +52,22 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/users/{user}/view', [UserController::class, 'view'])->name('users.view');
         Route::get('/user-activity', [ActivityLogController::class, 'index'])->name('activityLog.index');
     });
+
+     Route::group(['prefix' => '/course'], function () {
+        Route::controller(CourseController::class)->group(function () {
+            Route::get('/index', action: 'index')->name('course.index');
+            Route::get('/create', action: 'create')->name('course.create');
+            Route::get('/edit/{course}', action: 'edit')->name('course.edit');
+            Route::post('/store', action: 'store')->name('course.store');
+            Route::post('/update/{course}', action: 'update')->name('course.update');
+        });
+    });
+
+
+
+
+
+
     Route::group(['prefix' => '/field/confiquration'], function () {
         Route::controller(FielConfigurationController::class)->group(function () {
             Route::get('/index', 'index')->name('fields.index');

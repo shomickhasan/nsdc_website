@@ -57,12 +57,12 @@ class UserController extends Controller
                 'photo' => $photo,
             ]);
             DB::commit();
-            return redirect()->route('users.index')->with('message', 'User Create SuccessFully');
+            return redirect()->route('users.index')->with(key: 'message', 'User Create SuccessFully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->route('users.index')->with('error',self::DEFAULT_ERROR_MESSAGE); 
+            return redirect()->route('users.index')->with('error',self::DEFAULT_ERROR_MESSAGE);
         }
-       
+
     }
 
 
@@ -80,7 +80,7 @@ class UserController extends Controller
 
     public function update(User $user, UserUpdateRequest $request)
     {
-       
+
         try {
             DB::beginTransaction();
 
@@ -106,15 +106,15 @@ class UserController extends Controller
             return redirect()->route('users.index')->with('message', 'User Update SuccessFully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->route('users.index')->with('error',self::DEFAULT_ERROR_MESSAGE); 
+            return redirect()->route('users.index')->with('error',self::DEFAULT_ERROR_MESSAGE);
         }
-       
+
     }
 
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-    
+
         if ($user->photo) {
            if(!$user->photo == 'dummy/user/user.png')
            {

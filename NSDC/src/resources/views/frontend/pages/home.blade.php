@@ -62,6 +62,8 @@
             filter: grayscale(0);
         }
 
+
+
     </style>
 @endpush
 @section('content')
@@ -136,95 +138,24 @@
             </div>
 
             <div class="courses-grid">
-                <!-- Course 1 -->
-                <div class="course-card fade-in">
-                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                        <div class="course-overlay">
-                            <i class="fas fa-play-circle" style="font-size: 3rem; color: white;"></i>
+                @foreach($cdata as $data)
+                    <div class="course-card fade-in">
+                        <div class="course-image" style="background-image: url('{{ Storage::url($data->picture) }}');">
+                            <div class="course-overlay">
+                                <i class="fas fa-lightbulb" style="font-size: 3rem; color: white;"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Digital Marketing Mastery</h3>
-                        <div class="course-duration">Duration: 12 Weeks</div>
-                        <p class="course-description">Learn the latest digital marketing strategies, social media management, SEO, and online advertising techniques to grow your business.</p>
-                        <button class="course-btn">Apply Now</button>
-                    </div>
-                </div>
+                        <div class="course-content">
+                            <h3 class="course-title">{{$data->title ?? ''}}</h3>
+                            <div class="course-duration">{{$data->duration ?? ''}}</div>
+                            <p class="course-description">{{$data->short_des ?? ''}}</p>
+                            <button class="course-btn">
+                                <a href="{{route('course_details',$data->slug)}}" class="text-white font-weight-700">Apply Now</a>
+                            </button>
 
-                <!-- Course 2 -->
-                <div class="course-card fade-in">
-                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                        <div class="course-overlay">
-                            <i class="fas fa-chart-line" style="font-size: 3rem; color: white;"></i>
                         </div>
                     </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Business Analytics</h3>
-                        <div class="course-duration">Duration: 10 Weeks</div>
-                        <p class="course-description">Master data analysis, business intelligence, and decision-making tools to drive your business forward with data-driven insights.</p>
-                        <button class="course-btn">Apply Now</button>
-                    </div>
-                </div>
-
-                <!-- Course 3 -->
-                <div class="course-card fade-in">
-                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                        <div class="course-overlay">
-                            <i class="fas fa-users" style="font-size: 3rem; color: white;"></i>
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Leadership & Management</h3>
-                        <div class="course-duration">Duration: 8 Weeks</div>
-                        <p class="course-description">Develop essential leadership skills, team management, and strategic thinking to lead your organization to success.</p>
-                        <button class="course-btn">Apply Now</button>
-                    </div>
-                </div>
-
-                <!-- Course 4 -->
-                <div class="course-card fade-in">
-                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                        <div class="course-overlay">
-                            <i class="fas fa-laptop-code" style="font-size: 3rem; color: white;"></i>
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">E-commerce Development</h3>
-                        <div class="course-duration">Duration: 14 Weeks</div>
-                        <p class="course-description">Build and manage your online store with modern e-commerce platforms, payment systems, and customer experience optimization.</p>
-                        <button class="course-btn">Apply Now</button>
-                    </div>
-                </div>
-
-                <!-- Course 5 -->
-                <div class="course-card fade-in">
-                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                        <div class="course-overlay">
-                            <i class="fas fa-handshake" style="font-size: 3rem; color: white;"></i>
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Financial Management</h3>
-                        <div class="course-duration">Duration: 10 Weeks</div>
-                        <p class="course-description">Learn financial planning, budgeting, investment strategies, and risk management to ensure your business's financial health.</p>
-                        <button class="course-btn">Apply Now</button>
-                    </div>
-                </div>
-
-                <!-- Course 6 -->
-                <div class="course-card fade-in">
-                    <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                        <div class="course-overlay">
-                            <i class="fas fa-lightbulb" style="font-size: 3rem; color: white;"></i>
-                        </div>
-                    </div>
-                    <div class="course-content">
-                        <h3 class="course-title">Innovation & Creativity</h3>
-                        <div class="course-duration">Duration: 6 Weeks</div>
-                        <p class="course-description">Unlock your creative potential and learn innovation methodologies to develop unique solutions and competitive advantages.</p>
-                        <button class="course-btn">Apply Now</button>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -442,7 +373,7 @@
         });
 
         // Button loading effect
-        document.querySelectorAll('.course-btn').forEach(btn => {
+       /* document.querySelectorAll('.course-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const originalText = this.textContent;
                 this.innerHTML = '<span class="loading"></span> Processing...';
@@ -453,7 +384,7 @@
                     this.disabled = false;
                 }, 2000);
             });
-        });
+        });*/
 
     </script>
     <script>

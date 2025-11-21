@@ -54,7 +54,7 @@ $routeName = \Request::route()->getName();
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item {{(in_array($routeName, $dashboard ) !== false ) ? 'active open ':''}}">
-            <a href="{{ url('/') }}" class="menu-link ">
+            <a href="{{ url('/admin') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-home"></i>
                 <div data-i18n="{{ __('menu.dashboard') }}">{{ __('menu.dashboard') }}</div>
             </a>
@@ -92,6 +92,12 @@ $routeName = \Request::route()->getName();
             <a href="{{ route('our_partner.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-paperclip"></i>
                 <div data-i18n="">Partners</div>
+            </a>
+        </li>
+        <li class="menu-item {{(in_array($routeName, $partner ) !== false ) ? 'active open ':''}}">
+            <a href="{{ route('registration.index') }}" class="menu-link ">
+                <i class="menu-icon tf-icons ti ti-paperclip"></i>
+                <div data-i18n="">Registration</div>
             </a>
         </li>
     </ul>

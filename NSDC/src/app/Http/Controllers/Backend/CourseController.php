@@ -17,6 +17,7 @@ class CourseController extends Controller
         // Get courses with pagination 20 per page
         $courses = Course::orderBy('created_at', 'desc')->paginate(20);
         return view('backend.pages.course.index', compact('courses'));
+
     }
 
     public function create()
@@ -32,10 +33,7 @@ class CourseController extends Controller
         $data['picture'] = $request->hasFile('picture')
             ? $this->uploadImage($request, 'picture', 'uploads/courses')
             : 'uploads/courses/default-course.png';
-
-        // Auto-generate slug from title if empty
         $data['slug'] = !empty($data['slug']) ? $data['slug'] : Str::slug($data['title']);
-
         // Create course
         Course::create($data);
 

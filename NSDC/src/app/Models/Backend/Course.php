@@ -18,5 +18,6 @@ class Course extends Model
         'status',
         'is_show_in_home',
         'picture',
+        'code',
     ];
 }

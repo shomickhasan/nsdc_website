@@ -57,7 +57,7 @@ class UserController extends Controller
                 'photo' => $photo,
             ]);
             DB::commit();
-            return redirect()->route('users.index')->with(key: 'message', 'User Create SuccessFully');
+            return redirect()->route('users.index')->with('message', 'User Create SuccessFully');
         } catch (\Exception $e) {
             DB::rollBack();
             return redirect()->route('users.index')->with('error',self::DEFAULT_ERROR_MESSAGE);
@@ -75,7 +75,7 @@ class UserController extends Controller
     public function view(User $user)
     {
         $status = Status::cases();
-        return view('backend.pages.users.view', compact('user','status','roles'));
+        return view('backend.pages.users.view', compact('user','status',));
     }
 
     public function update(User $user, UserUpdateRequest $request)

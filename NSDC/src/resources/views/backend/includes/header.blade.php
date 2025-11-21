@@ -32,7 +32,7 @@
     @else
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&ampdisplay=swap" rel="stylesheet" />
     @endif
-   
+
 
     <!-- Icons -->
     <link rel="stylesheet" href="{{asset('/')}}app-assets/vendor/fonts/fontawesome.css" />
@@ -64,6 +64,9 @@
     <link rel="stylesheet" href="{{asset('/')}}app-assets/vendor/css/pages/cards-advance.css" />
     <link rel="stylesheet" href="{{asset('/')}}app-assets/vendor/libs/sweetalert2/sweetalert2.css" />
     <link rel="stylesheet" href="{{asset('/')}}custom/css/icon.css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{asset('/')}}summernote/summernote-lite.min.css" />
 
     <!-- Custom CSS -->
     @stack('css')

@@ -8,27 +8,25 @@
             </div>
             <!-- Main Menu -->
             <div class="nav-outer">
-                <nav class="nav main-menu">
+                <nav class="nav main-menu header_two">
                     <ul class="navigation">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">About</a></li>
-                        <li><a href="#">Packages</a></li>
                         <li class="dropdown">
-                            <a href="#">Book a Tour</a>
+                            <a href="#">Gallery</a>
                             <ul>
-                                <li><a href="#">City 1</a></li>
+                                <li><a href="#">Picture</a></li>
+                                <li><a href="#">Video</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Gallery</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li class="auth_menu"><a href="#">Login</a></li>
+                        <li><a href="#">Our Courses</a></li>
+                        <li><a href="#">Notice</a></li>
                     </ul>
                 </nav>
-                <div class="outer-box">
-                    <div class="outher_auth">
-                        <a href="#" class="theme-btn btn-style-header"><i class="icon fa fa-sign-in"></i><span class="btn-title">&nbsp;Login</span></a>
-                    </div>
+               <div class="outer-box">
+{{--                    <div class="outher_auth">--}}
+{{--                        <a href="#" class="theme-btn btn-style-header"><i class="icon fa fa-sign-in"></i><span class="btn-title">&nbsp;Login</span></a>--}}
+{{--                    </div>--}}
                     <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
                 </div>
             </div>
@@ -44,22 +42,20 @@
                 <div class="nav-logo"><a href="#"><img src="frontend/img/mobile-logo.png" alt="Otithi" title="Otithi"></a></div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
-            <ul class="navigation clearfix">
+            <ul class="navigation">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">Packages</a></li>
                 <li class="dropdown">
-                    <a href="#">Book a Tour</a>
+                    <a href="#">Gallery</a>
                     <ul>
-                        <li><a href="#">City 1</a></li>
+                        <li><a href="#">Picture</a></li>
+                        <li><a href="#">Video</a></li>
                     </ul>
                 </li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Gallery</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="#">Our Courses</a></li>
+                <li><a href="#">Notice</a></li>
             </ul>
-            <ul class="contact-list-one">
+           {{-- <ul class="contact-list-one">
                 <li>
                     <div class="contact-info-box">
                         <i class="icon lnr-icon-phone-handset"></i>
@@ -74,7 +70,7 @@
                         <a href="#">info@example.com</a>
                     </div>
                 </li>
-            </ul>
+            </ul>--}}
         </nav>
     </div>
     <!-- End Mobile Menu -->
@@ -104,23 +100,21 @@
                     </div>
                     <div class="d-flex justify-content-end first-menu">
                         <ul class="navigation me-5">
-                            <li><a href="#" class="active-menu-two">Home</a></li>
+                            <li><a href="#">Home</a></li>
                             <li><a href="#">About</a></li>
-                            <li><a href="#">Packages</a></li>
                             <li class="dropdown">
-                                <a href="#">Book a Tour</a>
+                                <a href="#">Gallery</a>
                                 <ul>
-                                    <li><a href="#">City 1</a></li>
+                                    <li><a href="#">Picture</a></li>
+                                    <li><a href="#">Video</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <div class="d-flex justify-content-start second-menu">
                         <ul class="navigation">
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Gallery</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Login</a></li>
+                            <li><a href="#">Our Courses</a></li>
+                            <li><a href="#">Notice</a></li>
                         </ul>
                     </div>
                 </div>

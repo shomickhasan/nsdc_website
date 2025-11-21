@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\PartnerController;
+use App\Http\Controllers\Frontend\ReqController;
 use App\Models\FieldConfiguration;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoanController;
@@ -22,9 +23,12 @@ use App\Http\Controllers\Frontend\FpageController;
 |--------------------------------------------------------------------------*/
 
 
-
-Route::get('/home', [FpageController::class, 'fhome'])->name('fHome');
 Route::get('/blank', [FpageController::class, 'blank']);
+Route::get('/', [FpageController::class, 'fhome'])->name('fHome');
+Route::get('/course/details/{slug}', [FpageController::class, 'courseDetails'])->name('course_details');
+Route::post('regestration/store', [ReqController::class, 'store'])->name('registration.store');
+Route::get('regestration/index', [ReqController::class, 'index'])->name('registration.index');
+
 
 
 

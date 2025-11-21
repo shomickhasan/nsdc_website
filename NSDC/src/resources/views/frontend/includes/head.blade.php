@@ -27,6 +27,29 @@
         transition: background-color 0.3s ease !important;
         }
 
+        .header_two {
+            position: relative;
+            margin: 0 auto !important;
+        }
+
+        /* Main Menu UL */
+        .nav-outer .main-menu ul.navigation {
+            display: flex;         /* Make menu horizontal */
+            align-items: center;
+            gap: 50px;             /* Space between each li */
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        /* Menu Links Styling */
+        .nav-outer .main-menu ul.navigation li a {
+            padding: 10px 0;
+        }
+
+
+
+
     </style>
 
     @stack('css')

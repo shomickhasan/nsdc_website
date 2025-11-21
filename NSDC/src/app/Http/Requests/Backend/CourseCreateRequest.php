@@ -23,50 +23,67 @@ class CourseCreateRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
+            'code' => 'required|string|max:255',
             'duration' => 'required|string|max:255',
             'short_des' => 'required|string',
             'long_des' => 'required|string',
             'course_fee' => 'required|numeric|min:0',
-            'status' => 'required|integer|in:0,1', // 1 = Active, 0 = Inactive
-            'is_show_in_home' => 'required|integer|in:0,1', // 1 = Yes, 0 = No
-            'picture' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:2048', // 2MB max
+            'status' => 'required|integer|in:0,1',
+            'is_show_in_home' => 'required|integer|in:0,1',
+            'picture' => 'required|image|mimes:jpeg,jpg,png,gif,webp|max:2048',
+
+            // 🔥 SEO Fields
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
+            'meta_keywords' => 'nullable|string|max:255',
         ];
     }
 
     public function messages(): array
-{
-    return [
-        'title.required' => 'The course title is required.',
-        'title.string' => 'The course title must be a string.',
-        'title.max' => 'The course title may not be greater than 255 characters.',
+    {
+        return [
+            'title.required' => 'The course title is required.',
+            'title.string' => 'The course title must be a string.',
+            'title.max' => 'The course title may not be greater than 255 characters.',
 
-        'duration.required' => 'The duration is required.',
-        'duration.string' => 'The duration must be a string.',
-        'duration.max' => 'The duration may not be greater than 255 characters.',
+            'duration.required' => 'The duration is required.',
+            'duration.string' => 'The duration must be a string.',
+            'duration.max' => 'The duration may not be greater than 255 characters.',
 
-        'short_des.required' => 'The short description is required.',
-        'short_des.string' => 'The short description must be a string.',
+            'short_des.required' => 'The short description is required.',
+            'short_des.string' => 'The short description must be a string.',
 
-        'long_des.required' => 'The long description is required.',
-        'long_des.string' => 'The long description must be a string.',
+            'long_des.required' => 'The long description is required.',
+            'long_des.string' => 'The long description must be a string.',
 
-        'course_fee.required' => 'The course fee is required.',
-        'course_fee.numeric' => 'The course fee must be a number.',
-        'course_fee.min' => 'The course fee must be at least 0.',
+            'course_fee.required' => 'The course fee is required.',
+            'course_fee.numeric' => 'The course fee must be a number.',
+            'course_fee.min' => 'The course fee must be at least 0.',
 
-        'status.required' => 'The status is required.',
-        'status.integer' => 'The status must be an integer.',
-        'status.in' => 'The status must be either Active (1) or Inactive (0).',
+            'status.required' => 'The status is required.',
+            'status.integer' => 'The status must be an integer.',
+            'status.in' => 'The status must be either Active (1) or Inactive (0).',
 
-        'is_show_in_home.required' => 'The show in home field is required.',
-        'is_show_in_home.integer' => 'The show in home field must be an integer.',
-        'is_show_in_home.in' => 'The show in home field must be either Yes (1) or No (0).',
+            'is_show_in_home.required' => 'The show in home field is required.',
+            'is_show_in_home.integer' => 'The show in home field must be an integer.',
+            'is_show_in_home.in' => 'The show in home field must be either Yes (1) or No (0).',
 
-        'picture.required' => 'The course image is required.',
-        'picture.image' => 'The file must be an image.',
-        'picture.mimes' => 'Allowed image types are: jpeg, jpg, png, gif, webp.',
-        'picture.max' => 'The maximum allowed image size is 2MB.',
-    ];
-}
+            'picture.required' => 'The course image is required.',
+            'picture.image' => 'The file must be an image.',
+            'picture.mimes' => 'Allowed image types are: jpeg, jpg, png, gif, webp.',
+            'picture.max' => 'The maximum allowed image size is 2MB.',
+
+            // 🔥 SEO messages
+            'meta_title.string' => 'The meta title must be a string.',
+            'meta_title.max' => 'The meta title may not be greater than 255 characters.',
+
+            'meta_description.string' => 'The meta description must be a string.',
+            'meta_description.max' => 'The meta description may not be greater than 500 characters.',
+
+            'meta_keywords.string' => 'The meta keywords must be a string.',
+            'meta_keywords.max' => 'The meta keywords may not be greater than 255 characters.',
+        ];
+    }
+
 
 }

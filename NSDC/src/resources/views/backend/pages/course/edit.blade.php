@@ -137,6 +137,34 @@
                             </div>
                         </div>
 
+                        <!-- SEO Fields -->
+                        <div class="mb-3">
+                            <label for="meta_title" class="form-label">Meta Title</label>
+                            <input type="text" name="meta_title" class="form-control @error('meta_title') is-invalid @enderror"
+                                   id="meta_title" placeholder="Meta Title" value="{{ old('meta_title', $course->meta_title) }}">
+                            @error('meta_title')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="meta_description" class="form-label">Meta Description</label>
+                            <textarea name="meta_description" class="form-control @error('meta_description') is-invalid @enderror"
+                                      id="meta_description" rows="3" placeholder="Meta Description">{{ old('meta_description', $course->meta_description) }}</textarea>
+                            @error('meta_description')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="meta_keywords" class="form-label">Meta Keywords</label>
+                            <input type="text" name="meta_keywords" class="form-control @error('meta_keywords') is-invalid @enderror"
+                                   id="meta_keywords" placeholder="Meta Keywords" value="{{ old('meta_keywords', $course->meta_keywords) }}">
+                            @error('meta_keywords')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+
                         <!-- Buttons -->
                         <div class="mb-3 mt-4">
                             <button type="submit" class="btn btn-primary me-2">Update</button>

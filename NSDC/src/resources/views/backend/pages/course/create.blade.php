@@ -37,6 +37,14 @@
                                 <p class="text-danger">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Code</label>
+                            <input type="text" name="code" class="form-control @error('code') is-invalid @enderror"
+                                   id="title" placeholder="Course Title" value="{{ old('code') }}">
+                            @error('code')
+                            <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
 
                         <!-- Duration -->
                         <div class="mb-3">
@@ -135,6 +143,29 @@
                                     style="width:100%; height:100%;" alt="Course Image">
                             </div>
                         </div>
+
+
+                        <!-- Meta Title -->
+                        <div class="mb-3">
+                            <label for="meta_title" class="form-label">Meta Title</label>
+                            <input type="text" name="meta_title" class="form-control"
+                                   placeholder="Meta Title" value="{{ old('meta_title') }}">
+                        </div>
+
+                        <!-- Meta Description -->
+                        <div class="mb-3">
+                            <label for="meta_description" class="form-label">Meta Description</label>
+                            <textarea name="meta_description" class="form-control" rows="3"
+                                      placeholder="Meta Description">{{ old('meta_description') }}</textarea>
+                        </div>
+
+                        <!-- Meta Keywords -->
+                        <div class="mb-3">
+                            <label for="meta_keywords" class="form-label">Meta Keywords</label>
+                            <input type="text" name="meta_keywords" class="form-control"
+                                   placeholder="keyword1, keyword2, keyword3" value="{{ old('meta_keywords') }}">
+                        </div>
+
 
                         <!-- Buttons -->
                         <div class="mb-3 mt-4">

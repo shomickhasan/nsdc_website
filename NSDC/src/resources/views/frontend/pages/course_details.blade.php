@@ -127,6 +127,8 @@
         .course-section {
             margin-bottom: 0px;
         }
+
+
     </style>
 @endpush
 

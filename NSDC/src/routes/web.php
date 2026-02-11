@@ -78,6 +78,26 @@ Route::middleware(['auth'])->group(function () {
         });
     });
 
+    Route::group(['prefix' => '/hero_slider'], function () {
+        Route::controller(\App\Http\Controllers\Backend\ContentController::class)->group(function () {
+            Route::get('/', action: 'Slider_index')->name('hero_slider.index');
+            Route::get('/create', action: 'Slider_create')->name('hero_slider.create');
+            Route::get('/edit/{slider}', action: 'Slider_edit')->name('hero_slider.edit');
+            Route::post('/store', action: 'Slider_store')->name('hero_slider.store');
+            Route::post('/update/{partner}', action: 'Slider_update')->name('hero_slider.update');
+        });
+    });
+    Route::post('/hero-slider/order-update', [\App\Http\Controllers\Backend\ContentController::class, 'Slider_orderUpdate'])->name('hero_slider.order_update');
+
+    Route::prefix('/partners')->group(function() {
+        Route::get('/', [\App\Http\Controllers\Backend\PartnerController::class, 'index'])->name('partner.index');
+        Route::post('/store', [\App\Http\Controllers\Backend\PartnerController::class, 'store'])->name('partner.store');
+        Route::post('/update/{partner}', [\App\Http\Controllers\Backend\PartnerController::class, 'update'])->name('partner.update');
+        Route::delete('/destroy/{partner}', [\App\Http\Controllers\Backend\PartnerController::class, 'destroy'])->name('partner.destroy');
+        Route::post('/order-update', [\App\Http\Controllers\Backend\PartnerController::class, 'orderUpdate'])->name('partner.order_update');
+    });
+
+
 
 
 

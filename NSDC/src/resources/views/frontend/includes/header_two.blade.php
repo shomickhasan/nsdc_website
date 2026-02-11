@@ -3,15 +3,15 @@
         <div class="main-box">
             <div class="logo-box">
                 <div class="logo">
-                    <a href="#"><img class="header-logo" src="frontend/img/logo.png" alt="NSDC" title="NSDC"></a>
+                    <a href="#"><img class="header-logo" src="{{asset('frontend/img/logo.png')}}" alt="NSDC" title="NSDC"></a>
                 </div>
             </div>
             <!-- Main Menu -->
             <div class="nav-outer">
                 <nav class="nav main-menu header_two">
                     <ul class="navigation">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="{{route('fHome')}}">Home</a></li>
+                        <li><a href="{{ route('fHome') }}#employees">About</a></li>
                         <li class="dropdown">
                             <a href="#">Gallery</a>
                             <ul>
@@ -19,7 +19,7 @@
                                 <li><a href="#">Video</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Our Courses</a></li>
+                        <li><a href="{{ route('fHome') }}#courses">Our Courses</a></li>
                         <li><a href="#">Notice</a></li>
                     </ul>
                 </nav>
@@ -39,21 +39,21 @@
         <div class="menu-backdrop"></div>
         <nav class="menu-box">
             <div class="upper-box">
-                <div class="nav-logo"><a href="#"><img src="frontend/img/mobile-logo.png" alt="Otithi" title="Otithi"></a></div>
+                <div class="nav-logo"><a href="#"><img src="{{asset('frontend/img/mobile-logo.png')}}" alt="nsdc" title="nsdc"></a></div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="navigation">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li class="dropdown">
-                    <a href="#">Gallery</a>
-                    <ul>
-                        <li><a href="#">Picture</a></li>
-                        <li><a href="#">Video</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Our Courses</a></li>
-                <li><a href="#">Notice</a></li>
+{{--                <li><a href="{{route('fHome')}}">Home</a></li>--}}
+{{--                <li><a href="#employees">About</a></li>--}}
+{{--                <li class="dropdown">--}}
+{{--                    <a href="#">Gallery</a>--}}
+{{--                    <ul>--}}
+{{--                        <li><a href="#">Picture</a></li>--}}
+{{--                        <li><a href="#">Video</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                <li><a href="#">Our Courses</a></li>--}}
+{{--                <li><a href="#">Notice</a></li>--}}
             </ul>
            {{-- <ul class="contact-list-one">
                 <li>
@@ -96,7 +96,7 @@
             <div class="inner-container">
                 <div class="d-flex justify-content-center w-100 main-menu">
                     <div class="logo new-custom-logo">
-                        <a href="#"><img style="max-width:100%; height: 60px;" src="frontend/img/logo.png" alt="nsdc" title="nsdc"></a>
+                        <a href="#"><img style="max-width:100%; height: 60px;" src="{{asset('frontend/img/logo.png')}}" alt="nsdc" title="nsdc"></a>
                     </div>
                     <div class="d-flex justify-content-end first-menu">
                         <ul class="navigation me-5">

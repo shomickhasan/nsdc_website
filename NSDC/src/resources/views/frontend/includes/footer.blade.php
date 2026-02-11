@@ -7,7 +7,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="footer-widget">
                     <div class="footer-logo" style="margin-bottom: 20px;">
-                        <img src="{{asset('image/uddokta.png')}}" alt="NSDC" style="height: 60px; width: auto; margin-bottom: 15px;">
+                        <img src="{{asset('frontend/img/mobile-logo.png')}}" alt="NSDC" style="height: 60px; width: auto; margin-bottom: 15px;">
                     </div>
                     <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 15px;">National Skills Development Corporation</h5>
                     <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 20px;">

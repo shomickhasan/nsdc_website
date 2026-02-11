@@ -75,4 +75,7 @@ class CourseController extends Controller
             return back()->with('error', 'Failed to update course: ' . $e->getMessage());
         }
     }
+
+
+
 }

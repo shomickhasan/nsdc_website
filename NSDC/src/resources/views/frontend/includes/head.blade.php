@@ -47,6 +47,20 @@
             padding: 10px 0;
         }
 
+        .main-header .logo img {
+            max-width: 682%;
+            height: 80px !important;
+        }
+
+        @media only screen and (max-width: 1023px) {
+            .header-logo {
+                width: 80px;
+                border-radius: 100%;
+                height: 80px !important;
+            }
+        }
+        
+
 
 
 

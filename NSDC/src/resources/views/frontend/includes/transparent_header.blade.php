@@ -151,8 +151,8 @@
             <nav class="nav main-menu">
                 <ul class="navigation white-menu"
                     style="display:flex; align-items:center; gap:25px; margin:0; list-style:none;">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="{{route('fHome')}}">Home</a></li>
+                    <li><a href="#employees">About</a></li>
                     <li class="dropdown">
                         <a href="#">Gallery</a>
                         <ul>
@@ -160,7 +160,7 @@
                             <li><a href="#">Video</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Our Courses</a></li>
+                    <li><a href="#courses">Our Courses</a></li>
                     <li><a href="#">Notice</a></li>
                 </ul>
             </nav>
@@ -183,22 +183,22 @@
         <nav class="menu-box">
             <div class="upper-box">
                 <div class="nav-logo">
-                    <a href="#"><img src="frontend/img/mobile-logo.png" alt="NSDC" title="NSDC"></a>
+                    <a href="#"><img src="{{asset('frontend/img/mobile-logo.png')}}" alt="NSDC" title="NSDC"></a>
                 </div>
                 <div class="close-btn">&times;</div>
             </div>
             <ul class="navigation clearfix">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li class="dropdown">
-                    <a href="#">Gallery</a>
-                    <ul>
-                        <li><a href="#">Picture</a></li>
-                        <li><a href="#">Video</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Our Courses</a></li>
-                <li><a href="#">Notice</a></li>
+{{--                <li><a href="{{route('fHome')}}">Home</a></li>--}}
+{{--                <li><a href="#employees">About</a></li>--}}
+{{--                <li class="dropdown">--}}
+{{--                    <a href="#">Gallery</a>--}}
+{{--                    <ul>--}}
+{{--                        <li><a href="#">Picture</a></li>--}}
+{{--                        <li><a href="#">Video</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                <li><a href="#courses">Our Courses</a></li>--}}
+{{--                <li><a href="#">Notice</a></li>--}}
             </ul>
         </nav>
     </div>
@@ -213,8 +213,8 @@
 
                     <ul class="navigation"
                         style="display:flex; align-items:center; gap:25px; margin:0; list-style:none; padding:0;">
-                        <li><a href="#" class="active-menu-two">Home</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="{{route('fHome')}}" class="active-menu-two">Home</a></li>
+                        <li><a href="#employees">About</a></li>
                         <li class="dropdown">
                             <a href="#">Gallery</a>
                             <ul>
@@ -231,7 +231,7 @@
                             </a>
                         </li>
 
-                        <li><a href="#">Our Courses</a></li>
+                        <li><a href="#courses">Our Courses</a></li>
                         <li><a href="#">Notice</a></li>
                     </ul>
 
@@ -276,4 +276,42 @@
             mobileMenu.classList.remove('active');
         });
     });
+
+
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 🔹 Prevent any clone/append from template JS
+        // Override jQuery append/clone for .main-menu
+        if (window.jQuery) {
+            const originalAppend = jQuery.fn.append;
+            jQuery.fn.append = function() {
+                // যদি .mobile-menu এ main-menu append করতে চায়, block করে দাও
+                if (this.is('.mobile-menu') && arguments[0].classList && arguments[0].classList.contains('main-menu')) {
+                    return this; // ignore append
+                }
+                return originalAppend.apply(this, arguments);
+            };
+        }
+
+        // 🔹 Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const toggler = document.querySelector('.mobile-nav-toggler');
+        const closeBtn = mobileMenu.querySelector('.close-btn');
+        const backdrop = mobileMenu.querySelector('.menu-backdrop');
+
+        toggler.addEventListener('click', () => mobileMenu.classList.add('active'));
+        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        backdrop.addEventListener('click', () => mobileMenu.classList.remove('active'));
+
+        // 🔹 Mobile dropdown toggle
+        mobileMenu.querySelectorAll('.dropdown > a').forEach(item => {
+            item.addEventListener('click', e => {
+                e.preventDefault();
+                item.parentElement.classList.toggle('open');
+            });
+        });
+    });
+</script>
+

@@ -27,6 +27,8 @@ $courses = ['course.index', 'course.create'];
 
 $partner = ['our_partner.index'];
 
+$content = ['slider.index', 'slider.delete', 'slider.edit', 'slider.update'];
+
 
 $routeName = \Request::route()->getName();
 
@@ -78,22 +80,62 @@ $routeName = \Request::route()->getName();
                         <div data-i18n="Users">{{ __('menu.users') }}</div>
                     </a>
                 </li>
+
             </ul>
         </li>
 
-         <!-- courses -->
+        {{-- content menu --}}
+        @php
+            // Hero Slider related routes
+            $heroSliderRoutes = [
+                'hero_slider.index',
+                'hero_slider.create',
+                'hero_slider.edit',
+                'hero_slider.update',
+                'hero_slider.store',
+            ];
+
+            $partnerRoutes = [
+                    'partner.index',
+                    'partner.store',
+                    'partner.update',
+                    'partner.destroy',
+                    'partner.order_update',
+            ];
+        @endphp
+        <li class="menu-item {{ (in_array($routeName, $heroSliderRoutes) !== false || in_array($routeName, $partnerRoutes) !== false) ? 'active open' : '' }}">
+            <a href="#" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons ti ti-shield"></i>
+                <div data-i18n="Administration">Content</div>
+            </a>
+
+            <ul class="menu-sub">
+                <!-- Hero Slider -->
+                <li class="menu-item {{ in_array($routeName, $heroSliderRoutes) ? 'active' : '' }}">
+                    <a href="{{route('hero_slider.index')}}" class="menu-link">
+                        <div data-i18n="Users">Home Hero Section</div>
+                    </a>
+                </li>
+
+                <!-- Partner -->
+                <li class="menu-item {{ in_array($routeName, $partnerRoutes) ? 'active' : '' }}">
+                    <a href="{{ route('partner.index') }}" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-users"></i>
+                        <div data-i18n="Partners">Partners</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+
+        <!-- courses -->
         <li class="menu-item {{(in_array($routeName, $courses ) !== false ) ? 'active open ':''}}">
             <a href="{{ route('course.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-paperclip"></i>
                 <div data-i18n="">Courses</div>
             </a>
         </li>
-        <li class="menu-item {{(in_array($routeName, $partner ) !== false ) ? 'active open ':''}}">
-            <a href="{{ route('our_partner.index') }}" class="menu-link ">
-                <i class="menu-icon tf-icons ti ti-paperclip"></i>
-                <div data-i18n="">Partners</div>
-            </a>
-        </li>
+
         <li class="menu-item {{(in_array($routeName, $partner ) !== false ) ? 'active open ':''}}">
             <a href="{{ route('registration.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-paperclip"></i>

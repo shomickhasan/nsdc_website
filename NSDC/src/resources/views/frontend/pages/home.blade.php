@@ -70,47 +70,35 @@
     <!-- Hero Section with Carousel -->
     <section class="hero-section">
         <div class="hero-carousel">
-            <!-- Slide 1 -->
-            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Empowering Entrepreneurs</h1>
-                        <p>Join thousands of successful entrepreneurs who have transformed their businesses with our comprehensive skill development programs.</p>
-                        <div class="hero-buttons">
-                            <a href="#courses" class="btn btn-primary">Explore Courses</a>
-                            <a href="#contact" class="btn btn-outline">Get Started</a>
+            @forelse($sliders as $key => $slider)
+                <div class="hero-slide {{ $key == 0 ? 'active' : '' }}"
+                     style="background-image: url('{{ asset('storage/'.$slider->image) }}');">
+                    <div class="hero-content">
+                        <div class="hero-text">
+                            <h1>{{ $slider->title }}</h1>
+                            <p>{{ $slider->description }}</p>
+                            <div class="hero-buttons">
+                                @if($slider->button1_text && $slider->button1_link)
+                                    <a href="{{ $slider->button1_link }}" class="btn btn-primary">
+                                        {{ $slider->button1_text }}
+                                    </a>
+                                @endif
+                                @if($slider->button2_text && $slider->button2_link)
+                                    <a href="{{ $slider->button2_link }}" class="btn btn-outline">
+                                        {{ $slider->button2_text }}
+                                    </a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Professional Training</h1>
-                        <p>Master the skills you need to succeed in today's competitive business environment with our expert-led training programs.</p>
-                        <div class="hero-buttons">
-                            <a href="#courses" class="btn btn-primary">View Programs</a>
-                            <a href="#testimonials" class="btn btn-outline">See Success Stories</a>
-                        </div>
+            @empty
+                <div class="hero-slide active" style="background-color: #f1f1f1; height: 400px;">
+                    <div class="hero-content text-center">
+                        <h1>No Sliders Available</h1>
                     </div>
                 </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1>Expert Mentorship</h1>
-                        <p>Learn from industry experts and successful entrepreneurs who will guide you on your journey to business success.</p>
-                        <div class="hero-buttons">
-                            <a href="#employees" class="btn btn-primary">Meet Our Team</a>
-                            <a href="#contact" class="btn btn-outline">Contact Us</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforelse
         </div>
 
         <!-- Carousel Navigation -->
@@ -123,11 +111,12 @@
 
         <!-- Carousel Indicators -->
         <div class="carousel-indicators">
-            <span class="indicator active" onclick="currentSlide(1)"></span>
-            <span class="indicator" onclick="currentSlide(2)"></span>
-            <span class="indicator" onclick="currentSlide(3)"></span>
+            @foreach($sliders as $key => $slider)
+                <span class="indicator {{ $key == 0 ? 'active' : '' }}" onclick="currentSlide({{ $key + 1 }})"></span>
+            @endforeach
         </div>
     </section>
+
 
     <!-- Our Courses Section -->
     <section id="courses" class="section courses-section">
@@ -169,23 +158,20 @@
             </div>
 
             <div class="owl-carousel partner-carousel">
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-                <div class="partner-logo"><img src="{{asset('image/partner.jpg')}}" alt="Partner 1"></div>
-
+                @forelse($partners as $partner)
+                    <div class="partner-logo">
+                        <img src="{{ $partner->logo ? Storage::url($partner->logo) : asset('image/no-image-uploded-2.png') }}"
+                             alt="Partner {{ $loop->iteration }}">
+                    </div>
+                @empty
+                    <div class="text-center" style="color: white; width: 100%;">
+                        <p>No partners available at the moment.</p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
+
 
     <!-- Our Employees Section -->
     <section id="employees" class="section employees-section">

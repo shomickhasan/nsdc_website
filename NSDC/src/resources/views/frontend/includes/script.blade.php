@@ -222,6 +222,10 @@
 
 
 
+
+
+
+
 </script>
 
 <script>
@@ -231,6 +235,38 @@
         } else {
             document.body.classList.remove('scrolled');
         }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // 🔹 Prevent mobile menu duplicate
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const originalMenu = document.querySelector('.main-menu');
+
+        if (mobileMenu && originalMenu) {
+            // আগে থেকে clone হলে remove করে দাও
+            const existingClones = mobileMenu.querySelectorAll('.main-menu');
+            existingClones.forEach(clone => clone.remove());
+
+            // এখন mobile menu-তে originalMenu কে copy করতে চাও না, তাই কিছু করো না
+            // কোন clone logic run হবে না
+        }
+
+        // 🔹 Mobile toggle
+        const toggler = document.querySelector('.mobile-nav-toggler');
+        const closeBtn = mobileMenu.querySelector('.close-btn');
+        const backdrop = mobileMenu.querySelector('.menu-backdrop');
+
+        toggler.addEventListener('click', () => mobileMenu.classList.add('active'));
+        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        backdrop.addEventListener('click', () => mobileMenu.classList.remove('active'));
+
+        // 🔹 Mobile dropdown toggle
+        mobileMenu.querySelectorAll('.dropdown > a').forEach(item => {
+            item.addEventListener('click', e => {
+                e.preventDefault();
+                item.parentElement.classList.toggle('open');
+            });
+        });
     });
 </script>
 

@@ -68,6 +68,7 @@
 
     <link rel="stylesheet" href="{{asset('/')}}summernote/summernote-lite.min.css" />
 
+
     <!-- Custom CSS -->
     @stack('css')
 

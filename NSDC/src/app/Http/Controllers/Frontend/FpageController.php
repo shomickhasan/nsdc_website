@@ -12,7 +12,7 @@ class FpageController extends Controller
 {
 
     public  function fhome(){
-       $cdata = Course::where('status',1)->where('is_show_in_home',1)->get();
+       $cdata = Course::where('status',1)->where('is_show_in_home',1)->orderBy('order', 'asc')->get();
 
         $sliders = Slider::where('status', 1)
             ->orderBy('order', 'asc')

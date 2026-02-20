@@ -19,5 +19,6 @@ class Course extends Model
         'is_show_in_home',
         'picture',
         'code',
+        'order',
     ];
 }

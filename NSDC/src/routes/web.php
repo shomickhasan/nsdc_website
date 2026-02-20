@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{course}', action: 'edit')->name('course.edit');
             Route::post('/store', action: 'store')->name('course.store');
             Route::post('/update/{course}', action: 'update')->name('course.update');
+            Route::post('/course/order-update', action: 'orderUpdate')->name('course.order_update');
         });
     });
 

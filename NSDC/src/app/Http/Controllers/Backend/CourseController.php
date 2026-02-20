@@ -14,10 +14,12 @@ class CourseController extends Controller
 {
     public function index()
     {
-        // Get courses with pagination 20 per page
-        $courses = Course::orderBy('created_at', 'desc')->paginate(20);
-        return view('backend.pages.course.index', compact('courses'));
 
+        $courses = Course::orderBy('order', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
+
+        return view('backend.pages.course.index', compact('courses'));
     }
 
     public function create()
@@ -35,6 +37,9 @@ class CourseController extends Controller
             : 'uploads/courses/default-course.png';
         $data['slug'] = !empty($data['slug']) ? $data['slug'] : Str::slug($data['title']);
         // Create course
+
+        // Order auto set (last position)
+        $data['order'] = Course::max('order') + 1;
         Course::create($data);
 
         return redirect()->back()->with('message', 'Course created successfully!');
@@ -74,6 +79,15 @@ class CourseController extends Controller
         } catch (\Exception $e) {
             return back()->with('error', 'Failed to update course: ' . $e->getMessage());
         }
+    }
+    public function orderUpdate(Request $request)
+    {
+        foreach ($request->order as $item) {
+            Course::where('id', $item['id'])
+                ->update(['order' => $item['position']]);
+        }
+
+        return response()->json(['status' => true]);
     }
 
 

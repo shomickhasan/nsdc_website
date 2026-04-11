@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\BatchController;
+use App\Http\Controllers\Backend\LocationController;
 use App\Http\Controllers\Backend\PartnerController;
 use App\Http\Controllers\Frontend\ReqController;
 use App\Models\FieldConfiguration;
@@ -28,6 +30,10 @@ Route::get('/', [FpageController::class, 'fhome'])->name('fHome');
 Route::get('/course/details/{slug}', [FpageController::class, 'courseDetails'])->name('course_details');
 Route::post('regestration/store', [ReqController::class, 'store'])->name('registration.store');
 Route::get('regestration/index', [ReqController::class, 'index'])->name('registration.index');
+
+Route::get('/districts/{division}', [LocationController::class, 'districts']);
+Route::get('/upazilas/{district}', [LocationController::class, 'upazilas']);
+Route::get('/post-offices/{upazila}', [LocationController::class, 'postOffices']);
 
 
 
@@ -99,6 +105,25 @@ Route::middleware(['auth'])->group(function () {
     });
 
 
+    Route::prefix('employees')->group(function () {
+
+        Route::get('/', [App\Http\Controllers\Backend\EmployeeController::class,'index'])
+            ->name('employee.index');
+        Route::post('/store', [App\Http\Controllers\Backend\EmployeeController::class,'store'])
+            ->name('employee.store');
+        Route::post('/update/{id}', [App\Http\Controllers\Backend\EmployeeController::class,'update'])
+            ->name('employee.update');
+        Route::delete('/destroy/{id}', [App\Http\Controllers\Backend\EmployeeController::class,'destroy'])
+            ->name('employee.destroy');
+        Route::post('/order-update', [App\Http\Controllers\Backend\EmployeeController::class,'orderUpdate'])
+            ->name('employee.order_update');
+
+    });
+
+    Route::resource('batch', BatchController::class);
+    Route::post('/batch/change-status', [BatchController::class, 'changeStatus'])->name('batch.changeStatus');
+
+
 
 
 
@@ -110,6 +135,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/store', 'store')->name('fields.store');
         });
     });
+
 });
 
 

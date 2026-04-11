@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Backend\Regestration;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,14 +12,14 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Barryvdh\DomPDF\Facade\Pdf;
-
 
 class RegistrationPDFEmailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $registration_id;
-    protected $mail_to;
+
+    protected int $registration_id;
+    protected string $mail_to;
+
     public function __construct($registration_id, $mail_to)
     {
         $this->registration_id = $registration_id;
@@ -31,29 +32,37 @@ class RegistrationPDFEmailJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            $reg = Regestration::with('course')->findOrFail($this->registration_id);
+            $reg = Regestration::with([
+                'course',
+                'permanentDivision',
+                'permanentDistrict',
+                'permanentUpazila',
+                'presentDivision',
+                'presentDistrict',
+                'presentUpazila',
+            ])->findOrFail($this->registration_id);
 
             $pdf = Pdf::loadView('frontend.pdf.registration_pdf', compact('reg'))
                 ->setPaper('A4', 'portrait');
 
-            $pdf_content = $pdf->output();
+            $pdfContent = $pdf->output();
 
-            Mail::send([], [], function ($message) use ($pdf_content, $reg) {
+            $studentName = $reg->full_name_en ?? $reg->name ?? 'Student';
+
+            Mail::send([], [], function ($message) use ($pdfContent, $reg, $studentName) {
                 $message->to($this->mail_to)
                     ->subject('Admission Form')
-                    ->attachData($pdf_content, 'Admission_Form_'.$reg->id.'.pdf', [
+                    ->attachData($pdfContent, 'Admission_Form_' . $reg->id . '.pdf', [
                         'mime' => 'application/pdf',
                     ])
-                    ->html('
-                            <p>Dear '.$reg->name.',</p>
-                            <p>Please find your admission form attached (Office Copy + Student Copy).</p>
-                            <p>Thank you.</p>
-                        ');
+                    ->html("
+                        <p>Dear {$studentName},</p>
+                        <p>Please find your admission form attached.</p>
+                        <p>Thank you.</p>
+                    ");
             });
-
         } catch (Exception $e) {
-            Log::error('PDF Email Job Failed | ' . $e->getMessage());
+            Log::error('Registration PDF Email Job Failed | Registration ID: ' . $this->registration_id . ' | Error: ' . $e->getMessage());
         }
     }
-
 }

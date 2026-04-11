@@ -137,7 +137,7 @@
                         <div class="course-content">
                             <h3 class="course-title">{{$data->title ?? ''}}</h3>
                             <div class="course-duration">{{$data->duration ?? ''}}</div>
-                            <p class="course-description">{{$data->short_des ?? ''}}</p>
+                            <p class="course-description">{{ \Illuminate\Support\Str::words($data->short_des, 35, '...') }}</p>
                             <button class="course-btn">
                                 <a href="{{route('course_details',$data->slug)}}" class="text-white font-weight-700">Apply Now</a>
                             </button>
@@ -173,66 +173,38 @@
     </section>
 
 
-    <!-- Our Employees Section -->
-    <section id="employees" class="section employees-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Expert Team</h2>
-                <p>Meet our experienced instructors and mentors who are dedicated to your success</p>
+   <section id="employees" class="section employees-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Expert Team</h2>
+            <p>Meet our experienced instructors and mentors who are dedicated to your success</p>
         </div>
 
-            <div class="employees-grid">
-                <!-- Employee 1 -->
-                <div class="employee-card slide-in-left">
-                    <div class="employee-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80');"></div>
-                    <h3 class="employee-name">Dr. Ahmed Hassan</h3>
-                    <div class="employee-designation">Senior Business Consultant</div>
-                    <div class="employee-contact">ahmed.hassan@nsdc.gov.bd</div>
-                </div>
+        <div class="employees-grid">
+            @foreach($team as $index => $employee)
+                <div class="employee-card {{ $index % 2 == 0 ? 'slide-in-left' : 'slide-in-right' }}">
+                    
+                    <div class="employee-image" 
+                         style="background-image: url('{{ Storage::url($employee->image) }}');">
+                    </div>
 
-                <!-- Employee 2 -->
-                <div class="employee-card slide-in-left">
-                    <div class="employee-image" style="background-image: url('https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80');"></div>
-                    <h3 class="employee-name">Fatima Rahman</h3>
-                    <div class="employee-designation">Digital Marketing Expert</div>
-                    <div class="employee-contact">fatima.rahman@nsdc.gov.bd</div>
-                </div>
+                    <h3 class="employee-name">
+                        {{ $employee->name }}
+                    </h3>
 
-                <!-- Employee 3 -->
-                <div class="employee-card slide-in-right">
-                    <div class="employee-image" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80');"></div>
-                    <h3 class="employee-name">Mohammad Ali</h3>
-                    <div class="employee-designation">Financial Advisor</div>
-                    <div class="employee-contact">mohammad.ali@nsdc.gov.bd</div>
-                </div>
+                    <div class="employee-designation">
+                        {{ $employee->designation }}
+                    </div>
 
-                <!-- Employee 4 -->
-                <div class="employee-card slide-in-right">
-                    <div class="employee-image" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80');"></div>
-                    <h3 class="employee-name">Ayesha Khan</h3>
-                    <div class="employee-designation">Leadership Coach</div>
-                    <div class="employee-contact">ayesha.khan@nsdc.gov.bd</div>
-                </div>
+                    <div class="employee-contact">
+                        {{ $employee->email }}
+                    </div>
 
-                <!-- Employee 5 -->
-                <div class="employee-card slide-in-left">
-                    <div class="employee-image" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80');"></div>
-                    <h3 class="employee-name">Karim Uddin</h3>
-                    <div class="employee-designation">E-commerce Specialist</div>
-                    <div class="employee-contact">karim.uddin@nsdc.gov.bd</div>
                 </div>
-
-                <!-- Employee 6 -->
-                <div class="employee-card slide-in-right">
-                    <div class="employee-image" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80');"></div>
-                    <h3 class="employee-name">Nusrat Jahan</h3>
-                    <div class="employee-designation">Innovation Consultant</div>
-                    <div class="employee-contact">nusrat.jahan@nsdc.gov.bd</div>
-                </div>
-            </div>
+            @endforeach
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- Contact Section -->
     <section id="contact" class="section" style="background: var(--bg-light);">
         <div class="container">

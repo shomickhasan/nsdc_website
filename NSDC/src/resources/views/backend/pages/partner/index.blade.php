@@ -67,7 +67,7 @@
                 <div class="modal-body">
                     <!-- Partner Logo -->
                     <div class="mb-3">
-                        <label>Partner Logo <span class="text-danger">*</span></label>
+                        <label>Partner Logo 300*300 <span class="text-danger">*</span></label>
                         <input type="file" name="logo" class="form-control" id="logoInput" accept="image/*" required>
                         <div class="mt-2">
                             <img id="logoPreview" src="{{ asset('image/no-image-uploded-2.png') }}" style="width:120px;height:60px;object-fit:cover;border:1px solid #ddd;">

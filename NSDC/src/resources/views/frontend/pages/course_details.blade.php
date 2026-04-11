@@ -187,183 +187,426 @@
         <hr>
     </section>
 
-    <section class="course-registration-form py-0" style="background-color:#f8f9fa;">
+    <section class="course-registration-form py-4" style="background-color:#f8f9fa;">
         <div class="container">
             <h2 class="text-center mb-4">Register for {{ $course->title }}</h2>
 
-            <div class="card shadow-sm p-4" style="background-color:#242F6F; border-radius:10px;">
-                <form method="POST" action="{{route('registration.store')}}" enctype="multipart/form-data">
+            <style>
+                .asset-form-card {
+                    background: #fff;
+                    border-radius: 12px;
+                    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+                    overflow: hidden;
+                }
+
+                .asset-section-title {
+                    background: #d9e8f5;
+                    color: #111;
+                    font-weight: 700;
+                    font-size: 18px;
+                    padding: 10px 15px;
+                    margin-bottom: 20px;
+                    border-left: 4px solid #242F6F;
+                }
+
+                .asset-form-card .form-label {
+                    color: #222 !important;
+                    font-weight: 600;
+                    margin-bottom: 6px;
+                }
+
+                .asset-form-card .form-control,
+                .asset-form-card .form-select {
+                    min-height: 48px;
+                    border-radius: 8px;
+                    border: 1px solid #ced4da;
+                }
+
+                .asset-form-card textarea.form-control {
+                    min-height: 110px;
+                }
+
+                .asset-check-wrap {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 18px;
+                    align-items: center;
+                    min-height: 48px;
+                }
+
+                .required-star {
+                    color: red;
+                }
+
+                .section-gap {
+                    margin-bottom: 24px;
+                }
+
+                .error-text {
+                    font-size: 13px;
+                    margin-top: 4px;
+                    color: #dc3545;
+                }
+
+                @media (max-width: 767px) {
+                    .asset-section-title {
+                        font-size: 16px;
+                        padding: 9px 12px;
+                    }
+                }
+            </style>
+
+            <div class="asset-form-card p-3 p-md-4">
+                <form id="registrationForm" method="POST" action="{{ route('registration.store') }}" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="course_id" value="{{ $course->id }}">
 
-                    <div class="row g-3">
-                            <input type="hidden" name="course_id" value="{{$course->id}}">
-                        <!-- Full Name -->
-                        <div class="col-12">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" name="name" class="form-control form-control-lg @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Enter your full name">
-                            @error('name') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
+                    {{-- Basic Information --}}
+                    <div class="asset-section-title">Basic Information</div>
 
-                        <div class="col-12">
-                            <label class="form-label">Full Name (Bangla)</label>
-                            <input type="text" name="name_bn" class="form-control form-control-lg @error('name_bn') is-invalid @enderror" value="{{ old('name_bn') }}" placeholder="আপনার নাম লিখুন">
-                            @error('name_bn') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
+                    <div class="row">
 
-                        <!-- Email & Phone -->
-                        <div class="col-12">
-                            <label class="form-label">Email</label>
-                            <input type="email" name="email" class="form-control form-control-lg @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Enter your email">
-                            @error('email') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label">Phone Number</label>
-                            <input type="text" name="phone" class="form-control form-control-lg @error('phone') is-invalid @enderror" value="{{ old('phone') }}" placeholder="Enter your phone number">
-                            @error('phone') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <!-- Date of Birth & NID -->
-                        <div class="col-12">
-                            <label class="form-label">Date of Birth</label>
-                            <input type="date" name="dob" class="form-control form-control-lg @error('dob') is-invalid @enderror" value="{{ old('dob') }}">
-                            @error('dob') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label">NID Number</label>
-                            <input type="text" name="nid_number" class="form-control form-control-lg @error('nid_number') is-invalid @enderror" value="{{ old('nid_number') }}" placeholder="Enter NID number">
-                            @error('nid_number') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <!-- Parents' Info -->
-                        <div class="col-12">
-                            <label class="form-label">Father's Name</label>
-                            <input type="text" name="father_name" class="form-control form-control-lg @error('father_name') is-invalid @enderror" value="{{ old('father_name') }}" placeholder="Father's Name">
-                            @error('father_name') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label">Father's Name (Bangla)</label>
-                            <input type="text" name="father_name_bn" class="form-control form-control-lg @error('father_name_bn') is-invalid @enderror" value="{{ old('father_name_bn') }}" placeholder="পিতার নাম">
-                            @error('father_name_bn') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label">Mother's Name</label>
-                            <input type="text" name="mother_name" class="form-control form-control-lg @error('mother_name') is-invalid @enderror" value="{{ old('mother_name') }}" placeholder="Mother's Name">
-                            @error('mother_name') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label">Mother's Name (Bangla)</label>
-                            <input type="text" name="mother_name_bn" class="form-control form-control-lg @error('mother_name_bn') is-invalid @enderror" value="{{ old('mother_name_bn') }}" placeholder="মাতার নাম">
-                            @error('mother_name_bn') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <!-- Addresses -->
-                        <div class="col-12">
-                            <label class="form-label">Present Address</label>
-                            <input type="text" name="present_address" class="form-control form-control-lg @error('present_address') is-invalid @enderror" value="{{ old('present_address') }}" placeholder="Present Address">
-                            @error('present_address') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <div class="col-12">
-                            <label class="form-label">Permanent Address</label>
-                            <input type="text" name="permanent_address" class="form-control form-control-lg @error('permanent_address') is-invalid @enderror" value="{{ old('permanent_address') }}" placeholder="Permanent Address">
-                            @error('permanent_address') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <!-- Gender Radio -->
-                        <div class="col-12">
-                            <label class="form-label d-block">Gender</label>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('gender') is-invalid @enderror" type="radio" name="gender" id="male" value="Male" {{ old('gender')=='Male' ? 'checked':'' }}>
-                                <label class="form-check-label" for="male">Male</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('gender') is-invalid @enderror" type="radio" name="gender" id="female" value="Female" {{ old('gender')=='Female' ? 'checked':'' }}>
-                                <label class="form-check-label" for="female">Female</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('gender') is-invalid @enderror" type="radio" name="gender" id="other" value="Other" {{ old('gender')=='Other' ? 'checked':'' }}>
-                                <label class="form-check-label" for="other">Other</label>
-                            </div>
-                            @error('gender') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <!-- Educational Qualification -->
-                        <!-- Educational Qualification (Radio) -->
-                        <div class="col-12">
-                            <label class="form-label d-block">Highest Educational Qualification</label>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('education') is-invalid @enderror" type="radio" name="education" id="ssc" value="SSC" {{ old('education') == 'SSC' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="ssc">SSC</label>
+                            <div class="col-md-4 section-gap">
+                                <label class="form-label">Email <span class="required-star">*</span></label>
+                                <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Enter your email address">
+                                <p class="error-text email_error"></p>
                             </div>
 
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('education') is-invalid @enderror" type="radio" name="education" id="hsc" value="HSC" {{ old('education') == 'HSC' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="hsc">HSC</label>
+                            <div class="col-md-4 section-gap">
+                                <label class="form-label">Contact Number <span class="required-star">*</span></label>
+                                <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" placeholder="Enter your contact number">
+                                <p class="error-text phone_error"></p>
                             </div>
 
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('education') is-invalid @enderror" type="radio" name="education" id="honours" value="Honours" {{ old('education') == 'Honours' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="honours">Honours</label>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">NID <span class="required-star">*</span></label>
+                            <input type="text" name="nid" class="form-control" value="{{ old('nid') }}">
+                            <p class="error-text nid_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Full Name [English] <span class="required-star">*</span></label>
+                            <input type="text" name="full_name_en" class="form-control" value="{{ old('full_name_en') }}">
+                            <p class="error-text full_name_en_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Full Name [Bangla] <span class="required-star">*</span></label>
+                            <input type="text" name="full_name_bn" class="form-control" value="{{ old('full_name_bn') }}">
+                            <p class="error-text full_name_bn_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Father’s Name [English] <span class="required-star">*</span></label>
+                            <input type="text" name="father_name_en" class="form-control" value="{{ old('father_name_en') }}">
+                            <p class="error-text father_name_en_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Father’s Occupation</label>
+                            <input type="text" name="father_occupation" class="form-control" value="{{ old('father_occupation') }}">
+                            <p class="error-text father_occupation_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Mother’s Name [English] <span class="required-star">*</span></label>
+                            <input type="text" name="mother_name_en" class="form-control" value="{{ old('mother_name_en') }}">
+                            <p class="error-text mother_name_en_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Mother’s Occupation</label>
+                            <input type="text" name="mother_occupation" class="form-control" value="{{ old('mother_occupation') }}">
+                            <p class="error-text mother_occupation_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Sex <span class="required-star">*</span></label>
+                            <select name="sex" class="form-select">
+                                <option value="">Select Sex</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <p class="error-text sex_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Date of Birth <span class="required-star">*</span></label>
+                            <input type="date" name="date_of_birth" class="form-control" value="{{ old('date_of_birth') }}">
+                            <p class="error-text date_of_birth_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Person With Disability (PWD)</label>
+                            <select name="pwd" class="form-select">
+                                <option value="">Select</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <p class="error-text pwd_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Religion <span class="required-star">*</span></label>
+                            <input type="text" name="religion" class="form-control" value="{{ old('religion') }}">
+                            <p class="error-text religion_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Blood Group <span class="required-star">*</span></label>
+                            <select name="blood_group" class="form-select">
+                                <option value="">Select Blood Group</option>
+                                @foreach(['A+','A-','B+','B-','AB+','AB-','O+','O-'] as $bg)
+                                    <option value="{{ $bg }}">{{ $bg }}</option>
+                                @endforeach
+                            </select>
+                            <p class="error-text blood_group_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Marital Status</label>
+                            <select name="marital_status" class="form-select">
+                                <option value="">Select Status</option>
+                                <option value="Married">Married</option>
+                                <option value="Unmarried">Unmarried</option>
+                            </select>
+                            <p class="error-text marital_status_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">NID/Birth Certificate/Passport No</label>
+                            <input type="text" name="identity_no" class="form-control" value="{{ old('identity_no') }}">
+                            <p class="error-text identity_no_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Signature (jpg, png, jpeg) <span class="required-star">*</span></label>
+                            <input type="file" name="signature" class="form-control">
+                            <p class="error-text signature_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Profile Photo (jpg, png, jpeg) <span class="required-star">*</span></label>
+                            <input type="file" name="photo" class="form-control">
+                            <p class="error-text photo_error"></p>
+                        </div>
+                    </div>
+
+                    {{-- Permanent Address --}}
+                    <div class="asset-section-title">Permanent Address</div>
+
+                    <div class="row">
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Division <span class="required-star">*</span></label>
+                            <select name="permanent_division_id" id="permanent_division_id" class="form-select">
+                                <option value="">Select Division</option>
+                                @foreach($divisions ?? [] as $division)
+                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                @endforeach
+                            </select>
+                            <p class="error-text permanent_division_id_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">District <span class="required-star">*</span></label>
+                            <select name="permanent_district_id" id="permanent_district_id" class="form-select">
+                                <option value="">Select District</option>
+                            </select>
+                            <p class="error-text permanent_district_id_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Upazila <span class="required-star">*</span></label>
+                            <select name="permanent_upazila_id" id="permanent_upazila_id" class="form-select">
+                                <option value="">Select Upazila</option>
+                            </select>
+                            <p class="error-text permanent_upazila_id_error"></p>
+                        </div>
+
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">Post Office <span class="required-star">*</span></label>
+                            <input type="text"
+                                   name="permanent_post_office"
+                                   id="permanent_post_office"
+                                   class="form-control"
+                                   value="{{ old('permanent_post_office') }}"
+                                   placeholder="Post Office Name - Code (e.g. Natore Sadar - 6400)">
+                            <p class="error-text permanent_post_office_error"></p>
+                        </div>
+
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">From Rural or Urban Area</label>
+                            <select name="permanent_area_type" class="form-select">
+                                <option value="">Select Area Type</option>
+                                <option value="Rural">Rural</option>
+                                <option value="Urban">Urban</option>
+                            </select>
+                            <p class="error-text permanent_area_type_error"></p>
+                        </div>
+
+                        <div class="col-md-12 section-gap">
+                            <label class="form-label">Address <span class="required-star">*</span></label>
+                            <textarea name="permanent_address" class="form-control">{{ old('permanent_address') }}</textarea>
+                            <p class="error-text permanent_address_error"></p>
+                        </div>
+                    </div>
+
+                    {{-- Present Address --}}
+                    <div class="asset-section-title">Present Address</div>
+
+                    <div class="row">
+                        <div class="col-12 section-gap">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="same_as_permanent" name="same_as_permanent" value="1">
+                                <label class="form-check-label text-dark" for="same_as_permanent">Same as Permanent Address</label>
                             </div>
+                        </div>
 
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('education') is-invalid @enderror" type="radio" name="education" id="degree_pass" value="Degree (Pass)" {{ old('education') == 'Degree (Pass)' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="degree_pass">Degree (Pass)</label>
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Division <span class="required-star">*</span></label>
+                            <select name="present_division_id" id="present_division_id" class="form-select">
+                                <option value="">Select Division</option>
+                                @foreach($divisions ?? [] as $division)
+                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                @endforeach
+                            </select>
+                            <p class="error-text present_division_id_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">District <span class="required-star">*</span></label>
+                            <select name="present_district_id" id="present_district_id" class="form-select">
+                                <option value="">Select District</option>
+                            </select>
+                            <p class="error-text present_district_id_error"></p>
+                        </div>
+
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Upazila <span class="required-star">*</span></label>
+                            <select name="present_upazila_id" id="present_upazila_id" class="form-select">
+                                <option value="">Select Upazila</option>
+                            </select>
+                            <p class="error-text present_upazila_id_error"></p>
+                        </div>
+
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">Address <span class="required-star">*</span></label>
+                            <textarea name="present_address" id="present_address" class="form-control">{{ old('present_address') }}</textarea>
+                            <p class="error-text present_address_error"></p>
+                        </div>
+
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">Post Office <span class="required-star">*</span></label>
+                            <input type="text"
+                                   name="present_post_office"
+                                   id="present_post_office"
+                                   class="form-control"
+                                   value="{{ old('present_post_office') }}"
+                                   placeholder="Post Office Name - Code (e.g. Natore Sadar - 6400)">
+                            <p class="error-text present_post_office_error"></p>
+                        </div>
+                    </div>
+
+                    {{-- Education --}}
+                    <div class="asset-section-title">Education Information</div>
+
+                    <div class="row">
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">Board/University</label>
+                            <input type="text" name="board_university" class="form-control" value="{{ old('board_university') }}">
+                            <p class="error-text board_university_error"></p>
+                        </div>
+
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">Highest Educational Level</label>
+                            <input type="text" name="highest_education_level" class="form-control" value="{{ old('highest_education_level') }}">
+                            <p class="error-text highest_education_level_error"></p>
+                        </div>
+
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">Highest Education Institute Name</label>
+                            <input type="text" name="highest_education_institute_name" class="form-control" value="{{ old('highest_education_institute_name') }}">
+                            <p class="error-text highest_education_institute_name_error"></p>
+                        </div>
+
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">Highest Education Passing Year</label>
+                            <input type="text" name="highest_education_passing_year" class="form-control" value="{{ old('highest_education_passing_year') }}">
+                            <p class="error-text highest_education_passing_year_error"></p>
+                        </div>
+
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label d-block">TVET Certificate</label>
+                            <div class="asset-check-wrap">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tvet_certificate" value="Yes">
+                                    <label class="form-check-label text-dark">Yes</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="tvet_certificate" value="No">
+                                    <label class="form-check-label text-dark">No</label>
+                                </div>
                             </div>
+                            <p class="error-text tvet_certificate_error"></p>
+                        </div>
 
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input @error('education') is-invalid @enderror" type="radio" name="education" id="masters" value="Masters" {{ old('education') == 'Masters' ? 'checked' : '' }}>
-                                <label class="form-check-label" for="masters">Masters</label>
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label d-block">Ethnic Minority</label>
+                            <div class="asset-check-wrap">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ethnic_minority" value="Yes">
+                                    <label class="form-check-label text-dark">Yes</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ethnic_minority" value="No">
+                                    <label class="form-check-label text-dark">No</label>
+                                </div>
                             </div>
+                            <p class="error-text ethnic_minority_error"></p>
+                        </div>
+                    </div>
 
-                            @error('education') <p class="text-danger">{{ $message }}</p> @enderror
+                    {{-- Skill / Experience / Income --}}
+                    <div class="asset-section-title">Skill, Experiences, Past Employment & Income</div>
+
+                    <div class="row">
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Company Name</label>
+                            <input type="text" name="company_name" class="form-control" value="{{ old('company_name') }}">
+                            <p class="error-text company_name_error"></p>
                         </div>
 
-
-
-                        <!-- Religion, Height, Weight -->
-                        <div class="col-12">
-                            <label class="form-label">Religion</label>
-                            <input type="text" name="religion" class="form-control form-control-lg @error('religion') is-invalid @enderror" value="{{ old('religion') }}" placeholder="Religion">
-                            @error('religion') <p class="text-danger">{{ $message }}</p> @enderror
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Designation</label>
+                            <input type="text" name="designation" class="form-control" value="{{ old('designation') }}">
+                            <p class="error-text designation_error"></p>
                         </div>
 
-                        <div class="col-12">
-                            <label class="form-label">Height</label>
-                            <input type="text" name="height" class="form-control form-control-lg @error('height') is-invalid @enderror" value="{{ old('height') }}" placeholder="Height">
-                            @error('height') <p class="text-danger">{{ $message }}</p> @enderror
+                        <div class="col-md-4 section-gap">
+                            <label class="form-label">Received any skill training in the Past?</label>
+                            <input type="text" name="past_skill_training" class="form-control" value="{{ old('past_skill_training') }}">
+                            <p class="error-text past_skill_training_error"></p>
                         </div>
 
-                        <div class="col-12">
-                            <label class="form-label">Weight</label>
-                            <input type="text" name="weight" class="form-control form-control-lg @error('weight') is-invalid @enderror" value="{{ old('weight') }}" placeholder="Weight">
-                            @error('weight') <p class="text-danger">{{ $message }}</p> @enderror
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">Employment status before training</label>
+                            <input type="text" name="employment_status_before_training" class="form-control" value="{{ old('employment_status_before_training') }}">
+                            <p class="error-text employment_status_before_training_error"></p>
                         </div>
 
-                        <!-- File Upload -->
-                        <div class="col-12">
-                            <label class="form-label">Photo (300x300)</label>
-                            <input type="file" name="photo" class="form-control form-control-lg @error('photo') is-invalid @enderror">
-                            @error('photo') <p class="text-danger">{{ $message }}</p> @enderror
+                        <div class="col-md-6 section-gap">
+                            <label class="form-label">Amount of Monthly Income (BDT) – Cash</label>
+                            <input type="number" step="0.01" name="monthly_income" class="form-control" value="{{ old('monthly_income') }}">
+                            <p class="error-text monthly_income_error"></p>
                         </div>
+                    </div>
 
-                        <div class="col-12">
-                            <label class="form-label">Signature (300x80)</label>
-                            <input type="file" name="signature" class="form-control form-control-lg @error('signature') is-invalid @enderror">
-                            @error('signature') <p class="text-danger">{{ $message }}</p> @enderror
-                        </div>
-
-                        <!-- Submit -->
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary w-100 btn-lg mt-3">Submit Registration</button>
-                        </div>
-
+                    <div class="pt-2">
+                        <button type="submit" id="registrationSubmitBtn" class="btn btn-primary btn-lg w-100">
+                            Submit Registration
+                        </button>
                     </div>
                 </form>
             </div>
@@ -371,3 +614,168 @@
     </section>
 
 @endsection
+
+@push('script')
+    <script>
+        $(document).ready(function () {
+
+            function resetErrors() {
+                $('.error-text').text('');
+                $('#registrationForm .form-control, #registrationForm .form-select').removeClass('is-invalid');
+            }
+
+            function loadDistricts(divisionId, districtSelector, selectedDistrict = '') {
+                $(districtSelector).html('<option value="">Select District</option>');
+
+                let upazilaSelector = districtSelector.replace('district', 'upazila');
+                if ($(upazilaSelector).length) {
+                    $(upazilaSelector).html('<option value="">Select Upazila</option>');
+                }
+
+                if (divisionId) {
+                    $.ajax({
+                        url: '/districts/' + divisionId,
+                        type: 'GET',
+                        success: function (data) {
+                            $.each(data, function (key, item) {
+                                $(districtSelector).append(
+                                    `<option value="${item.id}" ${selectedDistrict == item.id ? 'selected' : ''}>${item.name}</option>`
+                                );
+                            });
+                        }
+                    });
+                }
+            }
+
+            function loadUpazilas(districtId, upazilaSelector, selectedUpazila = '') {
+                $(upazilaSelector).html('<option value="">Select Upazila</option>');
+
+                if (districtId) {
+                    $.ajax({
+                        url: '/upazilas/' + districtId,
+                        type: 'GET',
+                        success: function (data) {
+                            $.each(data, function (key, item) {
+                                $(upazilaSelector).append(
+                                    `<option value="${item.id}" ${selectedUpazila == item.id ? 'selected' : ''}>${item.name}</option>`
+                                );
+                            });
+                        }
+                    });
+                }
+            }
+
+            $('#permanent_division_id').on('change', function () {
+                loadDistricts($(this).val(), '#permanent_district_id');
+            });
+
+            $('#permanent_district_id').on('change', function () {
+                loadUpazilas($(this).val(), '#permanent_upazila_id');
+            });
+
+            $('#present_division_id').on('change', function () {
+                loadDistricts($(this).val(), '#present_district_id');
+            });
+
+            $('#present_district_id').on('change', function () {
+                loadUpazilas($(this).val(), '#present_upazila_id');
+            });
+
+            $('#same_as_permanent').on('change', function () {
+                if ($(this).is(':checked')) {
+                    let permanentDivision = $('#permanent_division_id').val();
+                    let permanentDistrict = $('#permanent_district_id').val();
+                    let permanentUpazila = $('#permanent_upazila_id').val();
+                    let permanentPostOffice = $('#permanent_post_office').val();
+                    let permanentAddress = $('textarea[name="permanent_address"]').val();
+
+                    $('#present_division_id').val(permanentDivision).trigger('change');
+
+                    setTimeout(function () {
+                        loadDistricts(permanentDivision, '#present_district_id', permanentDistrict);
+
+                        setTimeout(function () {
+                            loadUpazilas(permanentDistrict, '#present_upazila_id', permanentUpazila);
+                        }, 300);
+                    }, 300);
+
+                    $('#present_post_office').val(permanentPostOffice);
+                    $('#present_address').val(permanentAddress);
+                } else {
+                    $('#present_division_id').val('');
+                    $('#present_district_id').html('<option value="">Select District</option>');
+                    $('#present_upazila_id').html('<option value="">Select Upazila</option>');
+                    $('#present_post_office').val('');
+                    $('#present_address').val('');
+                }
+            });
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('#registrationForm').on('submit', function (e) {
+                e.preventDefault();
+
+                resetErrors();
+
+                let form = $('#registrationForm')[0];
+                let formData = new FormData(form);
+                let submitBtn = $('#registrationSubmitBtn');
+
+                submitBtn.prop('disabled', true).text('Submitting...');
+
+                $.ajax({
+                    url: "{{ route('registration.store') }}",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        submitBtn.prop('disabled', false).text('Submit Registration');
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success',
+                            text: response.message || 'Registration submitted successfully!',
+                            confirmButtonText: 'OK'
+                        }).then(() => {
+                            $('#registrationForm')[0].reset();
+                            resetErrors();
+
+                            $('#permanent_district_id').html('<option value="">Select District</option>');
+                            $('#permanent_upazila_id').html('<option value="">Select Upazila</option>');
+                            $('#present_district_id').html('<option value="">Select District</option>');
+                            $('#present_upazila_id').html('<option value="">Select Upazila</option>');
+                        });
+                    },
+                    error: function (xhr) {
+                        submitBtn.prop('disabled', false).text('Submit Registration');
+
+                        if (xhr.status === 422) {
+                            $.each(xhr.responseJSON.errors, function (field, messages) {
+                                $('[name="' + field + '"]').addClass('is-invalid');
+                                $('.' + field + '_error').text(messages[0]);
+                            });
+
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Validation Error',
+                                text: 'Please fix the highlighted fields.'
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: xhr.responseJSON?.message || 'Something went wrong while submitting the registration.'
+                            });
+                        }
+                    }
+                });
+            });
+
+        });
+    </script>
+@endpush

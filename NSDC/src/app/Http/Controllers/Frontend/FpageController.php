@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Backend\Course;
+use App\Models\Division;
 use App\Models\Partner;
+use App\Models\Employee;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -22,7 +24,10 @@ class FpageController extends Controller
             ->orderBy('order', 'asc')
             ->get();
         //dd($cdata);
-       return view('frontend.pages.home',compact('cdata','sliders','partners'));
+
+        $team = Employee::where('status',1)->orderBy('order', 'asc')->get();
+        //dd($team);
+       return view('frontend.pages.home',compact('cdata','sliders','partners','team'));
 
     }
 
@@ -32,6 +37,7 @@ class FpageController extends Controller
 
     public  function courseDetails(Request $request, $slug){
         $course = Course::where('slug', $slug)->firstOrFail();
-        return view('frontend.pages.course_details', compact('course'));
+        $divisions = Division::orderBy('name')->get();
+        return view('frontend.pages.course_details', compact('course','divisions'));
     }
 }

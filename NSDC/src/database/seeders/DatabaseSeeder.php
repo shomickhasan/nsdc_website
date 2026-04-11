@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserTableSeeder;
+use Database\Seeders\LocationMasterSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserTableSeeder::class,
             FieldSeeder::class,
+            LocationMasterSeeder::class,
         ]);
     }
 }

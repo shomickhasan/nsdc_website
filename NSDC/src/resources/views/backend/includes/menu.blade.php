@@ -28,6 +28,7 @@ $courses = ['course.index', 'course.create'];
 $partner = ['our_partner.index'];
 
 $content = ['slider.index', 'slider.delete', 'slider.edit', 'slider.update'];
+$batch = ['batch.index', 'batch.create', 'batch.edit'];
 
 
 $routeName = \Request::route()->getName();
@@ -102,8 +103,21 @@ $routeName = \Request::route()->getName();
                     'partner.destroy',
                     'partner.order_update',
             ];
+
+             $employeeRoutes = [
+                'employee.index',
+                'employee.store',
+                'employee.update',
+                'employee.destroy',
+                'employee.order_update',
+            ];
         @endphp
-        <li class="menu-item {{ (in_array($routeName, $heroSliderRoutes) !== false || in_array($routeName, $partnerRoutes) !== false) ? 'active open' : '' }}">
+        <li class="menu-item {{
+            (
+            in_array($routeName, $heroSliderRoutes) ||
+            in_array($routeName, $partnerRoutes) ||
+            in_array($routeName, $employeeRoutes)
+            ) ? 'active open' : '' }}">
             <a href="#" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-shield"></i>
                 <div data-i18n="Administration">Content</div>
@@ -124,6 +138,12 @@ $routeName = \Request::route()->getName();
                         <div data-i18n="Partners">Partners</div>
                     </a>
                 </li>
+                <li class="menu-item {{ in_array($routeName, $employeeRoutes) ? 'active' : '' }}">
+                    <a href="{{ route('employee.index') }}" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-user"></i>
+                        <div data-i18n="Employees">Employees</div>
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -133,6 +153,12 @@ $routeName = \Request::route()->getName();
             <a href="{{ route('course.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-paperclip"></i>
                 <div data-i18n="">Courses</div>
+            </a>
+        </li>
+        <li class="menu-item {{ (in_array($routeName, $batch) !== false) ? 'active open' : '' }}">
+            <a href="{{ route('batch.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-layout-grid"></i>
+                <div data-i18n="">Batch</div>
             </a>
         </li>
 

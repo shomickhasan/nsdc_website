@@ -99,7 +99,7 @@
 
                 <!-- Image -->
                 <div class="mb-3">
-                    <label>Slider Image</label>
+                    <label>Slider Image (2070 * 1358)</label>
                     <input type="file" name="image"
                            class="form-control @error('image') is-invalid @enderror"
                            id="imageInput" accept="image/*">

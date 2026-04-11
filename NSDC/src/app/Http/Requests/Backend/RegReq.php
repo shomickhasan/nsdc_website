@@ -22,57 +22,86 @@ class RegReq extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'name_bn' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:11',
-            'dob' => 'required|date',
-            'nid_number' => 'required|string|min:1 | max:10',
-            'father_name' => 'required|string|max:255',
-            'father_name_bn' => 'required|string|max:255',
-            'mother_name' => 'required|string|max:255',
-            'mother_name_bn' => 'required|string|max:255',
-            'present_address' => 'required|string|max:500',
-            'permanent_address' => 'required|string|max:500',
-            'gender' => 'required|in:Male,Female,Other',
-            'education' => 'required|in:SSC,HSC,Honours,Degree (Pass),Masters',
+            'course_id' => 'required|exists:courses,id',
+
+            'full_name_en' => 'required|string|max:255',
+            'full_name_bn' => 'required|string|max:255',
+            'nid' => 'required|string|max:50',
+
+            'date_of_birth' => 'required|date',
+            'sex' => 'required|in:Male,Female,Other',
             'religion' => 'required|string|max:100',
-            'height' => 'required|string|max:10',
-            'weight' => 'required|string|max:10',
-            'photo' => 'required|image|mimes:jpeg,jpg,png|dimensions:min_width=300,min_height=300|max:2048',
-            'signature' => 'required|image|mimes:jpeg,jpg,png|dimensions:min_width=300,min_height=80|max:1024',
+            'blood_group' => 'required',
+
+            'father_name_en' => 'required|string|max:255',
+            'mother_name_en' => 'required|string|max:255',
+
+            // Permanent
+            'permanent_division_id' => 'required|exists:divisions,id',
+            'permanent_district_id' => 'required|exists:districts,id',
+            'permanent_upazila_id' => 'required|exists:upazilas,id',
+            'permanent_post_office' => 'required|string|max:255',
+            'permanent_address' => 'required|string|max:500',
+
+            // Present
+            'present_division_id' => 'required|exists:divisions,id',
+            'present_district_id' => 'required|exists:districts,id',
+            'present_upazila_id' => 'required|exists:upazilas,id',
+            'present_post_office' => 'required|string|max:255',
+            'present_address' => 'required|string|max:500',
+
+            // Files
+            'photo' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'signature' => 'required|image|mimes:jpeg,jpg,png|max:1024',
+
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'name.required' => 'Full name is required.',
-            'name_bn.required' => 'Full name (Bangla) is required.',
+
+            'full_name_en.required' => 'Full name (English) is required.',
+            'full_name_bn.required' => 'Full name (Bangla) is required.',
+            'nid.required' => 'NID is required.',
+
+            'date_of_birth.required' => 'Date of birth is required.',
+            'sex.required' => 'Please select your gender.',
+            'religion.required' => 'Religion is required.',
+            'blood_group.required' => 'Blood group is required.',
+
+            'father_name_en.required' => 'Father name is required.',
+            'mother_name_en.required' => 'Mother name is required.',
+
+            // Permanent
+            'permanent_division_id.required' => 'Permanent division is required.',
+            'permanent_district_id.required' => 'Permanent district is required.',
+            'permanent_upazila_id.required' => 'Permanent upazila is required.',
+            'permanent_post_office.required' => 'Permanent post office is required.',
+            'permanent_address.required' => 'Permanent address is required.',
+
+            // Present
+            'present_division_id.required' => 'Present division is required.',
+            'present_district_id.required' => 'Present district is required.',
+            'present_upazila_id.required' => 'Present upazila is required.',
+            'present_post_office.required' => 'Present post office is required.',
+            'present_address.required' => 'Present address is required.',
+
+            // Files
+            'photo.required' => 'Please upload your photo.',
+            'photo.image' => 'Photo must be an image.',
+            'photo.mimes' => 'Photo must be JPG, JPEG or PNG.',
+            'photo.max' => 'Photo must be less than 2MB.',
+
+            'signature.required' => 'Please upload your signature.',
+            'signature.image' => 'Signature must be an image.',
+            'signature.mimes' => 'Signature must be JPG, JPEG or PNG.',
+            'signature.max' => 'Signature must be less than 1MB.',
             'email.required' => 'Email is required.',
             'email.email' => 'Please enter a valid email address.',
-            'phone.required' => 'Phone number is required.',
-            'dob.required' => 'Date of birth is required.',
-            'nid_number.required' => 'NID number is required.',
-            'father_name.required' => 'Father\'s name is required.',
-            'father_name_bn.required' => 'Father\'s name (Bangla) is required.',
-            'mother_name.required' => 'Mother\'s name is required.',
-            'mother_name_bn.required' => 'Mother\'s name (Bangla) is required.',
-            'present_address.required' => 'Present address is required.',
-            'permanent_address.required' => 'Permanent address is required.',
-            'gender.required' => 'Please select your gender.',
-            'education.required' => 'Please select your highest educational qualification.',
-            'religion.required' => 'Religion is required.',
-            'height.required' => 'Height is required.',
-            'weight.required' => 'Weight is required.',
-            'photo.required' => 'Please upload your photo.',
-            'photo.image' => 'Photo must be an image file.',
-            'photo.mimes' => 'Photo must be a JPEG, JPG, or PNG file.',
-            'photo.dimensions' => 'Photo must be at least 300x300 pixels.',
-            'signature.required' => 'Please upload your signature.',
-            'signature.image' => 'Signature must be an image file.',
-            'signature.mimes' => 'Signature must be a JPEG, JPG, or PNG file.',
-            'signature.dimensions' => 'Signature must be at least 300x80 pixels.',
+            'phone.required' => 'Contact number is required.',
         ];
     }
 }

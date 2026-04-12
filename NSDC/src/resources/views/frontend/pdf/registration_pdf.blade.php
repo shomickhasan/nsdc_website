@@ -10,6 +10,7 @@
 
         body {
             font-family: DejaVu Sans, sans-serif;
+            unicode-bidi: plaintext;
             font-size: 11px;
             color: #222;
             margin: 0;
@@ -246,12 +247,10 @@
             <div class="top-info-row">
                 <strong>Course/Trade Name:</strong>
                 <span class="line-value">{{ $reg->course->title ?? '' }}</span>
-                <strong>Course Type:</strong>
-                <span class="line-value short">{{ $reg->course->course_type ?? '' }}</span>
             </div>
             <div class="top-info-row">
                 <strong>Batch No:</strong>
-                <span class="line-value short">{{ $reg->batch_no ?? ($reg->batch->batch_name ?? '') }}</span>
+                <span class="line-value short">{{ $reg->batch->batch_name ?? '' }}</span>
             </div>
         </div>
 

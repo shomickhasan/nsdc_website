@@ -30,6 +30,12 @@ Route::get('/', [FpageController::class, 'fhome'])->name('fHome');
 Route::get('/course/details/{slug}', [FpageController::class, 'courseDetails'])->name('course_details');
 Route::post('regestration/store', [ReqController::class, 'store'])->name('registration.store');
 Route::get('regestration/index', [ReqController::class, 'index'])->name('registration.index');
+Route::get('regestration/show/{id}', [ReqController::class, 'show'])->name('registration.show');
+Route::get('regestration/pdf/{id}', [ReqController::class, 'pdf'])->name('registration.pdf');
+Route::get('regestration/export', [ReqController::class, 'export'])->name('registration.export');
+Route::post('regestration/bulk-admission', [ReqController::class, 'bulkAdmission'])->name('registration.bulkAdmission');
+Route::get('students/index', [ReqController::class, 'students'])->name('students.index');
+Route::get('students/export', [ReqController::class, 'studentsExport'])->name('students.export');
 
 Route::get('/districts/{division}', [LocationController::class, 'districts']);
 Route::get('/upazilas/{district}', [LocationController::class, 'upazilas']);

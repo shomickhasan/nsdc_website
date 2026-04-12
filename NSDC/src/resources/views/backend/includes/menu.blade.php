@@ -26,6 +26,8 @@ $maintenances_route = ['maintenances.index'];
 $courses = ['course.index', 'course.create'];
 
 $partner = ['our_partner.index'];
+$registration = ['registration.index', 'registration.show', 'registration.pdf', 'registration.export'];
+$students = ['students.index'];
 
 $content = ['slider.index', 'slider.delete', 'slider.edit', 'slider.update'];
 $batch = ['batch.index', 'batch.create', 'batch.edit'];
@@ -162,10 +164,17 @@ $routeName = \Request::route()->getName();
             </a>
         </li>
 
-        <li class="menu-item {{(in_array($routeName, $partner ) !== false ) ? 'active open ':''}}">
+        <li class="menu-item {{(in_array($routeName, $registration ) !== false ) ? 'active open ':''}}">
             <a href="{{ route('registration.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-paperclip"></i>
                 <div data-i18n="">Registration</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{(in_array($routeName, $students ) !== false ) ? 'active open ':''}}">
+            <a href="{{ route('students.index') }}" class="menu-link ">
+                <i class="menu-icon tf-icons ti ti-school"></i>
+                <div data-i18n="">Students</div>
             </a>
         </li>
     </ul>

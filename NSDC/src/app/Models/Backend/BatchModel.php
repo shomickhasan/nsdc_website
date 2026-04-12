@@ -37,6 +37,11 @@ class BatchModel extends Model
         return $this->belongsTo(Course::class, 'course_id');
     }
 
+    public function registrations()
+    {
+        return $this->hasMany(Regestration::class, 'batch_id');
+    }
+
     protected $fillable = [
         'course_id',
         'batch_name',

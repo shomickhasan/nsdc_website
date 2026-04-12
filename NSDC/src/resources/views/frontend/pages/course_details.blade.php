@@ -128,7 +128,78 @@
             margin-bottom: 0px;
         }
 
+        .registration-header-block {
+            border: 1px solid #dbe5ef;
+            border-radius: 18px;
+            background: #fff;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
 
+        .registration-header-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .registration-header-logo img {
+            max-width: 180px;
+            height: auto;
+            display: block;
+        }
+
+        .registration-header-title-wrap {
+            flex: 1;
+            text-align: center;
+        }
+
+        .registration-header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #223b63;
+            margin-bottom: 6px;
+        }
+
+        .registration-header-subtitle {
+            font-size: 1.1rem;
+            color: #374151;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .registration-header-info {
+            color: #1f2937;
+            font-size: 1rem;
+        }
+
+        .registration-header-row {
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .registration-header-row.split {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .info-split-item {
+            flex: 1 1 320px;
+        }
+
+        .info-line {
+            display: inline-block;
+            min-width: 260px;
+            border-bottom: 2px dotted #8b95a7;
+            padding: 0 6px 2px;
+            font-weight: 500;
+        }
+
+        .info-line.short {
+            min-width: 280px;
+        }
     </style>
 @endpush
 
@@ -189,6 +260,11 @@
 
     <section class="course-registration-form py-4" style="background-color:#f8f9fa;">
         <div class="container">
+            @include('shared.registration_header', [
+                'courseTitle' => $course->title ?? '',
+                'batchName' => '',
+            ])
+
             <h2 class="text-center mb-4">Register for {{ $course->title }}</h2>
 
             <style>
@@ -252,6 +328,26 @@
                     .asset-section-title {
                         font-size: 16px;
                         padding: 9px 12px;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .registration-header-top {
+                        flex-direction: column;
+                        align-items: flex-start;
+                    }
+
+                    .registration-header-title-wrap {
+                        text-align: left;
+                    }
+
+                    .registration-header-title {
+                        font-size: 1.6rem;
+                    }
+
+                    .info-line,
+                    .info-line.short {
+                        min-width: 170px;
                     }
                 }
             </style>

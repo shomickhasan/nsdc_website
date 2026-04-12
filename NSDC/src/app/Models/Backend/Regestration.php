@@ -14,6 +14,9 @@ class Regestration extends Model
 
     protected $fillable = [
         'course_id',
+        'batch_id',
+        'admission_status',
+        'admitted_at',
         'email',
         'phone',
         'nid',
@@ -60,8 +63,27 @@ class Regestration extends Model
     public function scopeFilter($query, $filters)
     {
         if (!empty($filters['name'])) {
-            $query->where('name', 'like', '%' . $filters['name'] . '%');
+            $query->where(function ($subQuery) use ($filters) {
+                $subQuery->where('full_name_en', 'like', '%' . $filters['name'] . '%')
+                    ->orWhere('full_name_bn', 'like', '%' . $filters['name'] . '%')
+                    ->orWhere('email', 'like', '%' . $filters['name'] . '%')
+                    ->orWhere('phone', 'like', '%' . $filters['name'] . '%')
+                    ->orWhere('nid', 'like', '%' . $filters['name'] . '%');
+            });
         }
+
+        if (!empty($filters['course_id'])) {
+            $query->where('course_id', $filters['course_id']);
+        }
+
+        if (!empty($filters['batch_id'])) {
+            $query->where('batch_id', $filters['batch_id']);
+        }
+
+        if (!empty($filters['admission_status'])) {
+            $query->where('admission_status', $filters['admission_status']);
+        }
+
         if (!empty($filters['from_date']) && !empty($filters['to_date'])) {
             $query->whereBetween('created_at', [$filters['from_date'], $filters['to_date']]);
         }
@@ -71,6 +93,11 @@ class Regestration extends Model
     public function course()
     {
         return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function batch()
+    {
+        return $this->belongsTo(BatchModel::class, 'batch_id');
     }
 
 

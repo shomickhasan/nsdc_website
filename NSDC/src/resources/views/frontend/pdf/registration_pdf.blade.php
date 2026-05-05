@@ -21,27 +21,47 @@
             width: 100%;
         }
 
-        .logo-wrap {
-            margin-bottom: 8px;
+        .pdf-header {
+            display: table;
+            width: 100%;
+            margin-bottom: 12px;
         }
 
-        .logo-wrap img {
-            height: 48px;
+        .pdf-header-logo,
+        .pdf-header-title {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .pdf-header-logo {
+            width: 25%;
+        }
+
+        .pdf-header-logo.right {
+            text-align: right;
+        }
+
+        .pdf-header-logo img {
+            max-width: 140px;
+            height: 56px;
+        }
+
+        .pdf-header-title {
+            width: 50%;
+            text-align: center;
         }
 
         .title {
-            text-align: center;
             font-size: 18px;
             font-weight: 700;
-            margin: 6px 0 2px;
+            margin: 0 0 2px;
         }
 
         .subtitle {
-            text-align: center;
             font-size: 14px;
             font-weight: 700;
             text-decoration: underline;
-            margin-bottom: 14px;
+            margin-bottom: 0;
         }
 
         .top-info {
@@ -179,20 +199,6 @@
             page-break-after: always;
         }
 
-        .photo-box img {
-            width: 100%;
-            max-width: 120px;
-            height: 90px;
-            object-fit: cover;
-        }
-
-        .sign-box img {
-            width: 100%;
-            max-width: 150px;
-            height: 50px;
-            object-fit: contain;
-        }
-
         .copy-badge {
             text-align: right;
             font-size: 11px;
@@ -206,23 +212,8 @@
 @php
     $copies = ['Office Copy'];
 
-    $photoPath = null;
-    if (!empty($reg->photo)) {
-        if (file_exists(public_path('storage/' . $reg->photo))) {
-            $photoPath = public_path('storage/' . $reg->photo);
-        } elseif (file_exists(public_path($reg->photo))) {
-            $photoPath = public_path($reg->photo);
-        }
-    }
-
-    $signaturePath = null;
-    if (!empty($reg->signature)) {
-        if (file_exists(public_path('storage/' . $reg->signature))) {
-            $signaturePath = public_path('storage/' . $reg->signature);
-        } elseif (file_exists(public_path($reg->signature))) {
-            $signaturePath = public_path($reg->signature);
-        }
-    }
+    $assetLogoPath = public_path('image/registration/asset-project-logo.png');
+    $bwcciLogoPath = public_path('image/registration/bwcci-logo.png');
 
     $dob = !empty($reg->date_of_birth) ? \Carbon\Carbon::parse($reg->date_of_birth)->format('d/m/Y') : '';
 @endphp
@@ -232,12 +223,22 @@
     <div class="page">
 {{--        <div class="copy-badge">{{ $copy }}</div>--}}
 
-        <div class="logo-wrap">
-            <img src="{{ public_path('asset-project-logo.png') }}" alt="Logo">
+        <div class="pdf-header">
+            <div class="pdf-header-logo">
+                @if(file_exists($assetLogoPath))
+                    <img src="{{ $assetLogoPath }}" alt="ASSET Project">
+                @endif
+            </div>
+            <div class="pdf-header-title">
+                <div class="title">ASSET-- BWCCI Project</div>
+                <div class="subtitle">Trainee Registration Form</div>
+            </div>
+            <div class="pdf-header-logo right">
+                @if(file_exists($bwcciLogoPath))
+                    <img src="{{ $bwcciLogoPath }}" alt="BWCCI Project">
+                @endif
+            </div>
         </div>
-
-        <div class="title">ASSET-- BWCCI Project</div>
-        <div class="subtitle">Trainee Registration Form</div>
 
         <div class="top-info">
             <div class="top-info-row">
@@ -333,25 +334,9 @@
             </tr>
 
             <tr>
-                <td>
+                <td colspan="3">
                     <div class="field-label">NID/Birth Certificate/Passport No <span class="req">*</span></div>
                     <div class="field-box">{{ $reg->identity_no ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Signature <span class="req">*</span> (jpg,png,jpeg) Width:300, Height:100</div>
-                    <div class="field-box sign-box" style="text-align:center; min-height:70px;">
-                        @if($signaturePath)
-                            <img src="{{ $signaturePath }}" alt="Signature">
-                        @endif
-                    </div>
-                </td>
-                <td>
-                    <div class="field-label">Profile Photo (jpg,png,jpeg)</div>
-                    <div class="field-box photo-box" style="text-align:center; min-height:70px;">
-                        @if($photoPath)
-                            <img src="{{ $photoPath }}" alt="Photo">
-                        @endif
-                    </div>
                 </td>
             </tr>
         </table>

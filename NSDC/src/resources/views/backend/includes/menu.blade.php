@@ -37,16 +37,30 @@ $routeName = \Request::route()->getName();
 
 @endphp
 
+<style>
+    .backend-menu-brand {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .backend-menu-logo {
+        width: 100%;
+        max-width: 190px;
+        height: 54px;
+        object-fit: contain;
+        display: block;
+    }
+</style>
 
 
 <!-- Menu -->
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="{{ url('/') }}" class="app-brand-link">
+        <a href="{{ url('/') }}" class="app-brand-link backend-menu-brand">
             <span class="app-brand-logo demo">
 
             </span>
-            <img src="{{asset('/image/joyeeta-logo.png')}}" alt="NSDC" width="90" height="50">
+            <img src="{{ asset('image/registration/asset-project-logo.png') }}" alt="ASSET Project" class="backend-menu-logo">
             <!-- <span class="app-brand-text demo menu-text fw-bold">NSDC</span> -->
         </a>
 

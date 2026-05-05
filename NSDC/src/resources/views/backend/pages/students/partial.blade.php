@@ -20,7 +20,6 @@
             <thead class="border-top">
             <tr>
                 <th>#</th>
-                <th>Picture</th>
                 <th>Name</th>
                 <th>Phone</th>
                 <th>NID</th>
@@ -34,10 +33,6 @@
             @foreach($students as $student)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>
-                        <img src="{{ \Illuminate\Support\Facades\Storage::url($student->photo) }}"
-                             width="50" height="50" style="object-fit:cover; border-radius:6px;">
-                    </td>
                     <td>{{ $student->full_name_en }}</td>
                     <td>{{ $student->phone }}</td>
                     <td>{{ $student->nid }}</td>

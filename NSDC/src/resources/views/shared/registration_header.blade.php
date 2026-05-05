@@ -7,11 +7,14 @@
 <div class="registration-header-block">
     <div class="registration-header-top">
         <div class="registration-header-logo">
-            <img src="{{ asset('asset-project-logo.png') }}" alt="ASSET Project">
+            <img src="{{ asset('image/registration/asset-project-logo.png') }}" alt="ASSET Project" width="180" height="72">
         </div>
         <div class="registration-header-title-wrap">
             <h2 class="registration-header-title">ASSET-- BWCCI Project</h2>
             <div class="registration-header-subtitle">Trainee Registration Form</div>
+        </div>
+        <div class="registration-header-logo registration-header-logo-right">
+            <img src="{{ asset('image/registration/bwcci-logo.png') }}" alt="BWCCI Project" width="180" height="72">
         </div>
     </div>
 

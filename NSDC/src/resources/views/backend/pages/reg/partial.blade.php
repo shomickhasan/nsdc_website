@@ -106,7 +106,6 @@
                 </th>
                 <th>#</th>
                 <th>Reg Date</th>
-                <th>Picture</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
@@ -124,10 +123,6 @@
                     </td>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $reg->created_at->format('d M Y') }}</td>
-                    <td>
-                        <img src="{{ \Illuminate\Support\Facades\Storage::url($reg->photo) }}"
-                             width="50" height="50" style="object-fit:cover; border-radius:6px;">
-                    </td>
                     <td>{{ $reg->full_name_en }}</td>
                     <td>{{ $reg->email }}</td>
                     <td>{{ $reg->phone }}</td>
@@ -143,6 +138,9 @@
                         <div class="d-inline-block text-nowrap">
                             <a href="{{ route('registration.pdf', $reg->id) }}" class="btn btn-sm btn-icon text-danger" title="Download PDF">
                                 <i class="ti ti-file-download"></i>
+                            </a>
+                            <a href="{{ route('registration.edit', $reg->id) }}" class="btn btn-sm btn-icon text-primary" title="Edit Registration">
+                                <i class="ti ti-edit"></i>
                             </a>
                             <a href="{{ route('registration.show', $reg->id) }}">
                                 <button class="btn btn-sm btn-icon edit-i">

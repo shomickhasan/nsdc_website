@@ -31,6 +31,8 @@ Route::get('/course/details/{slug}', [FpageController::class, 'courseDetails'])-
 Route::post('regestration/store', [ReqController::class, 'store'])->name('registration.store');
 Route::get('regestration/index', [ReqController::class, 'index'])->name('registration.index');
 Route::get('regestration/show/{id}', [ReqController::class, 'show'])->name('registration.show');
+Route::get('regestration/edit/{id}', [ReqController::class, 'edit'])->name('registration.edit');
+Route::post('regestration/update/{id}', [ReqController::class, 'update'])->name('registration.update');
 Route::get('regestration/pdf/{id}', [ReqController::class, 'pdf'])->name('registration.pdf');
 Route::get('regestration/export', [ReqController::class, 'export'])->name('registration.export');
 Route::post('regestration/bulk-admission', [ReqController::class, 'bulkAdmission'])->name('registration.bulkAdmission');

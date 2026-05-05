@@ -8,6 +8,9 @@ use App\Models\Backend\BatchModel;
 use App\Models\Backend\Course;
 use App\Http\Requests\Backend\RegReq;
 use App\Jobs\RegistrationPDFEmailJob;
+use App\Models\District;
+use App\Models\Division;
+use App\Models\Upazila;
 use App\Models\Backend\Regestration;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
@@ -151,6 +154,78 @@ class ReqController extends Controller
         $reg = $this->findRegistrationWithRelations($id);
 
         return view('backend.pages.reg.show', compact('reg'));
+    }
+
+    public function edit($id)
+    {
+        $reg = $this->findRegistrationWithRelations($id);
+        $courses = Course::orderBy('title')
+            ->get(['id', 'title']);
+        $batches = BatchModel::orderBy('batch_name')
+            ->get(['id', 'course_id', 'batch_name', 'batch_code', 'status']);
+        $divisions = Division::orderBy('name')->get(['id', 'name']);
+        $districts = District::orderBy('name')->get(['id', 'division_id', 'name']);
+        $upazilas = Upazila::orderBy('name')->get(['id', 'district_id', 'name']);
+
+        return view('backend.pages.reg.edit', compact('reg', 'courses', 'batches', 'divisions', 'districts', 'upazilas'));
+    }
+
+    public function update(RegReq $request, $id)
+    {
+        $registration = Regestration::findOrFail($id);
+        $data = $request->validated();
+        $admissionStatus = $request->input('admission_status', 'pending');
+
+        if ($admissionStatus === 'admitted' && $request->filled('batch_id')) {
+            $batch = BatchModel::find($request->batch_id);
+
+            if (!$batch || (int) $batch->course_id !== (int) $request->course_id) {
+                return back()
+                    ->withErrors(['batch_id' => 'Selected batch must belong to the selected course.'])
+                    ->withInput();
+            }
+        }
+
+        if ($request->filled('same_as_permanent')) {
+            $data['present_division_id'] = $request->permanent_division_id;
+            $data['present_district_id'] = $request->permanent_district_id;
+            $data['present_upazila_id'] = $request->permanent_upazila_id;
+            $data['present_post_office'] = $request->permanent_post_office;
+            $data['present_address'] = $request->permanent_address;
+            $data['same_as_permanent'] = 1;
+        } else {
+            $data['same_as_permanent'] = 0;
+        }
+
+        if ($request->hasFile('photo')) {
+            $data['photo'] = $this->uploadImage($request, 'photo', 'uploads/registrations/photos');
+        } else {
+            unset($data['photo']);
+        }
+
+        if ($request->hasFile('signature')) {
+            $data['signature'] = $this->uploadImage($request, 'signature', 'uploads/registrations/signatures');
+        } else {
+            unset($data['signature']);
+        }
+
+        $data['batch_id'] = $request->filled('batch_id') ? $request->batch_id : null;
+        $data['admission_status'] = $admissionStatus;
+
+        if ($data['admission_status'] === 'admitted') {
+            $data['admitted_at'] = $request->filled('admitted_at')
+                ? \Carbon\Carbon::parse($request->admitted_at)
+                : ($registration->admitted_at ?: now());
+        } else {
+            $data['batch_id'] = null;
+            $data['admitted_at'] = null;
+        }
+
+        $registration->update($data);
+
+        return redirect()
+            ->route('registration.show', $registration->id)
+            ->with('message', 'Registration updated successfully.');
     }
 
     public function pdf($id)

@@ -2,24 +2,6 @@
 @section('title', 'Registration Details')
 
 @php
-    $photoUrl = null;
-    if (!empty($reg->photo)) {
-        if (\Illuminate\Support\Facades\Storage::disk('public')->exists($reg->photo)) {
-            $photoUrl = \Illuminate\Support\Facades\Storage::url($reg->photo);
-        } elseif (file_exists(public_path($reg->photo))) {
-            $photoUrl = asset($reg->photo);
-        }
-    }
-
-    $signatureUrl = null;
-    if (!empty($reg->signature)) {
-        if (\Illuminate\Support\Facades\Storage::disk('public')->exists($reg->signature)) {
-            $signatureUrl = \Illuminate\Support\Facades\Storage::url($reg->signature);
-        } elseif (file_exists(public_path($reg->signature))) {
-            $signatureUrl = asset($reg->signature);
-        }
-    }
-
     $dob = !empty($reg->date_of_birth) ? \Carbon\Carbon::parse($reg->date_of_birth)->format('d/m/Y') : '';
 @endphp
 
@@ -37,6 +19,9 @@
             </p>
         </div>
         <div class="d-flex gap-2 flex-wrap">
+            <a href="{{ route('registration.edit', $reg->id) }}" class="btn btn-warning">
+                <i class="ti ti-edit me-1"></i> Edit
+            </a>
             <a href="{{ route('registration.pdf', $reg->id) }}" class="btn btn-success">
                 <i class="ti ti-file-download me-1"></i> Download PDF
             </a>
@@ -138,26 +123,6 @@
                 <div class="col-md-6">
                     <div class="field-label">NID/Birth Certificate/Passport No</div>
                     <div class="field-box">{{ $reg->identity_no ?? '-' }}</div>
-                </div>
-                <div class="col-md-3">
-                    <div class="field-label">Signature</div>
-                    <div class="field-box media-box">
-                        @if($signatureUrl)
-                            <img src="{{ $signatureUrl }}" alt="Signature">
-                        @else
-                            <span>No signature uploaded</span>
-                        @endif
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="field-label">Profile Photo</div>
-                    <div class="field-box media-box">
-                        @if($photoUrl)
-                            <img src="{{ $photoUrl }}" alt="Photo">
-                        @else
-                            <span>No photo uploaded</span>
-                        @endif
-                    </div>
                 </div>
             </div>
 
@@ -305,9 +270,21 @@
             margin-bottom: 20px;
         }
 
+        .registration-header-logo {
+            width: 180px;
+            flex: 0 0 180px;
+            display: flex;
+            align-items: center;
+        }
+
+        .registration-header-logo-right {
+            justify-content: flex-end;
+        }
+
         .registration-header-logo img {
-            max-width: 180px;
-            height: auto;
+            width: 180px;
+            height: 72px;
+            object-fit: contain;
             display: block;
         }
 
@@ -405,21 +382,6 @@
 
         .textarea-box {
             min-height: 88px;
-        }
-
-        .media-box {
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #f8fbff;
-        }
-
-        .media-box img {
-            max-width: 100%;
-            max-height: 100px;
-            object-fit: contain;
-            border-radius: 8px;
         }
 
         .check-pill {

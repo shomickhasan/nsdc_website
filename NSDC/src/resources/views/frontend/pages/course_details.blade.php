@@ -144,9 +144,21 @@
             margin-bottom: 20px;
         }
 
+        .registration-header-logo {
+            width: 180px;
+            flex: 0 0 180px;
+            display: flex;
+            align-items: center;
+        }
+
+        .registration-header-logo-right {
+            justify-content: flex-end;
+        }
+
         .registration-header-logo img {
-            max-width: 180px;
-            height: auto;
+            width: 180px;
+            height: 72px;
+            object-fit: contain;
             display: block;
         }
 
@@ -334,15 +346,27 @@
                 @media (max-width: 768px) {
                     .registration-header-top {
                         flex-direction: column;
-                        align-items: flex-start;
+                        align-items: center;
                     }
 
                     .registration-header-title-wrap {
-                        text-align: left;
+                        text-align: center;
                     }
 
                     .registration-header-title {
                         font-size: 1.6rem;
+                    }
+
+                    .registration-header-logo,
+                    .registration-header-logo-right {
+                        width: 150px;
+                        flex-basis: auto;
+                        justify-content: center;
+                    }
+
+                    .registration-header-logo img {
+                        width: 150px;
+                        height: 60px;
                     }
 
                     .info-line,
@@ -477,6 +501,7 @@
                             <p class="error-text identity_no_error"></p>
                         </div>
 
+                        {{--
                         <div class="col-md-4 section-gap">
                             <label class="form-label">Signature (jpg, png, jpeg) <span class="required-star">*</span></label>
                             <input type="file" name="signature" class="form-control">
@@ -488,6 +513,7 @@
                             <input type="file" name="photo" class="form-control">
                             <p class="error-text photo_error"></p>
                         </div>
+                        --}}
                     </div>
 
                     {{-- Permanent Address --}}

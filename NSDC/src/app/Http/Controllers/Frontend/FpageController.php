@@ -7,6 +7,8 @@ use App\Models\Backend\Course;
 use App\Models\Division;
 use App\Models\Partner;
 use App\Models\Employee;
+use App\Models\Gallery;
+use App\Models\Notice;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 
@@ -39,5 +41,36 @@ class FpageController extends Controller
         $course = Course::where('slug', $slug)->firstOrFail();
         $divisions = Division::orderBy('name')->get();
         return view('frontend.pages.course_details', compact('course','divisions'));
+    }
+
+    public function notices()
+    {
+        $notices = Notice::orderBy('published_at', 'desc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+        return view('frontend.pages.notices', compact('notices'));
+    }
+
+    public function pictureGallery()
+    {
+        $pictures = Gallery::where('type', Gallery::TYPE_PICTURE)
+            ->where('status', 1)
+            ->orderBy('order', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+        return view('frontend.pages.gallery_pictures', compact('pictures'));
+    }
+
+    public function videoGallery()
+    {
+        $videos = Gallery::where('type', Gallery::TYPE_VIDEO)
+            ->where('status', 1)
+            ->orderBy('order', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(12);
+
+        return view('frontend.pages.gallery_videos', compact('videos'));
     }
 }

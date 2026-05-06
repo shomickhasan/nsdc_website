@@ -17,6 +17,181 @@
     --gradient-secondary: linear-gradient(135deg, var(--secondary-color) 0%, #3a4a8a 100%);
 }
 
+/* Professional Frontend Header / Menu */
+.main-header .header-lower {
+    min-height: 76px;
+    background: var(--secondary-color) !important;
+    box-shadow: 0 10px 30px rgba(18, 25, 66, 0.12);
+}
+
+.main-header .main-box,
+.sticky-header .inner-container {
+    display: flex;
+    align-items: center;
+}
+
+.main-header .logo,
+.main-header .nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.main-header .logo a,
+.mobile-menu .nav-logo a,
+.sticky-header .logo a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    padding: 7px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 8px 22px rgba(18, 25, 66, 0.18);
+    overflow: hidden;
+}
+
+.main-header .logo img.header-logo,
+.main-header .logo img.frontend-brand-logo,
+.sticky-header .logo img,
+.mobile-menu .nav-logo img {
+    width: 62px !important;
+    height: 62px !important;
+    max-width: 62px !important;
+    max-height: 62px !important;
+    object-fit: contain;
+    object-position: center;
+}
+
+.mobile-menu .nav-logo a {
+    width: 66px;
+    height: 66px;
+    padding: 6px;
+}
+
+.mobile-menu .nav-logo img {
+    width: 54px !important;
+    height: 54px !important;
+    max-width: 54px !important;
+    max-height: 54px !important;
+}
+
+.nav-outer .main-menu ul.navigation,
+.sticky-header .main-menu ul.navigation,
+.header-style-transparent .main-menu ul.navigation {
+    align-items: center;
+    gap: 8px !important;
+}
+
+.header-style-three .main-box {
+    min-height: 76px;
+}
+
+.header-style-three .nav-outer {
+    display: flex;
+    align-items: center;
+}
+
+.header_two {
+    margin: 0 !important;
+}
+
+.header_two ul.navigation {
+    gap: 6px !important;
+}
+
+.main-menu .navigation > li {
+    position: relative;
+}
+
+.main-menu .navigation > li > a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 8px 13px !important;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.main-menu .navigation > li > a:hover,
+.main-menu .navigation > li > a.active-menu,
+.main-menu .navigation > li > a.active-menu-two,
+.main-menu .navigation > li.active-menu > a {
+    color: #fff !important;
+    background: rgba(245, 122, 28, 0.95);
+    box-shadow: 0 8px 18px rgba(245, 122, 28, 0.22);
+}
+
+.main-menu .navigation > li.dropdown > a::after {
+    content: "\f107";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-left: 8px;
+    font-size: 11px;
+}
+
+.main-menu .navigation > li > ul {
+    min-width: 190px;
+    padding: 8px !important;
+    border: 0;
+    border-radius: 8px;
+    background: #fff !important;
+    box-shadow: 0 18px 45px rgba(18, 25, 66, 0.18);
+}
+
+.main-menu .navigation > li > ul li a {
+    display: flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 9px 12px !important;
+    border-radius: 6px;
+    color: var(--secondary-color) !important;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.main-menu .navigation > li > ul li a:hover {
+    color: #fff !important;
+    background: var(--primary-color);
+}
+
+.sticky-header {
+    min-height: 66px;
+    box-shadow: 0 10px 30px rgba(18, 25, 66, 0.14);
+}
+
+.mobile-menu .menu-box {
+    background: var(--secondary-color);
+}
+
+.mobile-menu .navigation li a {
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 1023px) {
+    .main-header .logo img.header-logo,
+    .main-header .logo img.frontend-brand-logo {
+        width: 54px !important;
+        height: 54px !important;
+        max-width: 54px !important;
+        max-height: 54px !important;
+        border-radius: 0 !important;
+    }
+
+    .main-header .logo a,
+    .sticky-header .logo a {
+        width: 66px;
+        height: 66px;
+        padding: 6px;
+    }
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;

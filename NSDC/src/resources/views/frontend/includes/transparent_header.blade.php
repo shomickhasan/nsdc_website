@@ -39,7 +39,8 @@
     }
 
     .header-style-transparent .navigation > li > a:hover {
-        color: #242F6F !important;
+        color: #fff !important;
+        background: rgba(245, 122, 28, 0.95);
     }
 
     /* Dropdown styling */
@@ -50,18 +51,25 @@
     .header-style-transparent .navigation li ul {
         display: none;
         position: absolute;
-        background: #F57A1C;
-        padding: 10px 0;
+        background: #fff;
+        padding: 8px;
         margin-top: 5px;
-        border-radius: 4px;
-        min-width: 150px;
+        border-radius: 8px;
+        min-width: 190px;
         z-index: 1000;
+        box-shadow: 0 18px 45px rgba(18, 25, 66, 0.18);
     }
 
     .header-style-transparent .navigation li ul li a {
-        color: #fff !important;
-        padding: 8px 15px;
+        color: #242F6F !important;
+        padding: 9px 12px;
         display: block;
+        border-radius: 6px;
+    }
+
+    .header-style-transparent .navigation li ul li a:hover {
+        color: #fff !important;
+        background: #F57A1C;
     }
 
     /* Sticky header */
@@ -74,6 +82,78 @@
         z-index: 9998;
         display: none;
         transition: all 0.3s ease;
+    }
+
+    .sticky-header .new-custom-logo {
+        margin: 0 24px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .sticky-header .new-custom-logo > a {
+        width: 104px !important;
+        height: 104px !important;
+        padding: 8px !important;
+        border-radius: 12px !important;
+        background: #fff;
+        border: 2px solid rgba(245, 122, 28, 0.9);
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow:
+            0 18px 34px rgba(18, 25, 66, 0.20),
+            0 0 0 rgba(245, 122, 28, 0);
+        transform: translateY(30px) rotate(45deg) scale(0.92);
+        opacity: 0;
+        transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.45s ease, opacity 0.35s ease;
+    }
+
+    .sticky-header .new-custom-logo > a::before {
+        content: "";
+        position: absolute;
+        inset: 7px;
+        border: 2px solid rgba(245, 122, 28, 0.28);
+        border-radius: 8px;
+        pointer-events: none;
+    }
+
+    .sticky-header .new-custom-logo img {
+        width: 86px !important;
+        height: 86px !important;
+        max-width: 86px !important;
+        max-height: 86px !important;
+        border-radius: 0 !important;
+        object-fit: contain;
+        object-position: center;
+        transform: rotate(-45deg);
+        transition: transform 0.45s ease;
+    }
+
+    body.scrolled .sticky-header .new-custom-logo > a {
+        border-color: rgba(245, 122, 28, 0.95);
+        box-shadow:
+            0 20px 38px rgba(18, 25, 66, 0.22),
+            0 0 0 6px rgba(245, 122, 28, 0.12),
+            0 0 28px rgba(245, 122, 28, 0.42);
+        opacity: 1;
+        transform: translateY(30px) rotate(45deg) scale(1);
+        animation: stickyLogoGlow 2.4s ease-in-out infinite;
+    }
+
+    @keyframes stickyLogoGlow {
+        0%, 100% {
+            box-shadow:
+                0 20px 38px rgba(18, 25, 66, 0.22),
+                0 0 0 5px rgba(245, 122, 28, 0.10),
+                0 0 20px rgba(245, 122, 28, 0.28);
+        }
+        50% {
+            box-shadow:
+                0 20px 38px rgba(18, 25, 66, 0.22),
+                0 0 0 9px rgba(245, 122, 28, 0.16),
+                0 0 34px rgba(245, 122, 28, 0.48);
+        }
     }
 
     body.scrolled .sticky-header {
@@ -93,7 +173,7 @@
         right: -100%;
         width: 280px;
         height: 100%;
-        background: #F57A1C;
+        background: #242F6F;
         z-index: 10001; /* highest so menu items are clickable */
         transition: right 0.3s ease;
     }
@@ -109,7 +189,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(245, 122, 28, 0.1);
+        background: rgba(18, 25, 66, 0.45);
         z-index: 10000; /* behind menu, above header */
         display: none;
     }
@@ -156,12 +236,12 @@
                     <li class="dropdown">
                         <a href="#">Gallery</a>
                         <ul>
-                            <li><a href="#">Picture</a></li>
-                            <li><a href="#">Video</a></li>
+                            <li><a href="{{ route('gallery.pictures') }}">Pictures Gallery</a></li>
+                            <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>
                         </ul>
                     </li>
                     <li><a href="#courses">Our Courses</a></li>
-                    <li><a href="#">Notice</a></li>
+                    <li><a href="{{ route('notices') }}">Notice</a></li>
                 </ul>
             </nav>
 
@@ -183,7 +263,7 @@
         <nav class="menu-box">
             <div class="upper-box">
                 <div class="nav-logo">
-                    <a href="#"><img src="{{asset('frontend/img/mobile-logo.png')}}" alt="NSDC" title="NSDC"></a>
+                    <a href="{{ route('fHome') }}"><img class="frontend-brand-logo" src="{{asset('frontend/img/mobile-logo.png')}}" alt="NSDC" title="NSDC"></a>
                 </div>
                 <div class="close-btn">&times;</div>
             </div>
@@ -193,12 +273,12 @@
 {{--                <li class="dropdown">--}}
 {{--                    <a href="#">Gallery</a>--}}
 {{--                    <ul>--}}
-{{--                        <li><a href="#">Picture</a></li>--}}
-{{--                        <li><a href="#">Video</a></li>--}}
+{{--                        <li><a href="{{ route('gallery.pictures') }}">Pictures Gallery</a></li>--}}
+{{--                        <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>--}}
 {{--                    </ul>--}}
 {{--                </li>--}}
 {{--                <li><a href="#courses">Our Courses</a></li>--}}
-{{--                <li><a href="#">Notice</a></li>--}}
+{{--                <li><a href="{{ route('notices') }}">Notice</a></li>--}}
             </ul>
         </nav>
     </div>
@@ -218,21 +298,21 @@
                         <li class="dropdown">
                             <a href="#">Gallery</a>
                             <ul>
-                                <li><a href="#">Pictures</a></li>
-                                <li><a href="#">Video</a></li>
+                                <li><a href="{{ route('gallery.pictures') }}">Pictures Gallery</a></li>
+                                <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>
                             </ul>
                         </li>
 
                         <!-- ✅ Logo in middle of menu -->
                         <li class="logo new-custom-logo" style="flex-shrink:0;">
-                            <a href="#">
-                                <img style="height:60px; vertical-align:middle;"
-                                     src="frontend/img/logo.png" alt="nsdc" title="nsdc">
+                            <a href="{{ route('fHome') }}">
+                                <img class="frontend-brand-logo"
+                                     src="{{asset('frontend/img/logo.png')}}" alt="nsdc" title="nsdc">
                             </a>
                         </li>
 
                         <li><a href="#courses">Our Courses</a></li>
-                        <li><a href="#">Notice</a></li>
+                        <li><a href="{{ route('notices') }}">Notice</a></li>
                     </ul>
 
                 </nav>
@@ -314,4 +394,3 @@
         });
     });
 </script>
-

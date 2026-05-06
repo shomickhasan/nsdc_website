@@ -31,6 +31,7 @@ $students = ['students.index'];
 
 $content = ['slider.index', 'slider.delete', 'slider.edit', 'slider.update'];
 $batch = ['batch.index', 'batch.create', 'batch.edit'];
+$notice = ['notice.index', 'notice.create'];
 
 
 $routeName = \Request::route()->getName();
@@ -120,19 +121,29 @@ $routeName = \Request::route()->getName();
                     'partner.order_update',
             ];
 
-             $employeeRoutes = [
+            $employeeRoutes = [
                 'employee.index',
                 'employee.store',
                 'employee.update',
                 'employee.destroy',
                 'employee.order_update',
             ];
+
+            $galleryRoutes = [
+                'gallery.index',
+                'gallery.create',
+                'gallery.edit',
+                'gallery.store',
+                'gallery.update',
+                'gallery.destroy',
+            ];
         @endphp
         <li class="menu-item {{
             (
             in_array($routeName, $heroSliderRoutes) ||
             in_array($routeName, $partnerRoutes) ||
-            in_array($routeName, $employeeRoutes)
+            in_array($routeName, $employeeRoutes) ||
+            in_array($routeName, $galleryRoutes)
             ) ? 'active open' : '' }}">
             <a href="#" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-shield"></i>
@@ -160,6 +171,12 @@ $routeName = \Request::route()->getName();
                         <div data-i18n="Employees">Employees</div>
                     </a>
                 </li>
+                <li class="menu-item {{ in_array($routeName, $galleryRoutes) ? 'active' : '' }}">
+                    <a href="{{ route('gallery.index') }}" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-photo"></i>
+                        <div data-i18n="Gallery">Gallery</div>
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -175,6 +192,13 @@ $routeName = \Request::route()->getName();
             <a href="{{ route('batch.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-layout-grid"></i>
                 <div data-i18n="">Batch</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{ (in_array($routeName, $notice) !== false) ? 'active open' : '' }}">
+            <a href="{{ route('notice.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-speakerphone"></i>
+                <div data-i18n="">Notices</div>
             </a>
         </li>
 

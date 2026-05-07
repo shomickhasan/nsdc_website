@@ -15,6 +15,8 @@ use App\Http\Controllers\Response\ResponseController;
 use App\Http\Controllers\Backend\DhashboardController;
 use App\Http\Controllers\Backend\ActivityLogController;
 use App\Http\Controllers\Backend\CourseController;
+use App\Http\Controllers\Backend\NoticeController;
+use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\Uddokta\UddoktaController;
 use App\Http\Controllers\Backend\Report\UddoktaReportController;
 use App\Http\Controllers\Frontend\FpageController;
@@ -27,9 +29,20 @@ use App\Http\Controllers\Frontend\FpageController;
 
 Route::get('/blank', [FpageController::class, 'blank']);
 Route::get('/', [FpageController::class, 'fhome'])->name('fHome');
+Route::get('/notices', [FpageController::class, 'notices'])->name('notices');
+Route::get('/gallery/pictures', [FpageController::class, 'pictureGallery'])->name('gallery.pictures');
+Route::get('/gallery/videos', [FpageController::class, 'videoGallery'])->name('gallery.videos');
 Route::get('/course/details/{slug}', [FpageController::class, 'courseDetails'])->name('course_details');
 Route::post('regestration/store', [ReqController::class, 'store'])->name('registration.store');
 Route::get('regestration/index', [ReqController::class, 'index'])->name('registration.index');
+Route::get('regestration/show/{id}', [ReqController::class, 'show'])->name('registration.show');
+Route::get('regestration/edit/{id}', [ReqController::class, 'edit'])->name('registration.edit');
+Route::post('regestration/update/{id}', [ReqController::class, 'update'])->name('registration.update');
+Route::get('regestration/pdf/{id}', [ReqController::class, 'pdf'])->name('registration.pdf');
+Route::get('regestration/export', [ReqController::class, 'export'])->name('registration.export');
+Route::post('regestration/bulk-admission', [ReqController::class, 'bulkAdmission'])->name('registration.bulkAdmission');
+Route::get('students/index', [ReqController::class, 'students'])->name('students.index');
+Route::get('students/export', [ReqController::class, 'studentsExport'])->name('students.export');
 
 Route::get('/districts/{division}', [LocationController::class, 'districts']);
 Route::get('/upazilas/{district}', [LocationController::class, 'upazilas']);
@@ -64,7 +77,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/user-activity', [ActivityLogController::class, 'index'])->name('activityLog.index');
     });
 
-     Route::group(['prefix' => '/course'], function () {
+    Route::group(['prefix' => '/course'], function () {
         Route::controller(CourseController::class)->group(function () {
             Route::get('/index', action: 'index')->name('course.index');
             Route::get('/create', action: 'create')->name('course.create');
@@ -72,6 +85,26 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/store', action: 'store')->name('course.store');
             Route::post('/update/{course}', action: 'update')->name('course.update');
             Route::post('/course/order-update', action: 'orderUpdate')->name('course.order_update');
+        });
+    });
+
+    Route::group(['prefix' => '/notice'], function () {
+        Route::controller(NoticeController::class)->group(function () {
+            Route::get('/index', 'index')->name('notice.index');
+            Route::get('/create', 'create')->name('notice.create');
+            Route::post('/store', 'store')->name('notice.store');
+            Route::delete('/destroy/{notice}', 'destroy')->name('notice.destroy');
+        });
+    });
+
+    Route::group(['prefix' => '/gallery'], function () {
+        Route::controller(GalleryController::class)->group(function () {
+            Route::get('/index', 'index')->name('gallery.index');
+            Route::get('/create', 'create')->name('gallery.create');
+            Route::get('/edit/{gallery}', 'edit')->name('gallery.edit');
+            Route::post('/store', 'store')->name('gallery.store');
+            Route::post('/update/{gallery}', 'update')->name('gallery.update');
+            Route::delete('/destroy/{gallery}', 'destroy')->name('gallery.destroy');
         });
     });
 

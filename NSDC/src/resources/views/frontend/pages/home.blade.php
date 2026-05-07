@@ -1,6 +1,6 @@
 @extends('frontend.template.template')
 
-@section('ftitle', 'NSDC - National Skills Development Corporation')
+@section('ftitle', 'RSDC - Rajshahi Skill Development Center')
 
 @section('header')
     <!-- Owl Carousel CSS -->
@@ -16,23 +16,40 @@
 @endsection
 @push('css')
     <style>
+        .hero-section {
+            min-height: 620px;
+        }
+
+        .hero-content {
+            padding: 120px 20px 80px;
+        }
+
+        .hero-text {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
         .hero-text h1 {
             color: #fff;
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1.12;
+            margin-bottom: 18px;
         }
 
         .hero-text p {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2.2vw, 1.3rem);
             margin-bottom: 30px;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             opacity: 0.9;
             color: #fff;
         }
+
         .carousel-indicators {
             position: absolute;
             bottom: 30px;
-            left: 36% !important;
+            left: 50% !important;
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
@@ -62,6 +79,98 @@
             filter: grayscale(0);
         }
 
+        .home-contact-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .home-contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+            margin-bottom: 30px;
+        }
+
+        .home-contact-item {
+            min-width: 0;
+            text-align: center;
+        }
+
+        .home-contact-icon {
+            background: var(--primary-color);
+            color: white;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.35rem;
+        }
+
+        .home-contact-item h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+
+        .home-contact-item p,
+        .home-contact-item a {
+            color: var(--text-gray);
+            font-size: 15px;
+            line-height: 1.55;
+            margin: 0;
+            text-decoration: none;
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 991px) {
+            .hero-section {
+                min-height: 560px;
+            }
+
+            .courses-grid,
+            .employees-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .home-contact-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 575px) {
+            .hero-section {
+                min-height: 520px;
+            }
+
+            .hero-content {
+                padding: 110px 16px 70px;
+            }
+
+            .hero-buttons {
+                gap: 12px;
+            }
+
+            .hero-buttons .btn {
+                width: 100%;
+                max-width: 260px;
+                padding: 13px 20px;
+            }
+
+            .courses-grid,
+            .employees-grid,
+            .home-contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .home-contact-card {
+                padding: 28px 18px;
+            }
+        }
 
 
     </style>
@@ -213,32 +322,43 @@
                 <p>Ready to start your entrepreneurial journey? Contact us today to learn more about our programs</p>
             </div>
 
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow);">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
-                        <div>
-                            <div style="background: var(--primary-color); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 1.5rem;">
+            <div style="max-width: 1040px; margin: 0 auto; text-align: center;">
+                <div class="home-contact-card">
+                    <div class="home-contact-grid">
+                        <div class="home-contact-item">
+                            <div class="home-contact-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
-                            <h4 style="color: var(--secondary-color); margin-bottom: 10px;">Phone</h4>
-                            <p style="color: var(--text-gray);">+880 1234 567890</p>
+                            <h4>Phone</h4>
+                            <p>
+                                <a href="tel:01752257387">01752257387</a><br>
+                                <a href="tel:01725537792">01725537792</a><br>
+                                <a href="tel:01721258411">01721258411</a>
+                            </p>
                         </div>
-                        <div>
-                            <div style="background: var(--primary-color); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 1.5rem;">
+                        <div class="home-contact-item">
+                            <div class="home-contact-icon">
                                 <i class="fas fa-envelope"></i>
                             </div>
-                            <h4 style="color: var(--secondary-color); margin-bottom: 10px;">Email</h4>
-                            <p style="color: var(--text-gray);">info@nsdc.gov.bd</p>
+                            <h4>Email</h4>
+                            <p><a href="mailto:rsdc.rajshahi@gmail.com">rsdc.rajshahi@gmail.com</a></p>
                         </div>
-                        <div>
-                            <div style="background: var(--primary-color); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 1.5rem;">
+                        <div class="home-contact-item">
+                            <div class="home-contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
-                            <h4 style="color: var(--secondary-color); margin-bottom: 10px;">Address</h4>
-                            <p style="color: var(--text-gray);">Dhaka, Bangladesh</p>
+                            <h4>Address</h4>
+                            <p>Shahmokhdum, Rajshahi</p>
+                        </div>
+                        <div class="home-contact-item">
+                            <div class="home-contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h4>Office Hour</h4>
+                            <p>Sat- Thursday<br>9am to 5pm</p>
                         </div>
                     </div>
-                    <a href="mailto:info@nsdc.gov.bd" class="btn btn-primary" style="display: inline-block;">Contact Us Now</a>
+                    <a href="mailto:rsdc.rajshahi@gmail.com" class="btn btn-primary" style="display: inline-block;">Contact Us Now</a>
                 </div>
             </div>
         </div>
@@ -252,6 +372,10 @@
         const heroIndicators = document.querySelectorAll('.indicator');
 
         function showHeroSlide(n) {
+            if (!heroSlides.length || !heroIndicators.length) {
+                return;
+            }
+
             heroSlides[currentHeroSlide].classList.remove('active');
             heroIndicators[currentHeroSlide].classList.remove('active');
 
@@ -270,15 +394,21 @@
         }
 
         // Auto-play hero carousel
-        setInterval(() => {
-            changeSlide(1);
-        }, 5000);
+        if (heroSlides.length > 1 && heroIndicators.length > 1) {
+            setInterval(() => {
+                changeSlide(1);
+            }, 5000);
+        }
 
         // Testimonial Carousel
         let currentTestimonial = 0;
         const testimonialSlides = document.querySelectorAll('.testimonial-slide');
 
         function showTestimonial(n) {
+            if (!testimonialSlides.length) {
+                return;
+            }
+
             testimonialSlides[currentTestimonial].classList.remove('active');
             currentTestimonial = (n + testimonialSlides.length) % testimonialSlides.length;
             testimonialSlides[currentTestimonial].classList.add('active');
@@ -289,9 +419,11 @@
         }
 
         // Auto-play testimonial carousel
-        setInterval(() => {
-            changeTestimonial(1);
-        }, 4000);
+        if (testimonialSlides.length > 1) {
+            setInterval(() => {
+                changeTestimonial(1);
+            }, 4000);
+        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {

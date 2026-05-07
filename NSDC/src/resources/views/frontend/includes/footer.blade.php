@@ -1,4 +1,7 @@
 <!-- Professional Footer -->
+@php
+    $footerCourses = \App\Models\Backend\Course::where('status', 1)->orderBy('order', 'asc')->get();
+@endphp
 <footer class="main-footer" style="background: var(--secondary-color); color: white; padding: 60px 0 20px;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <!-- Main Footer Content -->
@@ -7,14 +10,16 @@
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="footer-widget">
                     <div class="footer-logo" style="margin-bottom: 20px;">
-                        <img src="{{asset('frontend/img/mobile-logo.png')}}" alt="NSDC" style="height: 60px; width: auto; margin-bottom: 15px;">
+                        <a href="{{ route('fHome') }}" style="width: 86px; height: 86px; border-radius: 50%; background: #fff; padding: 8px; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 12px 28px rgba(0,0,0,0.22); overflow: hidden;">
+                            <img src="{{asset('frontend/img/mobile-logo.png')}}" alt="RSDC" style="width: 70px; height: 70px; object-fit: contain; border-radius: 50%;">
+                        </a>
                     </div>
-                    <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 15px;">National Skills Development Corporation</h5>
+                    <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 15px;">Rajshahi Skill Development Center</h5>
                     <p style="color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 20px;">
                         Empowering entrepreneurs and fostering economic growth through comprehensive skill development programs and monitoring systems.
                     </p>
                     <div class="social-links" style="display: flex; gap: 15px;">
-                        <a href="#" style="background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease;">
+                        <a href="https://www.facebook.com/share/1bWUxMT9mt/" target="_blank" rel="noopener" style="background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease;">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                         <a href="#" style="background: var(--primary-color); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease;">
@@ -36,19 +41,28 @@
                     <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 20px;">Quick Links</h5>
                     <ul style="list-style: none; padding: 0; margin: 0;">
                         <li style="margin-bottom: 10px;">
-                            <a href="/" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Home</a>
+                            <a href="{{ route('fHome') }}" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Home</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="#courses" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Courses</a>
+                            <a href="{{ route('fHome') }}#courses" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Courses</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="#testimonials" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Testimonials</a>
+                            <a href="{{ route('fHome') }}#partners" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Partners</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="#employees" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Our Team</a>
+                            <a href="{{ route('gallery.pictures') }}" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Pictures Gallery</a>
                         </li>
                         <li style="margin-bottom: 10px;">
-                            <a href="#contact" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Contact</a>
+                            <a href="{{ route('gallery.videos') }}" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Video Gallery</a>
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <a href="{{ route('fHome') }}#employees" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Our Team</a>
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <a href="{{ route('notices') }}" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Notice</a>
+                        </li>
+                        <li style="margin-bottom: 10px;">
+                            <a href="{{ route('fHome') }}#contact" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -57,23 +71,15 @@
             <!-- Services -->
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="footer-widget">
-                    <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 20px;">Our Services</h5>
+                    <h5 style="color: var(--primary-color); font-weight: 600; margin-bottom: 20px;">Our Course</h5>
                     <ul style="list-style: none; padding: 0; margin: 0;">
-                        <li style="margin-bottom: 10px;">
-                            <a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Digital Marketing Training</a>
-                        </li>
-                        <li style="margin-bottom: 10px;">
-                            <a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Business Analytics</a>
-                        </li>
-                        <li style="margin-bottom: 10px;">
-                            <a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Leadership Development</a>
-                        </li>
-                        <li style="margin-bottom: 10px;">
-                            <a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">E-commerce Solutions</a>
-                        </li>
-                        <li style="margin-bottom: 10px;">
-                            <a href="#" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">Financial Management</a>
-                        </li>
+                        @forelse($footerCourses as $footerCourse)
+                            <li style="margin-bottom: 10px;">
+                                <a href="{{ route('course_details', $footerCourse->slug) }}" style="color: rgba(255,255,255,0.8); text-decoration: none; transition: color 0.3s ease;">{{ $footerCourse->title }}</a>
+                            </li>
+                        @empty
+                            <li style="color: rgba(255,255,255,0.8);">No courses available</li>
+                        @endforelse
                     </ul>
                 </div>
             </div>
@@ -86,25 +92,27 @@
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
                             <i class="fas fa-map-marker-alt" style="color: var(--primary-color); margin-right: 15px; font-size: 18px;"></i>
                             <div>
-                                <p style="margin: 0; color: rgba(255,255,255,0.8);">Dhaka, Bangladesh</p>
+                                <p style="margin: 0; color: rgba(255,255,255,0.8);">Shahmokhdum, Rajshahi</p>
                             </div>
                         </div>
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <div style="display: flex; align-items: flex-start; margin-bottom: 15px;">
                             <i class="fas fa-phone" style="color: var(--primary-color); margin-right: 15px; font-size: 18px;"></i>
                             <div>
-                                <a href="tel:+8801234567890" style="color: rgba(255,255,255,0.8); text-decoration: none;">+880 1234 567890</a>
+                                <a href="tel:01752257387" style="color: rgba(255,255,255,0.8); text-decoration: none;">01752257387</a><br>
+                                <a href="tel:01725537792" style="color: rgba(255,255,255,0.8); text-decoration: none;">01725537792</a><br>
+                                <a href="tel:01721258411" style="color: rgba(255,255,255,0.8); text-decoration: none;">01721258411</a>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 15px;">
                             <i class="fas fa-envelope" style="color: var(--primary-color); margin-right: 15px; font-size: 18px;"></i>
                             <div>
-                                <a href="mailto:info@nsdc.gov.bd" style="color: rgba(255,255,255,0.8); text-decoration: none;">info@nsdc.gov.bd</a>
+                                <a href="mailto:rsdc.rajshahi@gmail.com" style="color: rgba(255,255,255,0.8); text-decoration: none;">rsdc.rajshahi@gmail.com</a>
                             </div>
                         </div>
                         <div style="display: flex; align-items: center;">
                             <i class="fas fa-clock" style="color: var(--primary-color); margin-right: 15px; font-size: 18px;"></i>
                             <div>
-                                <p style="margin: 0; color: rgba(255,255,255,0.8);">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                                <p style="margin: 0; color: rgba(255,255,255,0.8);">Sat- Thursday 9am to 5pm</p>
                             </div>
                         </div>
                     </div>
@@ -135,7 +143,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-12 mb-2">
                     <p style="margin: 0; color: rgba(255,255,255,0.8);">
-                        &copy; {{ date('Y') }} National Skills Development Corporation. All rights reserved.
+                        &copy; {{ date('Y') }} Rajshahi Skill Development Center. All rights reserved.
                     </p>
                 </div>
                 <div class="col-lg-6 col-md-12 text-lg-end text-md-start">

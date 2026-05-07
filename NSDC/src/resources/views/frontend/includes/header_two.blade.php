@@ -3,7 +3,7 @@
         <div class="main-box">
             <div class="logo-box">
                 <div class="logo">
-                    <a href="#"><img class="header-logo" src="{{asset('frontend/img/logo.png')}}" alt="NSDC" title="NSDC"></a>
+                    <a href="{{ route('fHome') }}"><img class="header-logo frontend-brand-logo" src="{{asset('frontend/img/logo.png')}}" alt="NSDC" title="NSDC"></a>
                 </div>
             </div>
             <!-- Main Menu -->
@@ -15,12 +15,12 @@
                         <li class="dropdown">
                             <a href="#">Gallery</a>
                             <ul>
-                                <li><a href="#">Picture</a></li>
-                                <li><a href="#">Video</a></li>
+                                <li><a href="{{ route('gallery.pictures') }}">Pictures Gallery</a></li>
+                                <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>
                             </ul>
                         </li>
                         <li><a href="{{ route('fHome') }}#courses">Our Courses</a></li>
-                        <li><a href="#">Notice</a></li>
+                        <li><a href="{{ route('notices') }}">Notice</a></li>
                     </ul>
                 </nav>
                <div class="outer-box">
@@ -39,7 +39,7 @@
         <div class="menu-backdrop"></div>
         <nav class="menu-box">
             <div class="upper-box">
-                <div class="nav-logo"><a href="#"><img src="{{asset('frontend/img/mobile-logo.png')}}" alt="nsdc" title="nsdc"></a></div>
+                <div class="nav-logo"><a href="{{ route('fHome') }}"><img class="frontend-brand-logo" src="{{asset('frontend/img/mobile-logo.png')}}" alt="nsdc" title="nsdc"></a></div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="navigation">
@@ -91,12 +91,12 @@
     <!-- End Search Popup -->
 
     <!-- Sticky Header -->
-    <div class="sticky-header" style="background:#F57A1C;height:70px">
+    <div class="sticky-header" style="background:#242F6F;height:66px">
         <div class="auto-container">
             <div class="inner-container">
                 <div class="d-flex justify-content-center w-100 main-menu">
                     <div class="logo new-custom-logo">
-                        <a href="#"><img style="max-width:100%; height: 60px;" src="{{asset('frontend/img/logo.png')}}" alt="nsdc" title="nsdc"></a>
+                        <a href="{{ route('fHome') }}"><img class="frontend-brand-logo" src="{{asset('frontend/img/logo.png')}}" alt="nsdc" title="nsdc"></a>
                     </div>
                     <div class="d-flex justify-content-end first-menu">
                         <ul class="navigation me-5">
@@ -105,8 +105,8 @@
                             <li class="dropdown">
                                 <a href="#">Gallery</a>
                                 <ul>
-                                    <li><a href="#">Picture</a></li>
-                                    <li><a href="#">Video</a></li>
+                                    <li><a href="{{ route('gallery.pictures') }}">Pictures Gallery</a></li>
+                                    <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -114,7 +114,7 @@
                     <div class="d-flex justify-content-start second-menu">
                         <ul class="navigation">
                             <li><a href="#">Our Courses</a></li>
-                            <li><a href="#">Notice</a></li>
+                            <li><a href="{{ route('notices') }}">Notice</a></li>
                         </ul>
                     </div>
                 </div>

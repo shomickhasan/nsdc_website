@@ -26,25 +26,42 @@ $maintenances_route = ['maintenances.index'];
 $courses = ['course.index', 'course.create'];
 
 $partner = ['our_partner.index'];
+$registration = ['registration.index', 'registration.show', 'registration.pdf', 'registration.export'];
+$students = ['students.index'];
 
 $content = ['slider.index', 'slider.delete', 'slider.edit', 'slider.update'];
 $batch = ['batch.index', 'batch.create', 'batch.edit'];
+$notice = ['notice.index', 'notice.create'];
 
 
 $routeName = \Request::route()->getName();
 
 @endphp
 
+<style>
+    .backend-menu-brand {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .backend-menu-logo {
+        width: 100%;
+        max-width: 190px;
+        height: 54px;
+        object-fit: contain;
+        display: block;
+    }
+</style>
 
 
 <!-- Menu -->
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="{{ url('/') }}" class="app-brand-link">
+        <a href="{{ url('/') }}" class="app-brand-link backend-menu-brand">
             <span class="app-brand-logo demo">
 
             </span>
-            <img src="{{asset('/image/joyeeta-logo.png')}}" alt="NSDC" width="90" height="50">
+            <img src="{{ asset('image/registration/asset-project-logo.png') }}" alt="ASSET Project" class="backend-menu-logo">
             <!-- <span class="app-brand-text demo menu-text fw-bold">NSDC</span> -->
         </a>
 
@@ -104,19 +121,29 @@ $routeName = \Request::route()->getName();
                     'partner.order_update',
             ];
 
-             $employeeRoutes = [
+            $employeeRoutes = [
                 'employee.index',
                 'employee.store',
                 'employee.update',
                 'employee.destroy',
                 'employee.order_update',
             ];
+
+            $galleryRoutes = [
+                'gallery.index',
+                'gallery.create',
+                'gallery.edit',
+                'gallery.store',
+                'gallery.update',
+                'gallery.destroy',
+            ];
         @endphp
         <li class="menu-item {{
             (
             in_array($routeName, $heroSliderRoutes) ||
             in_array($routeName, $partnerRoutes) ||
-            in_array($routeName, $employeeRoutes)
+            in_array($routeName, $employeeRoutes) ||
+            in_array($routeName, $galleryRoutes)
             ) ? 'active open' : '' }}">
             <a href="#" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons ti ti-shield"></i>
@@ -144,6 +171,12 @@ $routeName = \Request::route()->getName();
                         <div data-i18n="Employees">Employees</div>
                     </a>
                 </li>
+                <li class="menu-item {{ in_array($routeName, $galleryRoutes) ? 'active' : '' }}">
+                    <a href="{{ route('gallery.index') }}" class="menu-link">
+                        <i class="menu-icon tf-icons ti ti-photo"></i>
+                        <div data-i18n="Gallery">Gallery</div>
+                    </a>
+                </li>
             </ul>
         </li>
 
@@ -162,10 +195,24 @@ $routeName = \Request::route()->getName();
             </a>
         </li>
 
-        <li class="menu-item {{(in_array($routeName, $partner ) !== false ) ? 'active open ':''}}">
+        <li class="menu-item {{ (in_array($routeName, $notice) !== false) ? 'active open' : '' }}">
+            <a href="{{ route('notice.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-speakerphone"></i>
+                <div data-i18n="">Notices</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{(in_array($routeName, $registration ) !== false ) ? 'active open ':''}}">
             <a href="{{ route('registration.index') }}" class="menu-link ">
                 <i class="menu-icon tf-icons ti ti-paperclip"></i>
                 <div data-i18n="">Registration</div>
+            </a>
+        </li>
+
+        <li class="menu-item {{(in_array($routeName, $students ) !== false ) ? 'active open ':''}}">
+            <a href="{{ route('students.index') }}" class="menu-link ">
+                <i class="menu-icon tf-icons ti ti-school"></i>
+                <div data-i18n="">Students</div>
             </a>
         </li>
     </ul>

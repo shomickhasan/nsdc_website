@@ -34,6 +34,7 @@ class RegistrationPDFEmailJob implements ShouldQueue
         try {
             $reg = Regestration::with([
                 'course',
+                'batch',
                 'permanentDivision',
                 'permanentDistrict',
                 'permanentUpazila',

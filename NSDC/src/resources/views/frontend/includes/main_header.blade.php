@@ -17,6 +17,7 @@
                         <li><a href="#courses" style="color: white; text-decoration: none; font-weight: 500; padding: 10px 15px; border-radius: 5px; transition: all 0.3s ease;">Courses</a></li>
                         <li><a href="#testimonials" style="color: white; text-decoration: none; font-weight: 500; padding: 10px 15px; border-radius: 5px; transition: all 0.3s ease;">Testimonials</a></li>
                         <li><a href="#employees" style="color: white; text-decoration: none; font-weight: 500; padding: 10px 15px; border-radius: 5px; transition: all 0.3s ease;">Our Team</a></li>
+                        <li><a href="{{ route('notices') }}" style="color: white; text-decoration: none; font-weight: 500; padding: 10px 15px; border-radius: 5px; transition: all 0.3s ease;">Notice</a></li>
                         <li><a href="#contact" style="color: white; text-decoration: none; font-weight: 500; padding: 10px 15px; border-radius: 5px; transition: all 0.3s ease;">Contact</a></li>
                     </ul>
                 </nav>
@@ -86,6 +87,13 @@
                         <a href="#employees" class="mobile-nav-item" style="color: white; text-decoration: none; font-size: 16px; font-weight: 600; padding: 18px 25px; display: flex; align-items: center; border-radius: 12px; transition: all 0.3s ease; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
                             <i class="fas fa-users" style="margin-right: 15px; font-size: 18px; color: var(--primary-color); width: 20px; text-align: center;"></i>
                             <span>Our Team</span>
+                            <i class="fas fa-chevron-right" style="margin-left: auto; font-size: 12px; opacity: 0.7;"></i>
+                        </a>
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <a href="{{ route('notices') }}" class="mobile-nav-item" style="color: white; text-decoration: none; font-size: 16px; font-weight: 600; padding: 18px 25px; display: flex; align-items: center; border-radius: 12px; transition: all 0.3s ease; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); backdrop-filter: blur(10px);">
+                            <i class="fas fa-bullhorn" style="margin-right: 15px; font-size: 18px; color: var(--primary-color); width: 20px; text-align: center;"></i>
+                            <span>Notice</span>
                             <i class="fas fa-chevron-right" style="margin-left: auto; font-size: 12px; opacity: 0.7;"></i>
                         </a>
                     </li>
@@ -162,4 +170,3 @@
         </div>
     </div>
 </header>
-

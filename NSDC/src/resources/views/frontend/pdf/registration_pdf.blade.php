@@ -1,523 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Trainee Registration Form</title>
+    <title>Trainee Registration Form - ASSET BWCCI</title>
     <style>
         @page {
-            margin: 20px 24px;
+            margin: 30px 40px;
         }
 
         body {
-            font-family: DejaVu Sans, sans-serif;
-            unicode-bidi: plaintext;
+            font-family: 'DejaVu Sans', sans-serif;
             font-size: 11px;
-            color: #222;
+            color: #333;
             margin: 0;
-            padding: 0;
+            line-height: 1.4;
         }
 
-        .page {
+        /* Header Section */
+        .header-table {
             width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
         }
 
-        .pdf-header {
-            display: table;
-            width: 100%;
-            margin-bottom: 12px;
-        }
-
-        .pdf-header-logo,
-        .pdf-header-title {
-            display: table-cell;
+        .header-table td {
             vertical-align: middle;
+            width: 33%;
         }
 
-        .pdf-header-logo {
-            width: 25%;
+        .logo-left {
+            text-align: left;
         }
 
-        .pdf-header-logo.right {
+        .logo-center {
+            text-align: center;
+        }
+
+        .logo-right {
             text-align: right;
         }
 
-        .pdf-header-logo img {
-            max-width: 140px;
-            height: 56px;
+        .header-table img {
+            max-height: 55px;
+            width: auto;
         }
 
-        .pdf-header-title {
-            width: 50%;
+        .pdf-header-title-wrap {
             text-align: center;
+            border-bottom: 2px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .title {
             font-size: 18px;
-            font-weight: 700;
-            margin: 0 0 2px;
+            font-weight: bold;
+            color: #1a4e8c;
+            margin: 0;
+            text-transform: uppercase;
         }
 
         .subtitle {
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: underline;
-            margin-bottom: 0;
+            font-size: 13px;
+            font-weight: bold;
+            margin-top: 5px;
+            color: #555;
         }
 
+        /* Top Info Section */
         .top-info {
-            width: 100%;
-            margin-bottom: 8px;
+            margin-bottom: 15px;
+            background: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
         }
 
         .top-info-row {
-            margin-bottom: 8px;
-            font-size: 12px;
+            margin-bottom: 5px;
         }
 
         .line-value {
-            display: inline-block;
-            border-bottom: 1px dotted #555;
-            min-width: 240px;
-            padding: 0 4px 2px;
+            border-bottom: 1px solid #777;
+            padding: 0 5px;
+            font-weight: bold;
+            color: #000;
         }
 
-        .line-value.short {
-            min-width: 150px;
-        }
-
+        /* Section Styling */
         .section-title {
-            background: #cfe2f3;
-            color: #111;
-            font-weight: 700;
+            background: #1a4e8c;
+            color: #fff;
+            font-weight: bold;
             font-size: 12px;
-            padding: 4px 8px;
-            margin: 12px 0 10px;
+            padding: 5px 10px;
+            margin: 15px 0 10px;
+            border-radius: 3px;
         }
 
-        table.form-table {
+        /* Table Styling */
+        .form-table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 14px 10px;
+            border-collapse: collapse;
+            table-layout: fixed;
         }
 
-        table.form-table td {
+        .form-table td {
+            padding: 5px 8px;
             vertical-align: top;
         }
 
         .field-label {
-            font-size: 11px;
-            margin-bottom: 4px;
+            font-weight: bold;
+            font-size: 10px;
+            margin-bottom: 3px;
+            color: #555;
+            display: block;
         }
 
         .req {
             color: red;
-            font-weight: 700;
         }
 
         .field-box {
-            border: 1px solid #444;
-            min-height: 22px;
-            padding: 5px 7px;
+            border: 1px solid #ccc;
+            padding: 6px;
+            min-height: 15px;
+            background: #fff;
             font-size: 11px;
-            word-wrap: break-word;
+            border-radius: 2px;
         }
 
-        .field-box.textarea {
-            min-height: 46px;
+        .textarea-box {
+            min-height: 45px;
         }
 
-        .field-box.small-note {
-            font-size: 10px;
-        }
-
-        .checkbox-line {
-            margin: 2px 0 8px 2px;
-            font-size: 12px;
+        /* Checkbox */
+        .checkbox-wrap {
+            margin: 5px 0 10px 8px;
+            font-weight: bold;
         }
 
         .checkbox {
             display: inline-block;
-            width: 11px;
-            height: 11px;
+            width: 12px;
+            height: 12px;
             border: 1px solid #333;
-            margin-right: 6px;
-            vertical-align: middle;
             text-align: center;
-            line-height: 10px;
-            font-size: 9px;
+            line-height: 12px;
+            margin-right: 5px;
         }
 
-        .inline-choice {
-            display: inline-block;
-            margin-right: 18px;
+        /* Footer & Signatures */
+        .footer-section {
+            margin-top: 30px;
         }
 
-        .signature-block {
-            margin-top: 32px;
-            width: 180px;
-            text-align: center;
+        .signature-table {
+            width: 100%;
+            margin-top: 40px;
         }
 
-        .signature-line {
-            border-top: 1px solid #5aa1d6;
-            margin-bottom: 4px;
-        }
-
-        .signature-text {
-            font-style: italic;
-            font-weight: 700;
-            font-size: 11px;
+        .sig-line {
+            border-top: 1px solid #333;
+            width: 160px;
+            margin: 0 auto 5px;
         }
 
         .attach-box {
-            border: 2px solid #7ea6c8;
-            border-radius: 18px;
-            padding: 10px 14px;
-            width: 240px;
+            border: 1px dashed #1a4e8c;
+            background: #f0f7ff;
+            padding: 10px;
+            border-radius: 5px;
             font-size: 10px;
-            margin-left: auto;
-            margin-top: 12px;
         }
 
-        .attach-box ul {
-            margin: 0;
-            padding-left: 18px;
-        }
-
-        .page-no {
+        .page-footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: 1px solid #ddd;
+            padding-top: 5px;
             text-align: center;
-            margin-top: 8px;
-            font-size: 11px;
-        }
-
-        .footer-line {
-            border-top: 1px solid #9fc5e8;
-            margin-top: 12px;
+            font-size: 9px;
+            color: #777;
         }
 
         .page-break {
             page-break-after: always;
         }
-
-        .copy-badge {
-            text-align: right;
-            font-size: 11px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
     </style>
 </head>
+
 <body>
 
-@php
-    $copies = ['Office Copy'];
+    @php
+        $assetLogoPath = public_path('image/registration/asset-project-logo.png');
+        $bwcciLogoPath = public_path('image/registration/bwcci-logo.png');
+        $govtLogoPath = public_path('image/registration/180_72.png');
+        $dob = !empty($reg->date_of_birth) ? \Carbon\Carbon::parse($reg->date_of_birth)->format('d/m/Y') : '';
+    @endphp
 
-    $assetLogoPath = public_path('image/registration/asset-project-logo.png');
-    $bwcciLogoPath = public_path('image/registration/bwcci-logo.png');
-
-    $dob = !empty($reg->date_of_birth) ? \Carbon\Carbon::parse($reg->date_of_birth)->format('d/m/Y') : '';
-@endphp
-
-@foreach($copies as $copy)
-    {{-- PAGE 1 --}}
     <div class="page">
-{{--        <div class="copy-badge">{{ $copy }}</div>--}}
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td class="logo-left">
+                    @if (file_exists($govtLogoPath))
+                        <img src="{{ $govtLogoPath }}">
+                    @endif
+                </td>
+                <td class="logo-center">
+                    @if (file_exists($bwcciLogoPath))
+                        <img src="{{ $bwcciLogoPath }}">
+                    @endif
+                </td>
+                <td class="logo-right">
+                    @if (file_exists($assetLogoPath))
+                        <img src="{{ $assetLogoPath }}">
+                    @endif
+                </td>
+            </tr>
+        </table>
 
-        <div class="pdf-header">
-            <div class="pdf-header-logo">
-                @if(file_exists($assetLogoPath))
-                    <img src="{{ $assetLogoPath }}" alt="ASSET Project">
-                @endif
-            </div>
-            <div class="pdf-header-title">
-                <div class="title">ASSET-- BWCCI Project</div>
-                <div class="subtitle">Trainee Registration Form</div>
-            </div>
-            <div class="pdf-header-logo right">
-                @if(file_exists($bwcciLogoPath))
-                    <img src="{{ $bwcciLogoPath }}" alt="BWCCI Project">
-                @endif
-            </div>
+        <div class="pdf-header-title-wrap">
+            <div class="title">ASSET — BWCCI Project</div>
+            <div class="subtitle">Trainee Registration Form</div>
         </div>
 
         <div class="top-info">
             <div class="top-info-row">
-                <strong>Name of the Training Institute:</strong>
-                Rajshahi Skill Development Centre- RSDC
+                <strong>Training Institute:</strong> <span class="line-value">Rajshahi Skill Development Centre
+                    (RSDC)</span>
             </div>
-            <div class="top-info-row">
-                <strong>Course/Trade Name:</strong>
-                <span class="line-value">{{ $reg->course->title ?? '' }}</span>
-            </div>
-            <div class="top-info-row">
-                <strong>Batch No:</strong>
-                <span class="line-value short">{{ $reg->batch->batch_name ?? '' }}</span>
+            <div class="top-info-row" style="margin-top:8px;">
+                <strong>Course Name:</strong> <span class="line-value">{{ $reg->course->title ?? 'N/A' }}</span>
+                <span style="margin-left: 20px;"><strong>Batch No:</strong> <span
+                        class="line-value">{{ $reg->batch->batch_name ?? 'N/A' }}</span></span>
             </div>
         </div>
 
-        <div class="section-title">Basic Information</div>
-
+        <!-- Section 1: Basic Info -->
+        <div class="section-title">1. BASIC INFORMATION</div>
         <table class="form-table">
             <tr>
-                <td width="33.33%">
-                    <div class="field-label">Email <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->email ?? '' }}</div>
+                <td><span class="field-label">Full Name (English) <span class="req">*</span></span>
+                    <div class="field-box">{{ $reg->full_name_en }}</div>
                 </td>
-                <td width="33.33%">
-                    <div class="field-label">Contact Number <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->phone ?? '' }}</div>
-                </td>
-                <td width="33.33%">
-                    <div class="field-label">NID <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->nid ?? '' }}</div>
+                <td><span class="field-label">Full Name (Bangla) <span class="req">*</span></span>
+                    <div class="field-box">{{ $reg->full_name_bn }}</div>
                 </td>
             </tr>
-
             <tr>
-                <td>
-                    <div class="field-label">Full Name [English] <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->full_name_en ?? '' }}</div>
+                <td><span class="field-label">Email Address <span class="req">*</span></span>
+                    <div class="field-box">{{ $reg->email }}</div>
                 </td>
-                <td>
-                    <div class="field-label">Full Name [Bangla] <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->full_name_bn ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Father’s Name [English] <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->father_name_en ?? '' }}</div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="field-label">Father’s Occupation <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->father_occupation ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Mother’s Name [English] <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->mother_name_en ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Mother’s Occupation</div>
-                    <div class="field-box">{{ $reg->mother_occupation ?? '' }}</div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="field-label">Sex <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->sex ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Date of birth <span class="req">*</span></div>
-                    <div class="field-box">{{ $dob }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Person With Disability(PWD)</div>
-                    <div class="field-box">{{ $reg->pwd ?? '' }}</div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="field-label">Religion <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->religion ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Blood Group <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->blood_group ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Marital Status <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->marital_status ?? '' }}</div>
-                </td>
-            </tr>
-
-            <tr>
-                <td colspan="3">
-                    <div class="field-label">NID/Birth Certificate/Passport No <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->identity_no ?? '' }}</div>
+                <td><span class="field-label">Contact Number <span class="req">*</span></span>
+                    <div class="field-box">{{ $reg->phone }}</div>
                 </td>
             </tr>
         </table>
 
-        <div class="footer-line"></div>
-        <div class="page-no">1</div>
-    </div>
-
-    <div class="page-break"></div>
-
-    {{-- PAGE 2 --}}
-    <div class="page">
-        <div class="section-title">Permanent Address</div>
+        <table class="form-table">
+            <tr>
+                <td width="33%"><span class="field-label">NID Number <span class="req">*</span></span>
+                    <div class="field-box">{{ $reg->nid }}</div>
+                </td>
+                <td width="33%"><span class="field-label">Date of Birth <span class="req">*</span></span>
+                    <div class="field-box">{{ $dob }}</div>
+                </td>
+                <td width="33%"><span class="field-label">Sex <span class="req">*</span></span>
+                    <div class="field-box">{{ $reg->sex }}</div>
+                </td>
+            </tr>
+        </table>
 
         <table class="form-table">
             <tr>
-                <td width="33.33%">
-                    <div class="field-label">Division <span class="req">*</span></div>
+                <td><span class="field-label">Father's Name <span class="req">*</span></span>
+                    <div class="field-box">{{ $reg->father_name_en }}</div>
+                </td>
+                <td><span class="field-label">Mother's Name <span class="req">*</span></span>
+                    <div class="field-box">{{ $reg->mother_name_en }}</div>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Section 2: Address (এখন ১ম পেজেই ধরবে) -->
+        <div class="section-title">2. PERMANENT ADDRESS</div>
+        <table class="form-table">
+            <tr>
+                <td><span class="field-label">Division</span>
                     <div class="field-box">{{ $reg->permanentDivision->name ?? '' }}</div>
                 </td>
-                <td width="33.33%">
-                    <div class="field-label">District <span class="req">*</span></div>
+                <td><span class="field-label">District</span>
                     <div class="field-box">{{ $reg->permanentDistrict->name ?? '' }}</div>
                 </td>
-                <td width="33.33%">
-                    <div class="field-label">Upazila <span class="req">*</span></div>
+                <td><span class="field-label">Upazila</span>
                     <div class="field-box">{{ $reg->permanentUpazila->name ?? '' }}</div>
                 </td>
             </tr>
-
             <tr>
-                <td>
-                    <div class="field-label">Post Office <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->permanent_post_office ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">From Rural or Urban Area <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->permanent_area_type ?? '' }}</div>
-                </td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td colspan="3">
-                    <div class="field-label">Address <span class="req">*</span></div>
-                    <div class="field-box textarea">{{ $reg->permanent_address ?? '' }}</div>
+                <td colspan="3"><span class="field-label">Full Address Details</span>
+                    <div class="field-box textarea-box">{{ $reg->permanent_address }}</div>
                 </td>
             </tr>
         </table>
 
-        <div class="section-title">Present Address</div>
-
-        <div class="checkbox-line">
-            <span class="checkbox">{{ !empty($reg->same_as_permanent) ? '✓' : '' }}</span>
-            Same as Permanent Address
+        <!-- Section 3: Present Address & Others -->
+        <div class="section-title">3. PRESENT ADDRESS</div>
+        <div class="checkbox-wrap">
+            <span class="checkbox">{{ !empty($reg->same_as_permanent) ? '✓' : '' }}</span> Same as Permanent Address
         </div>
-
         <table class="form-table">
             <tr>
-                <td width="33.33%">
-                    <div class="field-label">Division <span class="req">*</span></div>
+                <td><span class="field-label">Division</span>
                     <div class="field-box">{{ $reg->presentDivision->name ?? '' }}</div>
                 </td>
-                <td width="33.33%">
-                    <div class="field-label">District <span class="req">*</span></div>
+                <td><span class="field-label">District</span>
                     <div class="field-box">{{ $reg->presentDistrict->name ?? '' }}</div>
                 </td>
-                <td width="33.33%">
-                    <div class="field-label">Upazila <span class="req">*</span></div>
+                <td><span class="field-label">Upazila</span>
                     <div class="field-box">{{ $reg->presentUpazila->name ?? '' }}</div>
                 </td>
             </tr>
-
-            <tr>
-                <td colspan="2">
-                    <div class="field-label">Address <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->present_address ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Post Office <span class="req">*</span></div>
-                    <div class="field-box">{{ $reg->present_post_office ?? '' }}</div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="field-label">Board/University</div>
-                    <div class="field-box">{{ $reg->board_university ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Highest Educational Level</div>
-                    <div class="field-box">{{ $reg->highest_education_level ?? '' }}</div>
-                </td>
-                <td></td>
-            </tr>
-
-            <tr>
-                <td colspan="2">
-                    <div class="field-label">Highest Education Institute Name</div>
-                    <div class="field-box">{{ $reg->highest_education_institute_name ?? '' }}</div>
-                </td>
-                <td>
-                    <div class="field-label">Highest Education Passing Year</div>
-                    <div class="field-box">{{ $reg->highest_education_passing_year ?? '' }}</div>
-                </td>
-            </tr>
         </table>
 
-        <div style="margin: 6px 14px 10px;">
-            <span class="inline-choice">
-                <strong>TVET Certificate:</strong>
-                <span class="checkbox">{{ ($reg->tvet_certificate ?? '') == 'Yes' ? '✓' : '' }}</span> Yes
-                <span class="checkbox" style="margin-left:10px;">{{ ($reg->tvet_certificate ?? '') == 'No' ? '✓' : '' }}</span> No
-            </span>
-
-            <span class="inline-choice" style="margin-left: 50px;">
-                <strong>Ethnic Minority:</strong>
-                <span class="checkbox">{{ ($reg->ethnic_minority ?? '') == 'Yes' ? '✓' : '' }}</span> Yes
-                <span class="checkbox" style="margin-left:10px;">{{ ($reg->ethnic_minority ?? '') == 'No' ? '✓' : '' }}</span> No
-            </span>
-        </div>
-
-        <div class="section-title">Skill, Experiences, Past Employment & Income</div>
-
+        <div class="section-title">4. SKILL & EMPLOYMENT</div>
         <table class="form-table">
             <tr>
-                <td width="34%">
-                    <div class="field-label">Company Name</div>
-                    <div class="field-box">{{ $reg->company_name ?? '' }}</div>
+                <td><span class="field-label">Company Name (If any)</span>
+                    <div class="field-box">{{ $reg->company_name ?? 'N/A' }}</div>
                 </td>
-                <td width="24%">
-                    <div class="field-label">Designation</div>
-                    <div class="field-box">{{ $reg->designation ?? '' }}</div>
-                </td>
-                <td width="42%">
-                    <div class="field-label">Received any skill training in the Past?</div>
-                    <div class="field-box">{{ $reg->past_skill_training ?? '' }}</div>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="field-label">Employment status before training</div>
-                    <div class="field-box">{{ $reg->employment_status_before_training ?? '' }}</div>
-                </td>
-                <td colspan="2">
-                    <div class="field-label">Amount of Monthly Income (BDT) - Cash</div>
-                    <div class="field-box">{{ $reg->monthly_income ?? '' }}</div>
+                <td><span class="field-label">Designation</span>
+                    <div class="field-box">{{ $reg->designation ?? 'N/A' }}</div>
                 </td>
             </tr>
         </table>
 
-        <div style="display: table; width: 100%; margin-top: 26px;">
-            <div style="display: table-cell; width: 50%; vertical-align: top;">
-                <div class="signature-block">
-                    <div class="signature-line"></div>
-                    <div class="signature-text">Signature of Trainee</div>
-                </div>
-            </div>
+        <!-- Signature & Attachments -->
+        <table class="signature-table">
+            <tr>
+                <td width="50%" style="text-align: center; vertical-align: bottom;">
+                    <div class="sig-line"></div>
+                    <strong>Signature of Trainee</strong>
+                </td>
+                <td width="50%">
+                    <div class="attach-box">
+                        <strong>Required Attachments:</strong>
+                        <ul style="margin: 5px 0; padding-left: 15px;">
+                            <li>2 Copies Passport Size Photo</li>
+                            <li>NID Photocopy</li>
+                            <li>Highest Educational Certificate</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
-            <div style="display: table-cell; width: 50%; vertical-align: top;">
-                <div class="attach-box">
-                    <strong>Attachments:</strong>
-                    <ul>
-                        <li>2 Copies Recent Passport Size Photo</li>
-                        <li>NID Photocopy</li>
-                        <li>Education Certificate Photocopy (Highest)</li>
-                        <li>TVET Certificate (if any)</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="page-footer">
+            Printed on: {{ date('d-m-Y H:i A') }} | Page 1 of 1
         </div>
-
-        <div class="footer-line"></div>
-        <div class="page-no">2</div>
     </div>
 
-    @if(!$loop->last)
-        <div class="page-break"></div>
-    @endif
-@endforeach
-
 </body>
+
 </html>

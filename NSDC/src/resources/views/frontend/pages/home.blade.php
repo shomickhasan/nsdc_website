@@ -246,10 +246,8 @@
                         <div class="course-content">
                             <h3 class="course-title">{{$data->title ?? ''}}</h3>
                             <div class="course-duration">{{$data->duration ?? ''}}</div>
-                            <p class="course-description">{{ \Illuminate\Support\Str::words($data->short_des, 35, '...') }}</p>
-                            <button class="course-btn">
-                                <a href="{{route('course_details',$data->slug)}}" class="text-white font-weight-700">Apply Now</a>
-                            </button>
+                            <p class="course-description">{{ \Illuminate\Support\Str::limit(strip_tags($data->short_des), 135, '...') }}</p>
+                            <a href="{{route('course_details',$data->slug)}}" class="course-btn text-white font-weight-700">Apply Now</a>
 
                         </div>
                     </div>

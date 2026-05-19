@@ -75,6 +75,7 @@
     <link href="{{asset('/')}}frontend/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('/')}}frontend/css/style.css?v=38.6" rel="stylesheet">
     <link href="{{asset('/')}}frontend/css/professional-style.css?v=1.0" rel="stylesheet">
+    <link href="{{asset('/')}}frontend/css/frontend-polish.css?v=1.0" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="shortcut icon" href="{{ isset($site->fabicon_icon) && $site->fabicon_icon ? Storage::url($site->fabicon_icon) : asset('image/feb_icon.png') }}" type="image/x-icon">
     <link rel="icon" href="{{ isset($site->fabicon_icon) && $site->fabicon_icon ? Storage::url($site->fabicon_icon) : asset('image/fev_icon.png') }}" type="image/x-icon">

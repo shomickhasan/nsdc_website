@@ -103,6 +103,11 @@
 @section('content')
     <section class="notice-page">
         <div class="container">
+            <div class="gallery-heading">
+                <h1>Notices</h1>
+                <p>Read the latest notices, announcements, and published PDF updates from Rajshahi Skill Development Center.</p>
+            </div>
+
             <div class="notice-list">
                 @forelse($notices as $notice)
                     <article class="notice-item">

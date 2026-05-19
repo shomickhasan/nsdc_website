@@ -15,7 +15,6 @@
 <!-- Toastr -->
 <script src="{{asset('/')}}app-assets/vendor/libs/toastr/toastr.js"></script>
 
-<script src="{{asset('/')}}app-assets/vendor/libs/toastr/toastr.js"></script>
 <script src="{{asset('/')}}app-assets/vendor/libs/sweetalert2/sweetalert2.js"></script>
 <script src="{{asset('/')}}app-assets/js/extended-ui-sweetalert2.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-F4GNN8Z1E7"></script>
@@ -26,7 +25,6 @@
 
 
 
-</script>
 </script>
 <script>
     function trackLeadEvent() {
@@ -253,20 +251,20 @@
 
         // 🔹 Mobile toggle
         const toggler = document.querySelector('.mobile-nav-toggler');
-        const closeBtn = mobileMenu.querySelector('.close-btn');
-        const backdrop = mobileMenu.querySelector('.menu-backdrop');
+        const closeBtn = mobileMenu ? mobileMenu.querySelector('.close-btn') : null;
+        const backdrop = mobileMenu ? mobileMenu.querySelector('.menu-backdrop') : null;
 
-        toggler.addEventListener('click', () => mobileMenu.classList.add('active'));
-        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
-        backdrop.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        if (mobileMenu && toggler && closeBtn && backdrop) {
+            toggler.addEventListener('click', () => mobileMenu.classList.add('active'));
+            closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+            backdrop.addEventListener('click', () => mobileMenu.classList.remove('active'));
 
-        // 🔹 Mobile dropdown toggle
-        mobileMenu.querySelectorAll('.dropdown > a').forEach(item => {
-            item.addEventListener('click', e => {
-                e.preventDefault();
-                item.parentElement.classList.toggle('open');
+            mobileMenu.querySelectorAll('.dropdown > a').forEach(item => {
+                item.addEventListener('click', e => {
+                    e.preventDefault();
+                    item.parentElement.classList.toggle('open');
+                });
             });
-        });
+        }
     });
 </script>
-

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         }
 
         body {
-            font-family: 'DejaVu Sans', sans-serif;
+            font-family: freeserif, serif;
             font-size: 11px;
             color: #333;
             margin: 0;
@@ -189,6 +189,10 @@
         .page-break {
             page-break-after: always;
         }
+
+        .muted {
+            color: #777;
+        }
     </style>
 </head>
 
@@ -199,6 +203,8 @@
         $bwcciLogoPath = public_path('image/registration/bwcci-logo.png');
         $govtLogoPath = public_path('image/registration/180_72.png');
         $dob = !empty($reg->date_of_birth) ? \Carbon\Carbon::parse($reg->date_of_birth)->format('d/m/Y') : '';
+        $value = fn ($field, $fallback = '') => filled(data_get($reg, $field)) ? data_get($reg, $field) : $fallback;
+        $money = filled($reg->monthly_income) ? number_format((float) $reg->monthly_income, 2) : '';
     @endphp
 
     <div class="page">
@@ -224,7 +230,7 @@
         </table>
 
         <div class="pdf-header-title-wrap">
-            <div class="title">ASSET — BWCCI Project</div>
+            <div class="title">ASSET &mdash; BWCCI Project</div>
             <div class="subtitle">Trainee Registration Form</div>
         </div>
 
@@ -245,18 +251,18 @@
         <table class="form-table">
             <tr>
                 <td><span class="field-label">Full Name (English) <span class="req">*</span></span>
-                    <div class="field-box">{{ $reg->full_name_en }}</div>
+                    <div class="field-box">{{ $value('full_name_en') }}</div>
                 </td>
                 <td><span class="field-label">Full Name (Bangla) <span class="req">*</span></span>
-                    <div class="field-box">{{ $reg->full_name_bn }}</div>
+                    <div class="field-box">{{ $value('full_name_bn') }}</div>
                 </td>
             </tr>
             <tr>
                 <td><span class="field-label">Email Address <span class="req">*</span></span>
-                    <div class="field-box">{{ $reg->email }}</div>
+                    <div class="field-box">{{ $value('email') }}</div>
                 </td>
                 <td><span class="field-label">Contact Number <span class="req">*</span></span>
-                    <div class="field-box">{{ $reg->phone }}</div>
+                    <div class="field-box">{{ $value('phone') }}</div>
                 </td>
             </tr>
         </table>
@@ -264,13 +270,13 @@
         <table class="form-table">
             <tr>
                 <td width="33%"><span class="field-label">NID Number <span class="req">*</span></span>
-                    <div class="field-box">{{ $reg->nid }}</div>
+                    <div class="field-box">{{ $value('nid') }}</div>
                 </td>
                 <td width="33%"><span class="field-label">Date of Birth <span class="req">*</span></span>
                     <div class="field-box">{{ $dob }}</div>
                 </td>
                 <td width="33%"><span class="field-label">Sex <span class="req">*</span></span>
-                    <div class="field-box">{{ $reg->sex }}</div>
+                    <div class="field-box">{{ $value('sex') }}</div>
                 </td>
             </tr>
         </table>
@@ -278,15 +284,45 @@
         <table class="form-table">
             <tr>
                 <td><span class="field-label">Father's Name <span class="req">*</span></span>
-                    <div class="field-box">{{ $reg->father_name_en }}</div>
+                    <div class="field-box">{{ $value('father_name_en') }}</div>
                 </td>
+                <td><span class="field-label">Father's Occupation</span>
+                    <div class="field-box">{{ $value('father_occupation') }}</div>
+                </td>
+            </tr>
+            <tr>
                 <td><span class="field-label">Mother's Name <span class="req">*</span></span>
-                    <div class="field-box">{{ $reg->mother_name_en }}</div>
+                    <div class="field-box">{{ $value('mother_name_en') }}</div>
+                </td>
+                <td><span class="field-label">Mother's Occupation</span>
+                    <div class="field-box">{{ $value('mother_occupation') }}</div>
                 </td>
             </tr>
         </table>
 
-        <!-- Section 2: Address (এখন ১ম পেজেই ধরবে) -->
+        <table class="form-table">
+            <tr>
+                <td width="25%"><span class="field-label">Person With Disability (PWD)</span>
+                    <div class="field-box">{{ $value('pwd') }}</div>
+                </td>
+                <td width="25%"><span class="field-label">Religion <span class="req">*</span></span>
+                    <div class="field-box">{{ $value('religion') }}</div>
+                </td>
+                <td width="25%"><span class="field-label">Blood Group <span class="req">*</span></span>
+                    <div class="field-box">{{ $value('blood_group') }}</div>
+                </td>
+                <td width="25%"><span class="field-label">Marital Status</span>
+                    <div class="field-box">{{ $value('marital_status') }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4"><span class="field-label">NID/Birth Certificate/Passport No</span>
+                    <div class="field-box">{{ $value('identity_no') }}</div>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Section 2: Address -->
         <div class="section-title">2. PERMANENT ADDRESS</div>
         <table class="form-table">
             <tr>
@@ -301,8 +337,14 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3"><span class="field-label">Full Address Details</span>
-                    <div class="field-box textarea-box">{{ $reg->permanent_address }}</div>
+                <td><span class="field-label">Post Office <span class="req">*</span></span>
+                    <div class="field-box">{{ $value('permanent_post_office') }}</div>
+                </td>
+                <td><span class="field-label">From Rural or Urban Area</span>
+                    <div class="field-box">{{ $value('permanent_area_type') }}</div>
+                </td>
+                <td><span class="field-label">Address <span class="req">*</span></span>
+                    <div class="field-box textarea-box">{{ $value('permanent_address') }}</div>
                 </td>
             </tr>
         </table>
@@ -310,7 +352,7 @@
         <!-- Section 3: Present Address & Others -->
         <div class="section-title">3. PRESENT ADDRESS</div>
         <div class="checkbox-wrap">
-            <span class="checkbox">{{ !empty($reg->same_as_permanent) ? '✓' : '' }}</span> Same as Permanent Address
+            <span class="checkbox">{!! !empty($reg->same_as_permanent) ? '&#10003;' : '' !!}</span> Same as Permanent Address
         </div>
         <table class="form-table">
             <tr>
@@ -324,16 +366,65 @@
                     <div class="field-box">{{ $reg->presentUpazila->name ?? '' }}</div>
                 </td>
             </tr>
+            <tr>
+                <td><span class="field-label">Post Office <span class="req">*</span></span>
+                    <div class="field-box">{{ $value('present_post_office') }}</div>
+                </td>
+                <td colspan="2"><span class="field-label">Address <span class="req">*</span></span>
+                    <div class="field-box textarea-box">{{ $value('present_address') }}</div>
+                </td>
+            </tr>
         </table>
 
-        <div class="section-title">4. SKILL & EMPLOYMENT</div>
+        <div class="section-title">4. EDUCATION INFORMATION</div>
         <table class="form-table">
             <tr>
-                <td><span class="field-label">Company Name (If any)</span>
-                    <div class="field-box">{{ $reg->company_name ?? 'N/A' }}</div>
+                <td><span class="field-label">Board/University</span>
+                    <div class="field-box">{{ $value('board_university') }}</div>
+                </td>
+                <td><span class="field-label">Highest Educational Level</span>
+                    <div class="field-box">{{ $value('highest_education_level') }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="field-label">Highest Education Institute Name</span>
+                    <div class="field-box">{{ $value('highest_education_institute_name') }}</div>
+                </td>
+                <td><span class="field-label">Highest Education Passing Year</span>
+                    <div class="field-box">{{ $value('highest_education_passing_year') }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="field-label">TVET Certificate</span>
+                    <div class="field-box">{{ $value('tvet_certificate') }}</div>
+                </td>
+                <td><span class="field-label">Ethnic Minority</span>
+                    <div class="field-box">{{ $value('ethnic_minority') }}</div>
+                </td>
+            </tr>
+        </table>
+
+        <div class="section-title">5. SKILL, EXPERIENCE, PAST EMPLOYMENT & INCOME</div>
+        <table class="form-table">
+            <tr>
+                <td><span class="field-label">Company Name</span>
+                    <div class="field-box">{{ $value('company_name') }}</div>
                 </td>
                 <td><span class="field-label">Designation</span>
-                    <div class="field-box">{{ $reg->designation ?? 'N/A' }}</div>
+                    <div class="field-box">{{ $value('designation') }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="field-label">Received any skill training in the Past?</span>
+                    <div class="field-box">{{ $value('past_skill_training') }}</div>
+                </td>
+                <td><span class="field-label">Employment status before training</span>
+                    <div class="field-box">{{ $value('employment_status_before_training') }}</div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><span class="field-label">Amount of Monthly Income (BDT) - Cash</span>
+                    <div class="field-box">{{ $money }}</div>
                 </td>
             </tr>
         </table>

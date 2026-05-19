@@ -43,17 +43,17 @@
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="navigation">
-{{--                <li><a href="{{route('fHome')}}">Home</a></li>--}}
-{{--                <li><a href="#employees">About</a></li>--}}
-{{--                <li class="dropdown">--}}
-{{--                    <a href="#">Gallery</a>--}}
-{{--                    <ul>--}}
-{{--                        <li><a href="#">Picture</a></li>--}}
-{{--                        <li><a href="#">Video</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-{{--                <li><a href="#">Our Courses</a></li>--}}
-{{--                <li><a href="#">Notice</a></li>--}}
+                <li><a href="{{ route('fHome') }}">Home</a></li>
+                <li><a href="{{ route('fHome') }}#employees">About</a></li>
+                <li class="dropdown">
+                    <a href="#">Gallery</a>
+                    <ul>
+                        <li><a href="{{ route('gallery.pictures') }}">Pictures Gallery</a></li>
+                        <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ route('fHome') }}#courses">Our Courses</a></li>
+                <li><a href="{{ route('notices') }}">Notice</a></li>
             </ul>
            {{-- <ul class="contact-list-one">
                 <li>
@@ -100,8 +100,8 @@
                     </div>
                     <div class="d-flex justify-content-end first-menu">
                         <ul class="navigation me-5">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
+                            <li><a href="{{ route('fHome') }}">Home</a></li>
+                            <li><a href="{{ route('fHome') }}#employees">About</a></li>
                             <li class="dropdown">
                                 <a href="#">Gallery</a>
                                 <ul>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="d-flex justify-content-start second-menu">
                         <ul class="navigation">
-                            <li><a href="#">Our Courses</a></li>
+                            <li><a href="{{ route('fHome') }}#courses">Our Courses</a></li>
                             <li><a href="{{ route('notices') }}">Notice</a></li>
                         </ul>
                     </div>

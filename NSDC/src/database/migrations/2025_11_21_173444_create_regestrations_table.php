@@ -71,15 +71,15 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->foreign('course_id')->references('id')->on('courses')->onDelete('set null');
+           // $table->foreign('course_id')->references('id')->on('courses')->onDelete('set null');
 
-            $table->foreign('permanent_division_id')->references('id')->on('divisions')->nullOnDelete();
-            $table->foreign('permanent_district_id')->references('id')->on('districts')->nullOnDelete();
-            $table->foreign('permanent_upazila_id')->references('id')->on('upazilas')->nullOnDelete();
+           // $table->foreign('permanent_division_id')->references('id')->on('divisions')->nullOnDelete();
+           // $table->foreign('permanent_district_id')->references('id')->on('districts')->nullOnDelete();
+           // $table->foreign('permanent_upazila_id')->references('id')->on('upazilas')->nullOnDelete();
 
-            $table->foreign('present_division_id')->references('id')->on('divisions')->nullOnDelete();
-            $table->foreign('present_district_id')->references('id')->on('districts')->nullOnDelete();
-            $table->foreign('present_upazila_id')->references('id')->on('upazilas')->nullOnDelete();
+           // $table->foreign('present_division_id')->references('id')->on('divisions')->nullOnDelete();
+           // $table->foreign('present_district_id')->references('id')->on('districts')->nullOnDelete();
+           // $table->foreign('present_upazila_id')->references('id')->on('upazilas')->nullOnDelete();
         });
     }
 

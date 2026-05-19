@@ -28,7 +28,7 @@
         @include('frontend.includes.script')
         <!--------------------END: JS----------------====---------->
     </div>
-    <a href="https://wa.me/8801725537792?text=Hi%2C%20I%20have%20a%20query"
+    <a class="whatsapp-float" href="https://wa.me/8801725537792?text=Hi%2C%20I%20have%20a%20query"
        target="_blank"
        aria-label="Contact us on WhatsApp"
        style="position: fixed; bottom: 24px; right: 24px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white; border-radius: 999px; padding: 10px 18px 10px 10px; text-align: left; z-index: 1000; box-shadow: 0 14px 34px rgba(18, 140, 126, 0.32); display: flex; align-items: center; gap: 11px; text-decoration: none; border: 1px solid rgba(255,255,255,0.55);">

@@ -12,7 +12,7 @@ use App\Models\District;
 use App\Models\Division;
 use App\Models\Upazila;
 use App\Models\Backend\Regestration;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Services\RegistrationPdfService;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
@@ -228,13 +228,16 @@ class ReqController extends Controller
             ->with('message', 'Registration updated successfully.');
     }
 
-    public function pdf($id)
+    public function pdf($id, RegistrationPdfService $registrationPdfService)
     {
         $reg = $this->findRegistrationWithRelations($id);
 
-        return Pdf::loadView('frontend.pdf.registration_pdf', compact('reg'))
-            ->setPaper('A4', 'portrait')
-            ->download('Registration_' . $reg->id . '.pdf');
+        $fileName = 'Registration_' . $reg->id . '.pdf';
+
+        return response($registrationPdfService->output($reg), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="' . $fileName . '"',
+        ]);
     }
 
     public function export(Request $request)

@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Backend\Regestration;
-use Barryvdh\DomPDF\Facade\Pdf;
+use App\Services\RegistrationPdfService;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -29,7 +29,7 @@ class RegistrationPDFEmailJob implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(): void
+    public function handle(RegistrationPdfService $registrationPdfService): void
     {
         try {
             $reg = Regestration::with([
@@ -43,10 +43,7 @@ class RegistrationPDFEmailJob implements ShouldQueue
                 'presentUpazila',
             ])->findOrFail($this->registration_id);
 
-            $pdf = Pdf::loadView('frontend.pdf.registration_pdf', compact('reg'))
-                ->setPaper('A4', 'portrait');
-
-            $pdfContent = $pdf->output();
+            $pdfContent = $registrationPdfService->output($reg);
 
             $studentName = $reg->full_name_en ?? $reg->name ?? 'Student';
 

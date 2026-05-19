@@ -148,7 +148,7 @@
                 </div>
                 <div class="col-lg-6 col-md-12 text-lg-end text-md-start">
                     <p style="margin: 0; color: rgba(255,255,255,0.8);">
-                        Developed by <a href="https://github.com/shomickhasan" style="color: var(--primary-color); text-decoration: none;">❤️Shomick Hasan</a>
+                        Developed by <a href="https://github.com/shomickhasan" style="color: var(--primary-color); text-decoration: none;">Shomick Hasan</a>
                     </p>
                 </div>
             </div>

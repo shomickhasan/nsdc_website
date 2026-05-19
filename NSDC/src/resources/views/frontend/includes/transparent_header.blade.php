@@ -232,7 +232,7 @@
                 <ul class="navigation white-menu"
                     style="display:flex; align-items:center; gap:25px; margin:0; list-style:none;">
                     <li><a href="{{route('fHome')}}">Home</a></li>
-                    <li><a href="#employees">About</a></li>
+                    <li><a href="{{ route('fHome') }}#employees">About</a></li>
                     <li class="dropdown">
                         <a href="#">Gallery</a>
                         <ul>
@@ -240,7 +240,7 @@
                             <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>
                         </ul>
                     </li>
-                    <li><a href="#courses">Our Courses</a></li>
+                    <li><a href="{{ route('fHome') }}#courses">Our Courses</a></li>
                     <li><a href="{{ route('notices') }}">Notice</a></li>
                 </ul>
             </nav>
@@ -268,17 +268,17 @@
                 <div class="close-btn">&times;</div>
             </div>
             <ul class="navigation clearfix">
-{{--                <li><a href="{{route('fHome')}}">Home</a></li>--}}
-{{--                <li><a href="#employees">About</a></li>--}}
-{{--                <li class="dropdown">--}}
-{{--                    <a href="#">Gallery</a>--}}
-{{--                    <ul>--}}
-{{--                        <li><a href="{{ route('gallery.pictures') }}">Pictures Gallery</a></li>--}}
-{{--                        <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>--}}
-{{--                    </ul>--}}
-{{--                </li>--}}
-{{--                <li><a href="#courses">Our Courses</a></li>--}}
-{{--                <li><a href="{{ route('notices') }}">Notice</a></li>--}}
+                <li><a href="{{ route('fHome') }}">Home</a></li>
+                <li><a href="{{ route('fHome') }}#employees">About</a></li>
+                <li class="dropdown">
+                    <a href="#">Gallery</a>
+                    <ul>
+                        <li><a href="{{ route('gallery.pictures') }}">Pictures Gallery</a></li>
+                        <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ route('fHome') }}#courses">Our Courses</a></li>
+                <li><a href="{{ route('notices') }}">Notice</a></li>
             </ul>
         </nav>
     </div>
@@ -294,7 +294,7 @@
                     <ul class="navigation"
                         style="display:flex; align-items:center; gap:25px; margin:0; list-style:none; padding:0;">
                         <li><a href="{{route('fHome')}}" class="active-menu-two">Home</a></li>
-                        <li><a href="#employees">About</a></li>
+                        <li><a href="{{ route('fHome') }}#employees">About</a></li>
                         <li class="dropdown">
                             <a href="#">Gallery</a>
                             <ul>
@@ -311,7 +311,7 @@
                             </a>
                         </li>
 
-                        <li><a href="#courses">Our Courses</a></li>
+                        <li><a href="{{ route('fHome') }}#courses">Our Courses</a></li>
                         <li><a href="{{ route('notices') }}">Notice</a></li>
                     </ul>
 
@@ -344,17 +344,19 @@
         const closeBtn = document.querySelector('.mobile-menu .close-btn');
         const backdrop = document.querySelector('.mobile-menu .menu-backdrop');
 
-        toggler.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-        });
+        if (mobileMenu && toggler && closeBtn && backdrop) {
+            toggler.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
 
-        closeBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
+            closeBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
 
-        backdrop.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-        });
+            backdrop.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+        }
     });
 
 
@@ -378,19 +380,20 @@
         // 🔹 Mobile menu toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const toggler = document.querySelector('.mobile-nav-toggler');
-        const closeBtn = mobileMenu.querySelector('.close-btn');
-        const backdrop = mobileMenu.querySelector('.menu-backdrop');
+        const closeBtn = mobileMenu ? mobileMenu.querySelector('.close-btn') : null;
+        const backdrop = mobileMenu ? mobileMenu.querySelector('.menu-backdrop') : null;
 
-        toggler.addEventListener('click', () => mobileMenu.classList.add('active'));
-        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
-        backdrop.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        if (mobileMenu && toggler && closeBtn && backdrop) {
+            toggler.addEventListener('click', () => mobileMenu.classList.add('active'));
+            closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+            backdrop.addEventListener('click', () => mobileMenu.classList.remove('active'));
 
-        // 🔹 Mobile dropdown toggle
-        mobileMenu.querySelectorAll('.dropdown > a').forEach(item => {
-            item.addEventListener('click', e => {
-                e.preventDefault();
-                item.parentElement.classList.toggle('open');
+            mobileMenu.querySelectorAll('.dropdown > a').forEach(item => {
+                item.addEventListener('click', e => {
+                    e.preventDefault();
+                    item.parentElement.classList.toggle('open');
+                });
             });
-        });
+        }
     });
 </script>

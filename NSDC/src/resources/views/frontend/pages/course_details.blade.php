@@ -405,6 +405,12 @@
                         <p class="error-text phone_error"></p>
                     </div>
 
+                    <div class="col-md-4 section-gap">
+                        <label class="form-label">Emergency Contact No <span class="required-star">*</span></label>
+                        <input type="text" name="emergency_contact_no" class="form-control"
+                            value="{{ old('emergency_contact_no') }}" placeholder="Enter emergency contact number">
+                        <p class="error-text emergency_contact_no_error"></p>
+                    </div>
 
                     <div class="col-md-4 section-gap">
                         <label class="form-label">NID <span class="required-star">*</span></label>

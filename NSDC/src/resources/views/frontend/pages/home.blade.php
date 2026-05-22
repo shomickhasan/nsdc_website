@@ -127,6 +127,32 @@
             overflow-wrap: anywhere;
         }
 
+        .courses-grid {
+            align-items: stretch;
+        }
+
+        .course-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-description {
+            min-height: 72px;
+            margin-bottom: 18px;
+        }
+
+        .course-btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
         @media (max-width: 991px) {
             .hero-section {
                 min-height: 560px;

@@ -108,6 +108,13 @@
                     </div>
 
                     <div class="col-md-4">
+                        <label class="form-label">Emergency Contact No <span class="text-danger">*</span></label>
+                        <input type="text" name="emergency_contact_no" class="form-control @error('emergency_contact_no') is-invalid @enderror"
+                               value="{{ old('emergency_contact_no', $reg->emergency_contact_no) }}">
+                        @error('emergency_contact_no')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
+                    </div>
+
+                    <div class="col-md-4">
                         <label class="form-label">NID <span class="text-danger">*</span></label>
                         <input type="text" name="nid" class="form-control @error('nid') is-invalid @enderror"
                                value="{{ old('nid', $reg->nid) }}">

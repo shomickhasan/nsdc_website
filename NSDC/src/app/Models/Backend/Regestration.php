@@ -19,6 +19,7 @@ class Regestration extends Model
         'admitted_at',
         'email',
         'phone',
+        'emergency_contact_no',
         'nid',
         'full_name_en',
         'full_name_bn',

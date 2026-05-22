@@ -24,7 +24,7 @@ class ReqController extends Controller
     public function store(RegReq $request)
     {
         try {
-            $data = $request->all();
+            $data = $request->validated();
 
             if ($request->filled('same_as_permanent')) {
                 $data['present_division_id'] = $request->permanent_division_id;

@@ -81,6 +81,7 @@ class RegReq extends FormRequest
 
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
+            'emergency_contact_no' => 'required|string|max:20',
         ];
     }
 
@@ -125,6 +126,7 @@ class RegReq extends FormRequest
             'email.required' => 'Email is required.',
             'email.email' => 'Please enter a valid email address.',
             'phone.required' => 'Contact number is required.',
+            'emergency_contact_no.required' => 'Emergency contact number is required.',
         ];
     }
 }

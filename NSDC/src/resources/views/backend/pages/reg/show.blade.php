@@ -56,6 +56,10 @@
                     <div class="field-box">{{ $reg->phone ?? '-' }}</div>
                 </div>
                 <div class="col-md-4">
+                    <div class="field-label">Emergency Contact No</div>
+                    <div class="field-box">{{ $reg->emergency_contact_no ?? '-' }}</div>
+                </div>
+                <div class="col-md-4">
                     <div class="field-label">NID</div>
                     <div class="field-box">{{ $reg->nid ?? '-' }}</div>
                 </div>

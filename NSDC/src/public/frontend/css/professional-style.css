@@ -80,7 +80,7 @@
 .sticky-header .main-menu ul.navigation,
 .header-style-transparent .main-menu ul.navigation {
     align-items: center;
-    gap: 8px !important;
+    gap: 16px !important;
 }
 
 .header-style-three .main-box {
@@ -97,7 +97,7 @@
 }
 
 .header_two ul.navigation {
-    gap: 6px !important;
+    gap: 16px !important;
 }
 
 .main-menu .navigation > li {
@@ -111,7 +111,7 @@
     padding: 8px 13px !important;
     border-radius: 6px;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: 0;
     line-height: 1.2;
@@ -477,14 +477,11 @@
             max-height: 42px !important;
         }
 
-        .header-style-three .header-lower .main-menu .navigation > li > a {
-            padding: 6px 2px !important;
-            font-size: clamp(8px, 2.35vw, 9.5px);
-        }
-
+        .header-style-three .header-lower .main-menu .navigation > li > a,
+        .header-style-transparent .navigation > li > a,
         .sticky-header .main-menu .navigation > li > a {
-            padding: 6px 4px !important;
-            font-size: 9.5px;
+            padding: 6px 7px !important;
+            font-size: 12.5px;
         }
 
         .sticky-header .new-custom-logo {

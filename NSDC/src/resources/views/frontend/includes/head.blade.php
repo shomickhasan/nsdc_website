@@ -74,8 +74,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link href="{{asset('/')}}frontend/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{asset('/')}}frontend/css/style.css?v=38.6" rel="stylesheet">
-    <link href="{{asset('/')}}frontend/css/professional-style.css?v=1.7" rel="stylesheet">
-    <link href="{{asset('/')}}frontend/css/frontend-polish.css?v=1.0" rel="stylesheet">
+    <link href="{{asset('/')}}frontend/css/professional-style.css?v=2.1" rel="stylesheet">
+    <link href="{{asset('/')}}frontend/css/frontend-polish.css?v=1.1" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="shortcut icon" href="{{ isset($site->fabicon_icon) && $site->fabicon_icon ? Storage::url($site->fabicon_icon) : asset('image/feb_icon.png') }}" type="image/x-icon">
     <link rel="icon" href="{{ isset($site->fabicon_icon) && $site->fabicon_icon ? Storage::url($site->fabicon_icon) : asset('image/fev_icon.png') }}" type="image/x-icon">

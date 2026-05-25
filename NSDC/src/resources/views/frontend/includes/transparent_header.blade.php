@@ -333,8 +333,8 @@
             }
 
             .header-style-transparent .navigation > li > a {
-                padding: 6px 4px !important;
-                font-size: 9.5px;
+                padding: 6px 7px !important;
+                font-size: 12.5px;
             }
 
             .sticky-header .new-custom-logo {

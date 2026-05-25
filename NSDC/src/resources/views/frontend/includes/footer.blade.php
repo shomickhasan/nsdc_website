@@ -2,6 +2,71 @@
 @php
     $footerCourses = \App\Models\Backend\Course::where('status', 1)->orderBy('order', 'asc')->get();
 @endphp
+<style>
+    .footer-newsletter-form {
+        display: flex;
+        gap: 10px;
+        align-items: stretch;
+    }
+
+    .footer-newsletter-form input[type="email"] {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 48px;
+        padding: 0 16px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 6px;
+        background: #fff;
+        color: #242F6F;
+        font-size: 14px;
+        line-height: 48px;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .footer-newsletter-form input[type="email"]:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(245, 122, 28, 0.18);
+    }
+
+    .footer-newsletter-form .newsletter-submit-btn {
+        flex: 0 0 auto;
+        min-width: 132px;
+        height: 48px;
+        padding: 0 22px;
+        border: 0;
+        border-radius: 6px;
+        background: var(--primary-color);
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 10px 22px rgba(245, 122, 28, 0.22);
+        white-space: nowrap;
+    }
+
+    .footer-newsletter-form .newsletter-submit-btn:hover {
+        background: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(245, 122, 28, 0.28);
+    }
+
+    @media (max-width: 575px) {
+        .footer-newsletter-form {
+            flex-direction: column;
+        }
+
+        .footer-newsletter-form .newsletter-submit-btn,
+        .footer-newsletter-form input[type="email"] {
+            width: 100%;
+        }
+    }
+</style>
 <footer class="main-footer" style="background: var(--secondary-color); color: white; padding: 60px 0 20px;">
     <div class="container" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
         <!-- Main Footer Content -->
@@ -128,9 +193,9 @@
                     <p style="color: rgba(255,255,255,0.8); margin: 0;">Subscribe to our newsletter for the latest updates on courses and programs.</p>
                 </div>
                 <div class="col-lg-6 col-md-12">
-                    <form id="newsletter_form" style="display: flex; gap: 10px;">
-                        <input type="email" name="email" placeholder="Enter your email" required style="flex: 1; padding: 12px 15px; border: none; border-radius: 5px; font-size: 14px;">
-                        <button type="submit" class="btn" style="background: var(--primary-color); color: white; border: none; padding: 12px 25px; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                    <form id="newsletter_form" class="footer-newsletter-form">
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <button type="submit" class="newsletter-submit-btn">
                             Subscribe
                         </button>
                     </form>
@@ -148,7 +213,7 @@
                 </div>
                 <div class="col-lg-6 col-md-12 text-lg-end text-md-start">
                     <p style="margin: 0; color: rgba(255,255,255,0.8);">
-                        Developed by <a href="https://github.com/shomickhasan" style="color: var(--primary-color); text-decoration: none;">Shomick Hasan</a>
+                        Developed by <a href="https://www.linkedin.com/in/md-shomick-hasan-051175210/" target="_blank" rel="noopener" style="color: var(--primary-color); text-decoration: none;">Shomick Hasan</a>
                     </p>
                 </div>
             </div>

@@ -192,6 +192,350 @@
     }
 }
 
+/* Mobile uses the same sticky menu instead of a separate toggle panel. */
+@media only screen and (max-width: 1023px) {
+    .mobile-nav-toggler,
+    .mobile-menu {
+        display: none !important;
+    }
+
+    .main-header .header-lower {
+        min-height: 58px;
+    }
+
+    .main-header .main-box {
+        min-height: 58px;
+        justify-content: flex-start !important;
+        gap: 8px;
+        overflow-x: auto;
+        overflow-y: visible;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .main-header .main-box::-webkit-scrollbar {
+        display: none;
+    }
+
+    .main-header .logo-box {
+        flex: 0 0 auto;
+        margin-right: 6px !important;
+        padding: 6px 8px !important;
+    }
+
+    .main-header .logo a {
+        width: 52px !important;
+        height: 52px !important;
+        padding: 5px !important;
+    }
+
+    .main-header .logo img.header-logo,
+    .main-header .logo img.frontend-brand-logo {
+        width: 42px !important;
+        height: 42px !important;
+        max-width: 42px !important;
+        max-height: 42px !important;
+    }
+
+    .header-style-three .header-lower {
+        padding-right: 0 !important;
+    }
+
+    .header-style-three .header-lower .main-box {
+        display: grid !important;
+        grid-template-columns: 58px minmax(0, 1fr);
+        width: 100%;
+        gap: 6px;
+        padding: 0 8px;
+    }
+
+    .header-style-three .header-lower .logo-box {
+        min-width: 0 !important;
+        width: 64px;
+        margin-right: 0 !important;
+        padding: 4px 0 !important;
+        justify-content: center;
+        border-right: 0;
+    }
+
+    .header-style-three .header-lower .logo {
+        width: auto !important;
+        flex: 0 0 auto;
+    }
+
+    .header-style-three .header-lower .logo a {
+        width: 56px !important;
+        height: 56px !important;
+        padding: 5px !important;
+        border-radius: 50% !important;
+        flex: 0 0 56px;
+    }
+
+    .header-style-three .header-lower .logo img.header-logo,
+    .header-style-three .header-lower .logo img.frontend-brand-logo {
+        width: 46px !important;
+        height: 46px !important;
+        max-width: 46px !important;
+        max-height: 46px !important;
+        object-fit: contain;
+    }
+
+    .main-header .nav-outer,
+    .header-style-three .header-lower .nav-outer {
+        width: 100% !important;
+        min-width: 0;
+        flex: 1 1 auto;
+    }
+
+    .main-menu,
+    .nav-outer .main-menu,
+    .sticky-header .main-menu {
+        display: flex !important;
+        align-items: center;
+        width: auto;
+    }
+
+    .sticky-header .main-menu {
+        justify-content: center !important;
+        flex: 1 1 auto;
+        width: 100% !important;
+        min-width: 0;
+    }
+
+    .main-menu .navigation,
+    .nav-outer .main-menu ul.navigation,
+    .sticky-header .main-menu ul.navigation {
+        display: flex !important;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: clamp(8px, 2.8vw, 16px) !important;
+        min-width: max-content;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .header-style-three .header-lower .main-menu,
+    .header-style-three .header-lower .main-menu ul.navigation {
+        width: 100% !important;
+        min-width: 0;
+    }
+
+    .header-style-three .header-lower .main-menu ul.navigation {
+        justify-content: space-between;
+        gap: 2px !important;
+    }
+
+    .main-menu .navigation > li,
+    .sticky-header .main-menu .navigation > li {
+        flex: 0 0 auto;
+        margin: 0 !important;
+        padding: 8px 0 !important;
+    }
+
+    .header-style-three .header-lower .main-menu .navigation > li {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    .main-menu .navigation > li > a,
+    .sticky-header .main-menu .navigation > li > a {
+        min-height: 32px;
+        padding: 7px 8px !important;
+        font-size: 12px;
+        line-height: 1.15;
+        white-space: nowrap;
+    }
+
+    .header-style-three .header-lower .main-menu .navigation > li > a {
+        padding: 7px 4px !important;
+        font-size: clamp(9px, 2.45vw, 11px);
+    }
+
+    .main-menu .navigation > li.dropdown > a::after {
+        margin-left: 4px;
+    }
+
+    .main-menu .navigation > li.dropdown.open > ul,
+    .main-menu .navigation > li.dropdown:focus-within > ul,
+    .main-menu .navigation > li.dropdown:hover > ul {
+        display: block !important;
+        visibility: visible;
+        opacity: 1;
+        position: fixed !important;
+        top: 56px !important;
+        left: 10px !important;
+        right: 10px !important;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: calc(100vw - 20px);
+        z-index: 100000;
+    }
+
+    .sticky-header {
+        display: block !important;
+        height: auto !important;
+        min-height: 56px;
+        overflow: visible;
+    }
+
+    .sticky-header.fixed-header {
+        display: block !important;
+        animation: stickyHeaderMobileDrop 0.35s ease both;
+    }
+
+    .sticky-header .auto-container,
+    .sticky-header .inner-container {
+        max-width: none;
+        min-height: 56px;
+        padding: 0 8px;
+    }
+
+    .sticky-header .inner-container {
+        justify-content: center !important;
+        overflow-x: visible;
+        overflow-y: visible;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .sticky-header .inner-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .sticky-header .first-menu,
+    .sticky-header .second-menu {
+        width: auto !important;
+        flex: 0 0 auto;
+        padding-left: 0 !important;
+    }
+
+    .sticky-header .new-custom-logo {
+        width: 68px;
+        min-width: 68px;
+        flex: 0 0 68px;
+    }
+
+    .sticky-header .new-custom-logo a,
+    .sticky-header .logo.new-custom-logo a {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 68px !important;
+        height: 68px !important;
+        padding: 7px !important;
+        border-radius: 10px !important;
+        background: #fff;
+        overflow: hidden;
+        transform: translateY(32px) rotate(45deg) scale(1);
+        transform-origin: center;
+        animation: stickyLogoMobileGlow 2.4s ease-in-out infinite;
+    }
+
+    .sticky-header .new-custom-logo a img,
+    .sticky-header .logo.new-custom-logo a img {
+        width: 52px !important;
+        height: 52px !important;
+        max-width: 52px !important;
+        max-height: 52px !important;
+        object-fit: contain;
+        transform: rotate(-45deg);
+    }
+
+    .sticky-header .first-menu .navigation,
+    .sticky-header .second-menu .navigation {
+        gap: clamp(8px, 2.8vw, 16px) !important;
+    }
+
+    @media only screen and (max-width: 430px) {
+        .sticky-header .auto-container,
+        .sticky-header .inner-container {
+            padding: 0 4px;
+        }
+
+        .header-style-three .header-lower .main-box {
+            grid-template-columns: 58px minmax(0, 1fr);
+            gap: 4px;
+            padding: 0 5px;
+        }
+
+        .header-style-three .header-lower .logo-box {
+            width: 58px;
+        }
+
+        .header-style-three .header-lower .logo a {
+            width: 50px !important;
+            height: 50px !important;
+            padding: 4px !important;
+            flex-basis: 50px;
+        }
+
+        .header-style-three .header-lower .logo img.header-logo,
+        .header-style-three .header-lower .logo img.frontend-brand-logo {
+            width: 42px !important;
+            height: 42px !important;
+            max-width: 42px !important;
+            max-height: 42px !important;
+        }
+
+        .header-style-three .header-lower .main-menu .navigation > li > a {
+            padding: 6px 2px !important;
+            font-size: clamp(8px, 2.35vw, 9.5px);
+        }
+
+        .sticky-header .main-menu .navigation > li > a {
+            padding: 6px 4px !important;
+            font-size: 9.5px;
+        }
+
+        .sticky-header .new-custom-logo {
+            width: 56px;
+            min-width: 56px;
+            flex-basis: 56px;
+        }
+
+        .sticky-header .new-custom-logo a,
+        .sticky-header .logo.new-custom-logo a {
+            width: 58px !important;
+            height: 58px !important;
+            transform: translateY(30px) rotate(45deg) scale(1);
+        }
+
+        .sticky-header .new-custom-logo a img,
+        .sticky-header .logo.new-custom-logo a img {
+            width: 44px !important;
+            height: 44px !important;
+            max-width: 44px !important;
+            max-height: 44px !important;
+        }
+    }
+
+    @keyframes stickyHeaderMobileDrop {
+        from {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes stickyLogoMobileGlow {
+        0%, 100% {
+            box-shadow:
+                0 10px 22px rgba(18, 25, 66, 0.18),
+                0 0 0 4px rgba(245, 122, 28, 0.10),
+                0 0 16px rgba(245, 122, 28, 0.24);
+        }
+        50% {
+            box-shadow:
+                0 12px 24px rgba(18, 25, 66, 0.20),
+                0 0 0 7px rgba(245, 122, 28, 0.15),
+                0 0 26px rgba(245, 122, 28, 0.38);
+        }
+    }
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;

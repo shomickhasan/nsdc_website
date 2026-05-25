@@ -21,29 +21,51 @@
         }
 
         .hero-content {
-            padding: 120px 20px 80px;
+            padding: 130px 20px 88px;
         }
 
         .hero-text {
-            max-width: 820px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .hero-text h1 {
             color: #fff;
-            font-size: clamp(2rem, 5vw, 4rem);
-            line-height: 1.12;
-            margin-bottom: 18px;
+            font-size: clamp(2.35rem, 4.7vw, 4.4rem);
+            line-height: 1.08;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-wrap: balance;
         }
 
         .hero-text p {
-            font-size: clamp(1rem, 2.2vw, 1.3rem);
-            margin-bottom: 30px;
-            max-width: 700px;
+            font-size: clamp(1.05rem, 1.45vw, 1.28rem);
+            line-height: 1.65;
+            margin-bottom: 34px;
+            max-width: 760px;
             margin-left: auto;
             margin-right: auto;
             opacity: 0.9;
             color: #fff;
+            text-wrap: balance;
+        }
+
+        .hero-buttons {
+            gap: 14px;
+            align-items: center;
+        }
+
+        .hero-buttons .btn {
+            min-width: 154px;
+            min-height: 50px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .carousel-indicators {
@@ -57,33 +79,256 @@
         }
 
         .partner-section {
-            background: #111;
-            padding: 50px 0;
+            background: #242F6F;
+            padding: 58px 0;
+            overflow: hidden;
+        }
+
+        .partner-section .section-title {
+            margin-bottom: 36px;
+        }
+
+        .partner-section .section-title h2 {
+            color: #fff;
+        }
+
+        .partner-section .section-title p {
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .partner-carousel .owl-stage {
+            display: flex;
+            align-items: stretch;
+        }
+
+        .partner-carousel .owl-item {
+            display: flex;
+            align-items: stretch;
         }
 
         .partner-section .partner-logo {
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
-            filter: grayscale(0.3);
-            transition: filter 0.3s ease;
+            width: 100%;
+            min-height: 132px;
+            padding: 20px 22px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 14px 34px rgba(12, 18, 54, 0.18);
+            filter: grayscale(0.12);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease, border-color 0.25s ease;
         }
 
         .partner-section .partner-logo img {
-            max-width: 100px;
-            max-height: 60px;
+            display: block;
+            width: auto !important;
+            max-width: 168px;
+            height: 82px;
+            max-height: 82px;
+            object-fit: contain;
+            object-position: center;
         }
 
         .partner-section .partner-logo:hover {
             filter: grayscale(0);
+            transform: translateY(-4px);
+            border-color: rgba(245, 122, 28, 0.55);
+            box-shadow: 0 18px 42px rgba(12, 18, 54, 0.26);
         }
 
         .home-contact-card {
             background: white;
-            padding: 40px;
+            padding: 0;
             border-radius: 8px;
             box-shadow: var(--shadow);
+            border: 1px solid rgba(36, 47, 111, 0.08);
+            overflow: hidden;
+        }
+
+        .home-contact-card-inner {
+            padding: 38px 38px 28px;
+        }
+
+        .home-contact-action {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 18px 22px;
+            border-top: 1px solid rgba(36, 47, 111, 0.10);
+            background: linear-gradient(135deg, rgba(36, 47, 111, 0.04), rgba(245, 122, 28, 0.08));
+            text-align: left;
+        }
+
+        .home-contact-action-text strong {
+            display: block;
+            color: var(--secondary-color);
+            font-size: 15px;
+            line-height: 1.25;
+            margin-bottom: 3px;
+        }
+
+        .home-contact-action-text span {
+            display: block;
+            color: var(--text-gray);
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .home-contact-action .btn {
+            flex: 0 0 auto;
+            border-radius: 8px;
+            padding: 13px 22px;
+            min-height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .home-contact-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(360px, 0.85fr);
+            gap: 24px;
+            align-items: stretch;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .home-map-card {
+            position: relative;
+            min-height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(36, 47, 111, 0.08);
+        }
+
+        .home-map-frame {
+            position: relative;
+            min-height: 100%;
+            height: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+        }
+
+        .home-map-frame iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 390px;
+            border: 0;
+            display: block;
+            filter: saturate(0.95) contrast(1.03);
+        }
+
+        .home-map-pin {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 54px;
+            height: 54px;
+            border-radius: 50% 50% 50% 0;
+            background: var(--primary-color);
+            transform: translate(-50%, -86%) rotate(-45deg);
+            z-index: 2;
+            box-shadow: 0 16px 34px rgba(245, 122, 28, 0.36);
+            pointer-events: none;
+        }
+
+        .home-map-pin::before {
+            content: "";
+            position: absolute;
+            inset: 8px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: inset 0 0 0 2px rgba(36, 47, 111, 0.08);
+        }
+
+        .home-map-pin i {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            color: var(--secondary-color);
+            font-size: 17px;
+            transform: translate(-50%, -50%) rotate(45deg);
+            z-index: 1;
+        }
+
+        .home-map-label {
+            position: absolute;
+            left: 14px;
+            right: auto;
+            top: 14px;
+            bottom: auto;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            max-width: min(240px, calc(100% - 140px));
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 12px 26px rgba(18, 25, 66, 0.16);
+            text-align: left;
+            pointer-events: none;
+        }
+
+        .home-map-label span {
+            width: 30px;
+            height: 30px;
+            flex: 0 0 30px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #fff;
+            background: var(--secondary-color);
+            font-size: 13px;
+        }
+
+        .home-map-label strong {
+            display: block;
+            color: var(--secondary-color);
+            font-size: 12px;
+            line-height: 1.2;
+            margin-bottom: 2px;
+        }
+
+        .home-map-label small {
+            color: var(--text-gray);
+            font-size: 10.5px;
+            line-height: 1.25;
+        }
+
+        .home-map-action {
+            position: absolute;
+            right: 14px;
+            top: 14px;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 36px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.94);
+            color: var(--secondary-color);
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 12px 26px rgba(18, 25, 66, 0.16);
+            transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .home-map-action:hover {
+            color: var(--primary-color);
+            transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(18, 25, 66, 0.20);
         }
 
         .home-contact-grid {
@@ -151,11 +396,31 @@
         .course-btn {
             margin-top: auto;
             align-self: flex-start;
+            text-align: center;
         }
 
         @media (max-width: 991px) {
             .hero-section {
                 min-height: 560px;
+            }
+
+            .hero-content {
+                padding: 116px 18px 76px;
+            }
+
+            .hero-text {
+                max-width: 720px;
+            }
+
+            .hero-text h1 {
+                font-size: clamp(1.7rem, 5.2vw, 2.55rem);
+                line-height: 1.12;
+            }
+
+            .hero-text p {
+                font-size: 0.92rem;
+                line-height: 1.58;
+                margin-bottom: 24px;
             }
 
             .courses-grid,
@@ -166,6 +431,25 @@
             .home-contact-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
+
+            .home-contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .home-map-frame iframe {
+                min-height: 340px;
+            }
+
+            .partner-section .partner-logo {
+                min-height: 118px;
+                padding: 16px;
+            }
+
+            .partner-section .partner-logo img {
+                max-width: 148px;
+                height: 72px;
+                max-height: 72px;
+            }
         }
 
         @media (max-width: 575px) {
@@ -174,17 +458,31 @@
             }
 
             .hero-content {
-                padding: 110px 16px 70px;
+                padding: 104px 16px 66px;
+            }
+
+            .hero-text h1 {
+                font-size: clamp(1.35rem, 7.4vw, 1.95rem);
+                line-height: 1.14;
+                margin-bottom: 12px;
+            }
+
+            .hero-text p {
+                font-size: 0.84rem;
+                line-height: 1.5;
+                margin-bottom: 20px;
             }
 
             .hero-buttons {
-                gap: 12px;
+                gap: 10px;
             }
 
             .hero-buttons .btn {
                 width: 100%;
-                max-width: 260px;
-                padding: 13px 20px;
+                max-width: 240px;
+                min-height: 46px;
+                padding: 12px 18px;
+                font-size: 14px;
             }
 
             .courses-grid,
@@ -194,7 +492,70 @@
             }
 
             .home-contact-card {
-                padding: 28px 18px;
+                padding: 0;
+            }
+
+            .home-contact-card-inner {
+                padding: 28px 18px 22px;
+            }
+
+            .home-contact-action {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+                padding: 18px;
+            }
+
+            .home-contact-action .btn {
+                width: 100%;
+            }
+
+            .home-map-frame {
+                aspect-ratio: 1 / 1;
+            }
+
+            .home-map-frame iframe {
+                min-height: 320px;
+            }
+
+            .home-map-pin {
+                width: 46px;
+                height: 46px;
+            }
+
+            .home-map-pin i {
+                font-size: 15px;
+            }
+
+            .home-map-label {
+                left: 10px;
+                top: 54px;
+                bottom: auto;
+                max-width: calc(100% - 20px);
+                padding: 9px 10px;
+            }
+
+            .home-map-action {
+                right: 10px;
+                top: 10px;
+                min-height: 34px;
+                padding: 7px 10px;
+                font-size: 11px;
+            }
+
+            .partner-section {
+                padding: 46px 0;
+            }
+
+            .partner-section .partner-logo {
+                min-height: 108px;
+                padding: 14px;
+            }
+
+            .partner-section .partner-logo img {
+                max-width: 136px;
+                height: 66px;
+                max-height: 66px;
             }
         }
 
@@ -283,11 +644,11 @@
     </section>
 
     <!-- Partner Section -->
-    <section id="partners" class="section partner-section" style="background:#242F6F; padding:50px 0;">
+    <section id="partners" class="section partner-section">
         <div class="container">
             <div class="section-title text-center mb-5">
-                <h2 style="color:white;">Our Partners</h2>
-                <p style="color: rgba(255,255,255,0.7);">Companies and organizations we proudly collaborate with</p>
+                <h2>Our Partners</h2>
+                <p>Companies and organizations we proudly collaborate with</p>
             </div>
 
             <div class="owl-carousel partner-carousel">
@@ -346,43 +707,78 @@
                 <p>Ready to start your entrepreneurial journey? Contact us today to learn more about our programs</p>
             </div>
 
-            <div style="max-width: 1040px; margin: 0 auto; text-align: center;">
+            <div class="home-contact-layout">
                 <div class="home-contact-card">
-                    <div class="home-contact-grid">
-                        <div class="home-contact-item">
-                            <div class="home-contact-icon">
-                                <i class="fas fa-phone"></i>
+                    <div class="home-contact-card-inner">
+                        <div class="home-contact-grid">
+                            <div class="home-contact-item">
+                                <div class="home-contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <h4>Phone</h4>
+                                <p>
+                                    <a href="tel:01752257387">01752257387</a><br>
+                                    <a href="tel:01725537792">01725537792</a><br>
+                                    <a href="tel:01721258411">01721258411</a>
+                                </p>
                             </div>
-                            <h4>Phone</h4>
-                            <p>
-                                <a href="tel:01752257387">01752257387</a><br>
-                                <a href="tel:01725537792">01725537792</a><br>
-                                <a href="tel:01721258411">01721258411</a>
-                            </p>
-                        </div>
-                        <div class="home-contact-item">
-                            <div class="home-contact-icon">
-                                <i class="fas fa-envelope"></i>
+                            <div class="home-contact-item">
+                                <div class="home-contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <h4>Email</h4>
+                                <p><a href="mailto:rsdc.rajshahi@gmail.com">rsdc.rajshahi@gmail.com</a></p>
                             </div>
-                            <h4>Email</h4>
-                            <p><a href="mailto:rsdc.rajshahi@gmail.com">rsdc.rajshahi@gmail.com</a></p>
-                        </div>
-                        <div class="home-contact-item">
-                            <div class="home-contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
+                            <div class="home-contact-item">
+                                <div class="home-contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <h4>Address</h4>
+                                <p>Shahmokhdum, Rajshahi</p>
                             </div>
-                            <h4>Address</h4>
-                            <p>Shahmokhdum, Rajshahi</p>
-                        </div>
-                        <div class="home-contact-item">
-                            <div class="home-contact-icon">
-                                <i class="fas fa-clock"></i>
+                            <div class="home-contact-item">
+                                <div class="home-contact-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h4>Office Hour</h4>
+                                <p>Sat- Thursday<br>9am to 5pm</p>
                             </div>
-                            <h4>Office Hour</h4>
-                            <p>Sat- Thursday<br>9am to 5pm</p>
                         </div>
                     </div>
-                    <a href="mailto:rsdc.rajshahi@gmail.com" class="btn btn-primary" style="display: inline-block;">Contact Us Now</a>
+                    <div class="home-contact-action">
+                        <div class="home-contact-action-text">
+                            <strong>Have a question about our programs?</strong>
+                            <span>Send us an email and our team will get back to you.</span>
+                        </div>
+                        <a href="mailto:rsdc.rajshahi@gmail.com" class="btn btn-primary">Contact Us Now</a>
+                    </div>
+                </div>
+                <div class="home-map-card" aria-label="Rajshahi Skill Development Centre location map">
+                    <div class="home-map-frame">
+                        <iframe
+                            src="https://www.google.com/maps?q=24.4085024,88.6087775&t=k&z=17&output=embed"
+                            loading="lazy"
+                            allowfullscreen
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="Rajshahi Skill Development Centre on Google Maps"></iframe>
+                        <div class="home-map-pin" aria-hidden="true">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <a class="home-map-action"
+                           href="https://www.google.com/maps/place/Rajshahi+Skill+Development+Centre/@24.4085073,88.6062026,17z/data=!3m1!4b1!4m6!3m5!1s0x39fbef0001281f53:0xa1b144988f3b785!8m2!3d24.4085024!4d88.6087775!16s%2Fg%2F11z20sqzln"
+                           target="_blank"
+                           rel="noopener">
+                            <i class="fas fa-up-right-from-square"></i>
+                            Open Map
+                        </a>
+                        <div class="home-map-label">
+                            <span><i class="fas fa-location-dot"></i></span>
+                            <div>
+                                <strong>Rajshahi Skill Development Centre</strong>
+                                <small>Shahmokhdum, Rajshahi</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -505,15 +901,15 @@
         $(document).ready(function(){
             $('.partner-carousel').owlCarousel({
                 loop:true,
-                margin:30,
+                margin:22,
                 autoplay:true,
                 autoplayTimeout:3000,
                 autoplayHoverPause:true,
                 nav:false,
                 dots:false,
                 responsive:{
-                    0:{ items:2 },
-                    480:{ items:3 },
+                    0:{ items:2, margin:12 },
+                    480:{ items:3, margin:16 },
                     768:{ items:4 },
                     992:{ items:6 }
                 }

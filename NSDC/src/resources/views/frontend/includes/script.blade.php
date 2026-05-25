@@ -266,5 +266,37 @@
                 });
             });
         }
+
+        const stickyDropdownLinks = document.querySelectorAll(
+            '.main-header .main-menu .navigation > li.dropdown > a, .sticky-header .main-menu .navigation > li.dropdown > a'
+        );
+
+        stickyDropdownLinks.forEach(item => {
+            item.addEventListener('click', e => {
+                if (window.innerWidth > 1023 || !item.nextElementSibling) {
+                    return;
+                }
+
+                e.preventDefault();
+                const parent = item.parentElement;
+                const wasOpen = parent.classList.contains('open');
+
+                document
+                    .querySelectorAll('.main-header .main-menu .navigation > li.dropdown.open, .sticky-header .main-menu .navigation > li.dropdown.open')
+                    .forEach(dropdown => dropdown.classList.remove('open'));
+
+                parent.classList.toggle('open', !wasOpen);
+            });
+        });
+
+        document.addEventListener('click', e => {
+            if (e.target.closest('.main-menu .navigation > li.dropdown')) {
+                return;
+            }
+
+            document
+                .querySelectorAll('.main-header .main-menu .navigation > li.dropdown.open, .sticky-header .main-menu .navigation > li.dropdown.open')
+                .forEach(dropdown => dropdown.classList.remove('open'));
+        });
     });
 </script>

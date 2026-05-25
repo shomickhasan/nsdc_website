@@ -44,7 +44,8 @@
     }
 
     /* Dropdown styling */
-    .header-style-transparent .navigation li.dropdown:hover > ul {
+    .header-style-transparent .navigation li.dropdown:hover > ul,
+    .header-style-transparent .navigation li.dropdown:focus-within > ul {
         display: block;
     }
 
@@ -158,6 +159,18 @@
 
     body.scrolled .sticky-header {
         display: block;
+        animation: stickyHeaderDrop 0.35s ease both;
+    }
+
+    @keyframes stickyHeaderDrop {
+        from {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     body.scrolled .header-style-transparent .transparent-header {
@@ -166,50 +179,199 @@
         transition: opacity 0.3s ease;
     }
 
-    /* Mobile menu */
-    .mobile-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 280px;
-        height: 100%;
+    .header-style-transparent .mobile-menu .menu-box {
         background: #242F6F;
-        z-index: 10001; /* highest so menu items are clickable */
-        transition: right 0.3s ease;
     }
 
-    .mobile-menu.active {
-        right: 0;
+    .header-style-transparent .mobile-menu .menu-backdrop {
+        background: rgba(18, 25, 66, 0.62);
     }
 
-    /* Backdrop behind menu */
-    .mobile-menu .menu-backdrop {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(18, 25, 66, 0.45);
-        z-index: 10000; /* behind menu, above header */
-        display: none;
-    }
-
-    .mobile-menu.active .menu-backdrop {
-        display: block;
-        z-index: auto !important;
-    }
-
-    .mobile-menu .close-btn {
+    .header-style-transparent .mobile-menu .close-btn {
         cursor: pointer;
         color: #fff;
         font-size: 24px;
         margin: 10px;
     }
 
+    .header-style-transparent .mobile-menu .navigation li.open > ul {
+        display: block;
+    }
+
     /* Hide sticky header on mobile */
-    @media (max-width: 991px) {
-        .sticky-header {
+    @media (max-width: 1023px) {
+        .header-style-transparent .header-lower {
+            min-height: 58px;
+        }
+
+        .header-style-transparent .main-box {
+            justify-content: flex-start !important;
+            overflow-x: auto;
+            overflow-y: visible;
+            padding: 0 10px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .header-style-transparent .main-box::-webkit-scrollbar {
+            display: none;
+        }
+
+        .header-style-transparent .outer-box,
+        .header-style-transparent .mobile-menu {
             display: none !important;
+        }
+
+        .header-style-transparent .main-menu,
+        .header-style-transparent .sticky-header .main-menu {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .header-style-transparent .main-menu ul.navigation {
+            display: grid !important;
+            grid-template-columns: repeat(3, max-content) 68px repeat(2, max-content);
+            align-items: center;
+            justify-content: center;
+            gap: clamp(10px, 3.2vw, 18px) !important;
+            min-width: 0;
+            width: max-content;
+            margin: 0 auto !important;
+        }
+
+        .header-style-transparent .navigation > li > a {
+            min-height: 34px;
+            padding: 7px 7px !important;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .sticky-header {
+            height: auto !important;
+            min-height: 56px;
+            overflow: visible;
+        }
+
+        body.scrolled .sticky-header {
+            display: block !important;
+        }
+
+        body.scrolled .header-style-transparent .transparent-header {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .sticky-header .inner-container {
+            height: 70px !important;
+            min-height: 70px;
+            justify-content: center !important;
+            overflow-x: visible;
+            overflow-y: visible;
+            padding: 0 8px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .sticky-header .inner-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sticky-header .new-custom-logo {
+            width: 68px;
+            min-width: 68px;
+            margin: 0 12px;
+            flex: 0 0 68px;
+        }
+
+        .sticky-header .new-custom-logo > a,
+        body.scrolled .sticky-header .new-custom-logo > a {
+            width: 68px !important;
+            height: 68px !important;
+            padding: 7px !important;
+            border-radius: 12px !important;
+            opacity: 1;
+            transform: translateY(32px) rotate(45deg) scale(0.94);
+            animation: stickyLogoMobileGlow 2.4s ease-in-out infinite;
+        }
+
+        body.scrolled .sticky-header .new-custom-logo > a {
+            transform: translateY(32px) rotate(45deg) scale(1);
+        }
+
+        .header-style-transparent .navigation li.dropdown.open > ul,
+        .header-style-transparent .navigation li.dropdown:focus-within > ul,
+        .header-style-transparent .navigation li.dropdown:hover > ul {
+            display: block !important;
+            position: fixed !important;
+            top: 56px !important;
+            left: 10px !important;
+            right: 10px !important;
+            width: auto !important;
+            min-width: 0 !important;
+            max-width: calc(100vw - 20px);
+            z-index: 100000;
+        }
+
+        .sticky-header .new-custom-logo img {
+            width: 52px !important;
+            height: 52px !important;
+            max-width: 52px !important;
+            max-height: 52px !important;
+            transform: rotate(-45deg);
+        }
+
+        @media (max-width: 430px) {
+            .header-style-transparent .main-box {
+                padding: 0 4px;
+            }
+
+            .header-style-transparent .main-menu ul.navigation {
+                grid-template-columns: repeat(3, max-content) 56px repeat(2, max-content);
+                gap: 7px !important;
+            }
+
+            .header-style-transparent .navigation > li > a {
+                padding: 6px 4px !important;
+                font-size: 9.5px;
+            }
+
+            .sticky-header .new-custom-logo {
+                width: 56px;
+                min-width: 56px;
+                margin: 0 6px;
+                flex-basis: 56px;
+            }
+
+            .sticky-header .new-custom-logo > a,
+            body.scrolled .sticky-header .new-custom-logo > a {
+                width: 58px !important;
+                height: 58px !important;
+                transform: translateY(30px) rotate(45deg) scale(1);
+            }
+
+            .sticky-header .new-custom-logo img {
+                width: 44px !important;
+                height: 44px !important;
+                max-width: 44px !important;
+                max-height: 44px !important;
+            }
+        }
+
+        @keyframes stickyLogoMobileGlow {
+            0%, 100% {
+                box-shadow:
+                    0 10px 22px rgba(18, 25, 66, 0.18),
+                    0 0 0 4px rgba(245, 122, 28, 0.10),
+                    0 0 16px rgba(245, 122, 28, 0.24);
+            }
+            50% {
+                box-shadow:
+                    0 12px 24px rgba(18, 25, 66, 0.20),
+                    0 0 0 7px rgba(245, 122, 28, 0.15),
+                    0 0 26px rgba(245, 122, 28, 0.38);
+            }
         }
 
         /* Remove auto margin for mobile menu */
@@ -267,19 +429,7 @@
                 </div>
                 <div class="close-btn">&times;</div>
             </div>
-            <ul class="navigation clearfix">
-                <li><a href="{{ route('fHome') }}">Home</a></li>
-                <li><a href="{{ route('fHome') }}#employees">About</a></li>
-                <li class="dropdown">
-                    <a href="#">Gallery</a>
-                    <ul>
-                        <li><a href="{{ route('gallery.pictures') }}">Pictures Gallery</a></li>
-                        <li><a href="{{ route('gallery.videos') }}">Video Gallery</a></li>
-                    </ul>
-                </li>
-                <li><a href="{{ route('fHome') }}#courses">Our Courses</a></li>
-                <li><a href="{{ route('notices') }}">Notice</a></li>
-            </ul>
+            <ul class="navigation clearfix"></ul>
         </nav>
     </div>
 
@@ -326,40 +476,15 @@
 </header>
 
 <script>
-    // Sticky header on scroll
-    window.addEventListener('scroll', function() {
-        if (window.innerWidth > 991) {
-            if (window.scrollY > 100) {
-                document.body.classList.add('scrolled');
-            } else {
-                document.body.classList.remove('scrolled');
-            }
-        }
-    });
+    (function () {
+        const setHomeStickyState = () => {
+            document.body.classList.toggle('scrolled', window.scrollY > 100);
+        };
 
-    // Mobile menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        const toggler = document.querySelector('.mobile-nav-toggler');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const closeBtn = document.querySelector('.mobile-menu .close-btn');
-        const backdrop = document.querySelector('.mobile-menu .menu-backdrop');
-
-        if (mobileMenu && toggler && closeBtn && backdrop) {
-            toggler.addEventListener('click', () => {
-                mobileMenu.classList.add('active');
-            });
-
-            closeBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-
-            backdrop.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-            });
-        }
-    });
-
-
+        window.addEventListener('scroll', setHomeStickyState, { passive: true });
+        window.addEventListener('resize', setHomeStickyState);
+        setHomeStickyState();
+    })();
 </script>
 
 <script>
